@@ -1,4 +1,5 @@
-import React, {useState} from 'react'
+import React from 'react'
+import useFormData from './custom-hooks/useFormData'
 
 const SignUp = () => {
     const INITIAL_STATE = {
@@ -6,18 +7,15 @@ const SignUp = () => {
         password: "",
         email: ""
     }
-    const [formData, setFormData] = useState(INITIAL_STATE)
+    const [formData, setFormData, handleChange] = useFormData(INITIAL_STATE)
 
-    const handleChange = (e) => {
-        const {name, value} = e.target
-        setFormData(state => ({...state, [name]:value}))
-    }
     return (
         <div>
             <form>
                 <label htmlFor="username">Username:</label>
                 <input
                 id="username"
+                type="text"
                 placeholder="username"
                 name="username"
                 value={formData.username}
@@ -26,6 +24,7 @@ const SignUp = () => {
                 <label htmlFor="password">Password:</label>
                 <input
                 id="password"
+                type="password"
                 placeholder="password"
                 name="password"
                 value={formData.password}
@@ -34,6 +33,7 @@ const SignUp = () => {
                 <label htmlFor="email">Email:</label>
                 <input
                 id="email"
+                type="text"
                 placeholder="email"
                 name="email"
                 value={formData.email}

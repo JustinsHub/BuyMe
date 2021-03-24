@@ -1,22 +1,20 @@
-import React, {useState} from 'react'
+import React from 'react'
+import useFormData from './custom-hooks/useFormData'
 
 const Login = () => {
     const INITIAL_STATE = {
         username: "",
         password: ""
     }
-    const [formData, setFormData] = useState(INITIAL_STATE)
+    const [formData, setFormData, handleChange] = useFormData(INITIAL_STATE)
 
-    const handleChange  = () => {
-        const {name, value} = e.target
-        setFormData(state => ({...state, [name]:value}))
-    }
     return (
         <div>
         <form>
             <label htmlFor="username">Username:</label>
             <input
             id="username"
+            type="text"
             name="username"
             value={formData.username}
             placeholder="Username"
@@ -25,11 +23,13 @@ const Login = () => {
             <label htmlFor="password">Password</label>
             <input
             id="password"
+            type="password"
             name="password"
             value={formData.password}
             placeholder="Password"
             onChange={handleChange}
             />
+            <button>Login</button>
         </form>
         </div>
     )

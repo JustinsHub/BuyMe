@@ -1,8 +1,8 @@
 import React from 'react'
 import {Switch, Route} from 'react-router-dom'
 import Home from './Home'
-import Login from './Login'
-import SignUp from './SignUp'
+import Login from './users/Login'
+import SignUp from './users/SignUp'
 import NotFound from './NotFound'
 
 const Routes = () => {
