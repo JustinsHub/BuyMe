@@ -1,6 +1,14 @@
 const express = require('express')
+const morgan = require('morgan')
+const usersRoutes = require('./routes/usersRoutes')
 
 const app = express()
+
+app.use(express.json())
+app.use(express.urlencoded({extended:true}))
+app.use(morgan('dev'))
+
+
 
 app.use((error, req, res, next)=> {
     let status = error.status || 500
