@@ -1,17 +1,10 @@
 const {Client} = require('pg')
+const {DB_URI} = require('./config')
 
-let DB_URI;
-
-if(process.env.NODE_ENV === "test") {
-    DB_URI="postgresql:///BuyMe_test";
-}else {
-    DB_URI="postgresql:///BuyMe";
-}
-
-let db = new Client({
+const client = new Client({
     connectionString:DB_URI
 })
 
-db.connect();
+client.connect();
 
-module.exports = db
+module.exports = client
