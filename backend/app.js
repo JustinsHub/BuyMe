@@ -8,7 +8,7 @@ app.use(express.json())
 app.use(express.urlencoded({extended:true}))
 app.use(morgan('dev'))
 
-app.use('/users', usersRoutes)
+app.use('/', usersRoutes)
 
 app.use((error, req, res, next)=> {
     let status = error.status || 500
