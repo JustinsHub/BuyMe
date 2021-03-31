@@ -1,7 +1,8 @@
 
+
 const DB_URI = (process.env.NODE_ENV === "test") 
-?  DB_URI="postgresql:///BuyMe_test" 
-:  DB_URI="postgresql:///BuyMe";
+? "postgresql:///BuyMe_test" 
+: "postgresql:///BuyMe";
 
 const SECRET_KEY = process.env.SECRET_KEY || "our_secret_key"
 

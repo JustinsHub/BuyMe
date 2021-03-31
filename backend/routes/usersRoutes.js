@@ -21,16 +21,6 @@ router.get('/:id', async (req, res, next)=> {
     }
 })
 
-router.post('/register', async (req, res, next) =>{
-    try{
-    const {username, password, email} = req.body
-    const newUser = await User.register(username, password, email)
-    return res.status(201).json(newUser)
-    }catch(e){
-        return next(e)
-    }
-})
-
 router.patch('/update/:id', async(req,res,next)=>{
     const {id} = req.params
     const {username, password, first_name, last_name, email, address} = req.body
