@@ -1,5 +1,6 @@
 const jwt = require('jsonwebtoken')
 const {SECRET_KEY} = require('../config')
+const ExpressError = require('../expressError')
 
 const authenticateJWT = (req, res, next)=>{
     try{
@@ -13,4 +14,13 @@ const authenticateJWT = (req, res, next)=>{
     }
 }
 
-module.exports = {authenticateJWT}
+const ensureLoggedIn = (req, res, next) => {
+    if(req.user) {
+        return next()
+    }else {
+        const e = new ExpressError('Unauthorized', 401)
+        return next(e)
+    }
+}
+
+module.exports = {authenticateJWT, ensureLoggedIn}

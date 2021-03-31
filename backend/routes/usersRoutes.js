@@ -1,8 +1,9 @@
 const express = require('express')
 const router = new express.Router()
 const User = require('../models/usersModel')
+const {ensureLoggedIn} = require('../middleware/auth')
 
-router.get('/all',async (req, res, next)=> {
+router.get('/all', ensureLoggedIn, async (req, res, next)=> {
     try{
     const results = await User.getAll()
     return res.json(results)
