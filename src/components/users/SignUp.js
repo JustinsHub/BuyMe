@@ -1,17 +1,29 @@
 import React from 'react'
-import useFormData from './custom-hooks/useFormData'
+import {useHistory} from 'react-router-dom'
+import useFormData from '../custom-hooks/useFormData'
+import useError from '../custom-hooks/useError'
+import User from '../api'
 
-const SignUp = () => {
+const SignUp = ({addUser}) => {
     const INITIAL_STATE = {
         username: "",
         password: "",
         email: ""
     }
-    const [formData, setFormData, handleChange] = useFormData(INITIAL_STATE)
+    const history = useHistory()
+    const [formData, setFormData, handleChange] = useFormData(INITIAL_STATE) 
+    const [registerError, setRegisterError] = useError([])
+
+    const handleSubmit = async (e) => {
+        e.preventDefault()
+        const res = await User.register(formData)
+        return (res.status === 201) ? history.push('/') : setRegisterError(res) //map through errors with css?
+    }
 
     return (
         <div>
-            <form>
+            {registerError && <h1>{registerError}</h1>}
+            <form onSubmit={handleSubmit}>
                 <label htmlFor="username">Username:</label>
                 <input
                 id="username"
