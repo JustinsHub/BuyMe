@@ -7,7 +7,7 @@ const Navbar = () => {
         <nav className="navbar navbar-light bg-light">
             <div className="container-fluid">
                 <NavLink className="navbar-brand" to="/">BuyMe</NavLink>
-            <ul class="nav justify-content-end">
+            <ul className="nav justify-content-end">
                 <li className="nav-item">
                     <NavLink className="m-2" to="/signup">Sign Up</NavLink>
                 </li>

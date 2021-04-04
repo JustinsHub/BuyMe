@@ -3,6 +3,7 @@ import {useHistory} from 'react-router-dom'
 import useFormData from '../custom-hooks/useFormData'
 import useError from '../custom-hooks/useError'
 import User from '../api'
+import '../styles/SignUp.css'
 
 const SignUp = ({addUser}) => {
     const INITIAL_STATE = {
@@ -11,50 +12,73 @@ const SignUp = ({addUser}) => {
         email: ""
     }
     const history = useHistory()
-    const [formData, setFormData, handleChange] = useFormData(INITIAL_STATE) 
+    const [formData, setFormData, handleChange] = useFormData(INITIAL_STATE)  //custom hook has to be in order even if not in use.
     const [registerError, setRegisterError] = useError([])
 
     const handleSubmit = async (e) => {
         e.preventDefault()
         const res = await User.register(formData)
+        setFormData(INITIAL_STATE)
         return (res.status === 201) ? history.push('/') : setRegisterError(res) //map through errors with css?
     }
 
     return (
-        <div>
+        <main className="SignUp-form card">
+        <div className="text-center">
+            <div>
             {registerError && <h1>{registerError}</h1>}
             <form onSubmit={handleSubmit}>
-                <label htmlFor="username">Username:</label>
+                <h1 className="SignUp-create-account h2 mb-2 fw-normal">Create Account</h1>
+
+                <div>
+                <label htmlFor="usernameInput"/>
                 <input
-                id="username"
-                type="text"
-                placeholder="username"
-                name="username"
-                value={formData.username}
-                onChange={handleChange}
-                />
-                <label htmlFor="password">Password:</label>
+                    id="usernameInput"
+                    className="form-control"
+                    type="text"
+                    placeholder="Username"
+                    name="username"
+                    value={formData.username}
+                    onChange={handleChange}
+                    />
+                </div>
+                <div>
+                <label htmlFor="passwordInput"/>
                 <input
-                id="password"
-                type="password"
-                placeholder="password"
-                name="password"
-                value={formData.password}
-                onChange={handleChange}
-                />
-                <label htmlFor="email">Email:</label>
-                <input
-                id="email"
-                type="text"
-                placeholder="email"
-                name="email"
-                value={formData.email}
-                onChange={handleChange}
-                />
-                <button>Sign Up</button>
+                    id="passwordInput"
+                    className="form-control"
+                    type="password"
+                    placeholder="Password"
+                    name="password"
+                    value={formData.password}
+                    onChange={handleChange}
+                    />
+                <label htmlFor="passwordInput"></label>  
+                </div>
+
+                <div>
+                <label htmlFor="emailInput"/>
+                <input    
+                    id="emailInput"
+                    className="form-control"
+                    type="text"
+                    placeholder="Email"
+                    name="email"
+                    value={formData.email}
+                    onChange={handleChange}
+                    />
+                </div>
+                <div className="mt-3">
+                <button className="w-100 btn btn-lg btn-primary" type="submit">Register</button>
+                </div>
+                <p className="mt-5 mb-3 text-muted">&copy; BuyMe</p>
             </form>
         </div>
+    </div>
+    </main>
     )
 }
+
+
 
 export default SignUp

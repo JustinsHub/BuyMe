@@ -5,6 +5,7 @@ import Login from './users/Login'
 import SignUp from './users/SignUp'
 import NotFound from './NotFound'
 import AppContext from './AppContext'
+import EnsureLoginRoute from './EnsureLoginRoute'
 
 const Routes = () => {
     const {addUser} = useContext(AppContext)
@@ -24,6 +25,8 @@ const Routes = () => {
                     <Home/>
                 </Route>
                 
+                {/* add profile route ensuring login by token/currentuser */}
+            
                 <Route>
                     <NotFound/>
                 </Route>

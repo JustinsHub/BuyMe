@@ -16,11 +16,15 @@ static async register (userInfo) {
     }
 }
 
-// const login = async (username, password) => {
-//     const res = await axios.post(`${BASE_URL}/auth/login`, 
-//     )
-
-// }
+static async login (loginInfo) {
+    try{
+    return await axios.post(`${BASE_URL}/auth/login`,
+    loginInfo 
+    ) //apply token?
+    }catch(e){
+        return e.error // change
+    }
+}
 }
 
 export default User

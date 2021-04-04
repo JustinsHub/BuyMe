@@ -2,7 +2,7 @@ import React, {useState} from 'react'
 import AppContext from './AppContext'
 
 const AppContextWrapper = ({children}) => {
-    const [currentUser, setCurrentUser] = useState([])
+    const [currentUser, setCurrentUser] = useState(null)
 
     const addUser = (user) => {
         setCurrentUser(state => [...currentUser, {...user}])
