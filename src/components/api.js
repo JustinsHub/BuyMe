@@ -7,22 +7,23 @@ class User {
 
 static async register (userInfo) {
     try{
-    return await axios.post(`${BASE_URL}/auth/register`,
+    const res = await axios.post(`${BASE_URL}/auth/register`,
     userInfo
     )
+    if(res) return {Registered: true}
     }catch(e){
         return e.response.data.error.message
-        
     }
 }
 
 static async login (loginInfo) {
     try{
-    return await axios.post(`${BASE_URL}/auth/login`,
-    loginInfo 
-    ) //apply token?
+    const res = await axios.post(`${BASE_URL}/auth/login`,
+    loginInfo
+    )
+    if(res) return {Login: true}
     }catch(e){
-        return e.error // change
+        return e.response.data.error.message // change
     }
 }
 }

@@ -33,16 +33,22 @@ class User {
         const hashedPassword = await bcrypt.hash(pass, BCRYPT_WORK_FACTOR)
         const results = await db.query(`INSERT INTO users (username, password, email) VALUES ($1,$2,$3)
                                         RETURNING id, username`, [user, hashedPassword, mail])
-        const newUser = results.rows[0]
+        const newUser = results.rows[0] 
         return new User(newUser)
+        
     }
+
     static async login(username, password){
-        const results = await db.query(`SELECT username, password FROM users WHERE username= $1`, [username])
+        const results = await db.query(`SELECT username, password FROM users WHERE username = $1`, [username])
         const user = results.rows[0]
-        if(!user || !username || !password){
-            throw new ExpressError('Username/Password required', 404)
+        if (user) {
+            const isValid = await bcrypt.compare(password, user.password);
+            if (isValid === true) {
+            delete user.password;
+            return user;
+            }
         }
-        return user && await bcrypt.compare(password, user.password)
+        throw new ExpressError('Username/Password are required.', 400)
     }
 
     async updateUser(){

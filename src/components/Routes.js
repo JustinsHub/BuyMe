@@ -6,26 +6,30 @@ import SignUp from './users/SignUp'
 import NotFound from './NotFound'
 import AppContext from './AppContext'
 import EnsureLoginRoute from './EnsureLoginRoute'
+import Profile from './users/Profile'
 
 const Routes = () => {
-    const {addUser} = useContext(AppContext)
+    const {login, register} = useContext(AppContext)
     //usecontext here and pass it down to each component
     return (
         <div>
             <Switch>
                 <Route exact path="/login">
-                    <Login/>
+                    <Login login={login}/>
                 </Route>
 
                 <Route exact path="/signup">
-                    <SignUp addUser={addUser}/>
+                    <SignUp register={register}/>
+                </Route>
+
+                 {/* change into private route soon */}
+                <Route exact path="/profile">
+                <Profile/>
                 </Route>
 
                 <Route exact path="/">
                     <Home/>
                 </Route>
-                
-                {/* add profile route ensuring login by token/currentuser */}
             
                 <Route>
                     <NotFound/>

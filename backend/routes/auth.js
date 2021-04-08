@@ -25,9 +25,6 @@ router.post('/register', async(req, res, next)=> {
 router.post('/login', async(req, res, next)=>{
     const {username, password} = req.body
     try{
-    if(!username ||!password){
-        throw new ExpressError('Invalid Username/Password.', 400)
-    }
     const user = await User.login(username, password)
     const token = jwt.sign({user}, SECRET_KEY)
         return res.status(201).json({LoggedIn: username, token})

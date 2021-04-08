@@ -2,10 +2,9 @@ import React from 'react'
 import {useHistory} from 'react-router-dom'
 import useFormData from '../custom-hooks/useFormData'
 import useError from '../custom-hooks/useError'
-import User from '../api'
 import '../styles/SignUp.css'
 
-const SignUp = ({addUser}) => {
+const SignUp = ({register}) => {
     const INITIAL_STATE = {
         username: "",
         password: "",
@@ -17,9 +16,10 @@ const SignUp = ({addUser}) => {
 
     const handleSubmit = async (e) => {
         e.preventDefault()
-        const res = await User.register(formData)
+        const res = await register(formData)
+        console.log(res)
         setFormData(INITIAL_STATE)
-        return (res.status === 201) ? history.push('/') : setRegisterError(res) //map through errors with css?
+        return (res.Registered) ? history.push('/') : setRegisterError(res) //map through errors with css?
     }
 
     return (
