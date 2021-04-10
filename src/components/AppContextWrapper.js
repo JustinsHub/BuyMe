@@ -4,23 +4,27 @@ import User from './api'
 
 const AppContextWrapper = ({children}) => {
     const [currentUser, setCurrentUser] = useState(null)
-    const [token, setToken] = useState(false)
+    const [token, setToken] = useState("")
 
     const register = async(userInfo) => {
         const res = await User.register(userInfo)
-        setToken(res.token)
+        if(res.data){
+            setToken(res.data.token)
+        }
         return res
     }
 
-    const login= async(loginInfo) => {
+    const login = async(loginInfo) => {
         const res = await User.login(loginInfo)
-        setToken(res.token) //console token to see if it prints
-        return res
+        if(res.data){
+            setToken(res.data.token)
+        }
+        return res //set token to localstorage for useeffect?
     }
     //add values here
     return (
         <div>
-            <AppContext.Provider value={{currentUser, register, login}}>
+            <AppContext.Provider value={{currentUser, register, login, token}}>
             {children}
             </AppContext.Provider>
         </div>

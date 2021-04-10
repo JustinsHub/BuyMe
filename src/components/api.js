@@ -10,7 +10,7 @@ static async register (userInfo) {
     const res = await axios.post(`${BASE_URL}/auth/register`,
     userInfo
     )
-    if(res) return {Registered: true}
+    return res
     }catch(e){
         return e.response.data.error.message
     }
@@ -21,9 +21,9 @@ static async login (loginInfo) {
     const res = await axios.post(`${BASE_URL}/auth/login`,
     loginInfo
     )
-    if(res) return {Login: true}
+    return res
     }catch(e){
-        return e.response.data.error.message // change
+        return e.response.data.error.message
     }
 }
 }

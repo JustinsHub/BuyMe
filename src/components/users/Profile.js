@@ -3,7 +3,7 @@ import AppContext from '../AppContext'
 import {Redirect} from 'react-router-dom'
 
 const Profile = () => {
-    const {currentUser} = useContext(AppContext)
+    const {currentUser, token} = useContext(AppContext)
     // if(!currentUser){
     //     <Redirect to="/login"/>
     // }
@@ -13,7 +13,7 @@ const Profile = () => {
     //how to delete user as well.
     return (
         <div>
-            Profile Page
+            Profile Page {token}
         </div>
     )
 }

@@ -17,16 +17,15 @@ const SignUp = ({register}) => {
     const handleSubmit = async (e) => {
         e.preventDefault()
         const res = await register(formData)
-        console.log(res)
-        setFormData(INITIAL_STATE)
-        return (res.Registered) ? history.push('/') : setRegisterError(res) //map through errors with css?
+        return (res.status === 201) ? history.push('/') : setRegisterError(res) //map through errors with css?
     }
 
     return (
         <main className="SignUp-form card">
         <div className="text-center">
             <div>
-            {registerError && <h1>{registerError}</h1>}
+                {/* //change UI error */}
+            {registerError && <h1>{registerError}</h1>} 
             <form onSubmit={handleSubmit}>
                 <h1 className="SignUp-create-account h2 mb-2 fw-normal">Create Account</h1>
 

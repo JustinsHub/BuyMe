@@ -15,12 +15,12 @@ const Login = ({login}) => {
     const handleSubmit = async (e) => {
         e.preventDefault()
         const res = await login(formData)
-        console.log(res)
-        return (res.Login) ? history.push('/profile'): setLoginError(res)
+        return (res.status === 201) ? history.push('/profile'): setLoginError(res)
     }
 
     return (
         <div>
+            {/* change UI errors warning */}
         {loginError && <h1>{loginError}</h1>}
         <form onSubmit={handleSubmit}>
             <label htmlFor="username">Username:</label>
