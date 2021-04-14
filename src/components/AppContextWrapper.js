@@ -1,10 +1,13 @@
 import React, {useState} from 'react'
 import AppContext from './AppContext'
 import User from './api'
+import useLocalStorage from './custom-hooks/useLocalStorage'
 
 const AppContextWrapper = ({children}) => {
+    const localStorageValue = "local"
+
     const [currentUser, setCurrentUser] = useState(null)
-    const [token, setToken] = useState("") 
+    const [token, setToken] = useLocalStorage(localStorageValue) 
 
     const register = async(userInfo) => {
         const res = await User.register(userInfo)
