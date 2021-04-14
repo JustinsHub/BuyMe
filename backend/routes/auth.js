@@ -26,7 +26,7 @@ router.post('/login', async(req, res, next)=>{
     const {username, password} = req.body
     try{
     const user = await User.login(username, password)
-    const token = jwt.sign({username: user.username}, SECRET_KEY)
+    const token = jwt.sign({id: user.id}, SECRET_KEY)
         return res.status(201).json({LoggedIn: username, token})
     }catch(e){
         return next(e)

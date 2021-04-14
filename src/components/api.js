@@ -7,8 +7,8 @@ class User {
 
 static async register (userInfo) {
     try{
-    const res = await axios.post(`${BASE_URL}/auth/register`,
-    userInfo
+        const res = await axios.post(`${BASE_URL}/auth/register`,
+        userInfo
     )
     return res
     }catch(e){
@@ -18,10 +18,19 @@ static async register (userInfo) {
 
 static async login (loginInfo) {
     try{
-    const res = await axios.post(`${BASE_URL}/auth/login`,
-    loginInfo
+        const res = await axios.post(`${BASE_URL}/auth/login`,
+        loginInfo
     )
     return res
+    }catch(e){
+        return e.response.data.error.message
+    }
+}
+
+static async getUserId(id){
+    try{
+        const res = await axios.get(`${BASE_URL}/users/${id}`)
+        return res
     }catch(e){
         return e.response.data.error.message
     }

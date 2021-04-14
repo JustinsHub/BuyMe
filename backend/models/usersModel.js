@@ -39,7 +39,7 @@ class User {
     }
 
     static async login(username, password){
-        const results = await db.query(`SELECT username, password FROM users WHERE username = $1`, [username])
+        const results = await db.query(`SELECT id, username, password FROM users WHERE username = $1`, [username])
         const user = results.rows[0]
         if (user) {
             const isValid = await bcrypt.compare(password, user.password);

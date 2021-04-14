@@ -4,7 +4,7 @@ import User from './api'
 
 const AppContextWrapper = ({children}) => {
     const [currentUser, setCurrentUser] = useState(null)
-    const [token, setToken] = useState("")
+    const [token, setToken] = useState("") 
 
     const register = async(userInfo) => {
         const res = await User.register(userInfo)
@@ -16,10 +16,10 @@ const AppContextWrapper = ({children}) => {
 
     const login = async(loginInfo) => {
         const res = await User.login(loginInfo)
-        if(res.data){
-            setToken(res.data.token)
+        if(res.data){   
+            setToken(res.data.token) //set token in localstorage. Create a hook to store it. 
         }
-        return res //set token to localstorage for useeffect?
+        return res 
     }
     //add values here
     return (
