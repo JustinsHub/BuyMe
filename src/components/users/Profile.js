@@ -1,11 +1,12 @@
-import React, {useContext} from 'react'
+import React, {useContext, useState} from 'react'
 import AppContext from '../AppContext'
 import {Redirect} from 'react-router-dom'
 import User from '../api'
+import jwt from "jsonwebtoken";
 
 const Profile = () => {
-    const {currentUser} = useContext(AppContext)
-
+    const {currentUser, token} = useContext(AppContext)
+    
     // if(!currentUser){
     //     <Redirect to="/login"/>
     // }
@@ -17,7 +18,7 @@ const Profile = () => {
     
     return (
         <div>
-            Profile Page 
+            <p>Profile Page</p>
         </div>
     )
 }
