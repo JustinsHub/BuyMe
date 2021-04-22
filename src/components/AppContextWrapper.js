@@ -18,16 +18,17 @@ const AppContextWrapper = ({children}) => {
 
     useEffect(()=> {
         const getCurrentUser = async()=> {
+            //getting the current user using the token we stored in localStorage
+            //if token, get current user by decoding the token object
         if(token){
             try{
             const {id} = jwt.decode(token)
-            const loggedInUser = await User.getUserId(id)
-            console.log(id)
-            setCurrentUser(loggedInUser)
+            const user = await User.getUserId(id)
+            setCurrentUser(user)
         }catch(e){
             return e
         }
-        //setLoading?
+        //setLoading later
         }}
         getCurrentUser()
     }, [token])

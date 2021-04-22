@@ -10,7 +10,6 @@ import Profile from './users/Profile'
 
 const Routes = () => {
     const {login, register} = useContext(AppContext)
-    //usecontext here and pass it down to each component
     return (
         <div>
             <Switch>
@@ -22,10 +21,9 @@ const Routes = () => {
                     <SignUp register={register}/>
                 </Route>
 
-                 {/* change into private route soon */}
-                <Route exact path="/profile">
-                <Profile/>
-                </Route>
+                <EnsureLoginRoute exact path="/profile">
+                    <Profile/>
+                </EnsureLoginRoute>
 
                 <Route exact path="/">
                     <Home/>
