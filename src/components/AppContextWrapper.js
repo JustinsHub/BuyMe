@@ -48,10 +48,14 @@ const AppContextWrapper = ({children}) => {
         }
         return res 
     }
+
+    const logout = () => {
+        setCurrentUser(null)
+    }
     
     return (
         <div>
-            <AppContext.Provider value={{currentUser, register, login, token}}>
+            <AppContext.Provider value={{currentUser, register, login, logout, token}}>
             {children}
             </AppContext.Provider>
         </div>

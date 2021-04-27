@@ -7,6 +7,7 @@ import NotFound from './NotFound'
 import AppContext from './AppContext'
 import EnsureLoginRoute from './EnsureLoginRoute'
 import Profile from './users/Profile'
+import ProfileEdit from './users/ProfileEdit'
 
 const Routes = () => {
     const {login, register} = useContext(AppContext)
@@ -23,6 +24,10 @@ const Routes = () => {
 
                 <EnsureLoginRoute exact path="/profile">
                     <Profile/>
+                </EnsureLoginRoute>
+
+                <EnsureLoginRoute exact path="/profile/edit">
+                    <ProfileEdit/>
                 </EnsureLoginRoute>
 
                 <Route exact path="/">
