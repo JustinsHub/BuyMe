@@ -2,20 +2,25 @@ import React from 'react'
 import {useHistory} from 'react-router-dom'
 import useFormData from '../custom-hooks/useFormData'
 import useError from '../custom-hooks/useError'
+import NoAccess from './AccessError'
 
-const Login = ({login}) => {
+const Login = ({login, user}) => {
     const INITIAL_STATE = {
         username: "",
         password: ""
     }
     const history = useHistory()
-    const [formData, setFormData, handleChange] = useFormData(INITIAL_STATE)
+    
+    const [formData, handleChange] = useFormData(INITIAL_STATE)
     const [loginError, setLoginError] = useError([])
 
     const handleSubmit = async (e) => {
         e.preventDefault()
         const res = await login(formData)
         return (res.status === 201) ? history.push('/profile'): setLoginError(res)
+    }
+    if(user){
+        history.push('/access/error') 
     }
 
     return (

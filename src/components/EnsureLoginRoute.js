@@ -10,7 +10,7 @@ const EnsureLoginRoute = ({exact, path, children}) => {
     
     //fix redirect for user (must log in twice in order to access. Why?)
     if(!currentUser) { 
-    return <Redirect exact to ="/login"/>
+    return <Redirect to ="/profile"/>
     }
 
     return (

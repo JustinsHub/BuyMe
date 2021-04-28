@@ -8,18 +8,19 @@ import AppContext from './AppContext'
 import EnsureLoginRoute from './EnsureLoginRoute'
 import Profile from './users/Profile'
 import ProfileEdit from './users/ProfileEdit'
+import AccessError from './users/AccessError'
 
 const Routes = () => {
-    const {login, register} = useContext(AppContext)
+    const {login, register, currentUser} = useContext(AppContext)
     return (
         <div>
             <Switch>
                 <Route exact path="/login">
-                    <Login login={login}/>
+                    <Login login={login} user={currentUser}/>
                 </Route>
 
                 <Route exact path="/signup">
-                    <SignUp register={register}/>
+                    <SignUp register={register} user={currentUser}/>
                 </Route>
 
                 <EnsureLoginRoute exact path="/profile">
@@ -34,6 +35,10 @@ const Routes = () => {
                     <Home/>
                 </Route>
             
+                <Route exact path="/access/error">
+                    <AccessError/>
+                </Route>
+
                 <Route>
                     <NotFound/>
                 </Route>

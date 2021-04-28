@@ -4,14 +4,14 @@ import useFormData from '../custom-hooks/useFormData'
 import useError from '../custom-hooks/useError'
 import '../styles/SignUp.css'
 
-const SignUp = ({register}) => {
+const SignUp = ({register, user}) => {
     const INITIAL_STATE = {
         username: "",
         password: "",
         email: ""
     }
     const history = useHistory()
-    const [formData, setFormData, handleChange] = useFormData(INITIAL_STATE)  //custom hook has to be in order even if not in use.
+    const [formData, handleChange] = useFormData(INITIAL_STATE)  //custom hook has to be in order even if not in use.
     const [registerError, setRegisterError] = useError([])
 
     const handleSubmit = async (e) => {
@@ -20,6 +20,9 @@ const SignUp = ({register}) => {
         return (res.status === 201) ? history.push('/') : setRegisterError(res) //map through errors with css?
     }
 
+    if(user){
+        history.push('/access/error') //fix this
+    }
     return (
         <main className="SignUp-form card">
         <div className="text-center">

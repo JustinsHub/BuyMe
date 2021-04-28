@@ -7,7 +7,7 @@ const useFormData = (INITIAL_STATE) => {
         const {name, value} = e.target
         setFormData(state=> ({...state, [name]:value}))
     }
-    return [formData, setFormData, handleChange]
+    return [formData, handleChange]
 }
 
 export default useFormData
