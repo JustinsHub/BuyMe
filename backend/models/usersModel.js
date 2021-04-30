@@ -34,8 +34,10 @@ class User {
         const results = await db.query(`INSERT INTO users (username, password, email) VALUES ($1,$2,$3)
                                         RETURNING id, username`, [user, hashedPassword, mail])
         const newUser = results.rows[0] 
+        if(newUser){
+            delete newUser.password
+        }
         return new User(newUser)
-        
     }
 
     static async login(username, password){

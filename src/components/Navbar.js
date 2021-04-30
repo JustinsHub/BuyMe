@@ -4,7 +4,6 @@ import {NavLink} from 'react-router-dom'
 
 const Navbar = () => {
     const {currentUser, logout} = useContext(AppContext)
-
     return (
         <main>
         <nav className="navbar navbar-light bg-light">
@@ -14,7 +13,7 @@ const Navbar = () => {
                 <ul className="nav justify-content-end">
                     <div className="dropdown">
                     <li className="nav-item dropdown-toggle" type="button" data-bs-toggle="dropdown">
-                        {currentUser.data.username} 
+                        {currentUser.data.username}
                     </li>
                     <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                         <li><NavLink className="dropdown-item" to="/profile">Account</NavLink></li>

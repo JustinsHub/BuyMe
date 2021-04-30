@@ -24,7 +24,9 @@ const AppContextWrapper = ({children}) => {
             try{
             const {id} = jwt.decode(token)
             const user = await User.getUserId(id)
+            delete user.data.password
             setCurrentUser(user)
+
         }catch(e){
             return e
         }
