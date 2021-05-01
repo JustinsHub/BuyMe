@@ -1,14 +1,19 @@
 import React, {useState, useEffect} from 'react'
+import {useHistory} from 'react-router-dom'
 import AppContext from './AppContext'
 import User from './api'
 import useLocalStorage from './custom-hooks/useLocalStorage'
 import jwt from 'jsonwebtoken'
+import LoadSpinner from './commons/LoadSpinner'
 
 const AppContextWrapper = ({children}) => {
     const localStorageKey = "token"
 
     const [currentUser, setCurrentUser] = useState(null)
     const [token, setToken] = useLocalStorage(localStorageKey) 
+    const [loading, setLoading] = useState(false)
+
+    const history = useHistory()
 
     //TODO: apply token on useEffect. Check to see if the user is logged in (currentUser)
     //Apply private routes if(!currentUser)
@@ -24,13 +29,13 @@ const AppContextWrapper = ({children}) => {
             try{
             const {id} = jwt.decode(token)
             const user = await User.getUserId(id)
-            delete user.data.password
+            delete user.data.password //deletes hashed password to not show on data
             setCurrentUser(user)
 
         }catch(e){
             return e
         }
-        //setLoading later
+        setLoading(true)
         }}
         getCurrentUser()
     }, [token])
@@ -53,8 +58,11 @@ const AppContextWrapper = ({children}) => {
 
     const logout = () => {
         setCurrentUser(null)
+        history.push('/login') //fix on how to load...
     }
     
+    if(!loading) return <LoadSpinner/>
+
     return (
         <div>
             <AppContext.Provider value={{currentUser, register, login, logout, token}}>
