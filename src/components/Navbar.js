@@ -9,6 +9,8 @@ const Navbar = () => {
         <nav className="navbar navbar-light bg-light">
             <div className="container-fluid">
                 <NavLink className="navbar-brand" to="/">BuyMe</NavLink>
+                
+                {/* if logged in, render username with dropdown else signup/login routes */}
                 {currentUser ? 
                 <ul className="nav justify-content-end">
                     <div className="dropdown">

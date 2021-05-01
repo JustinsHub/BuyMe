@@ -35,6 +35,15 @@ static async getUserId(id){
         return e.response.data.error.message
     }
 }
+
+static async editUser(id){
+    try{
+    const res = await axios.get(`${BASE_URL}/update/${id}`)
+    return res
+    }catch(e){
+        return e.response.data.error.message
+    }
+}
 }
 
 export default User

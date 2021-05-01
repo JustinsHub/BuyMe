@@ -58,10 +58,10 @@ const AppContextWrapper = ({children}) => {
 
     const logout = () => {
         setCurrentUser(null)
-        history.push('/login') //fix on how to load...
+        history.push('/login') 
     }
     
-    if(!loading) return <LoadSpinner/>
+    if(!loading) return <LoadSpinner/> //if anything is not loaded on the page, render this component
 
     return (
         <div>

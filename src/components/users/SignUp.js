@@ -21,7 +21,7 @@ const SignUp = ({register, user}) => {
     }
 
     if(user){
-        history.push('/access/error') //fix this
+        history.push('/access/error') 
     }
     return (
         <main className="SignUp-form card">
@@ -54,8 +54,7 @@ const SignUp = ({register, user}) => {
                     name="password"
                     value={formData.password}
                     onChange={handleChange}
-                    />
-                <label htmlFor="passwordInput"></label>  
+                    /> 
                 </div>
 
                 <div>
@@ -70,6 +69,7 @@ const SignUp = ({register, user}) => {
                     onChange={handleChange}
                     />
                 </div>
+                
                 <div className="mt-3">
                 <button className="w-100 btn btn-lg btn-primary" type="submit">Register</button>
                 </div>

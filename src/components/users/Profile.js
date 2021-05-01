@@ -10,10 +10,9 @@ const Profile = () => {
         history.push('/profile/edit')
     }
     //add api how to edit
-    //how to delete user as well.
     //create profile/edit 
-
-
+     //how to delete user as well.
+    
     const {username, first_name, last_name, email, address} = currentUser.data
     
     return (
@@ -24,7 +23,7 @@ const Profile = () => {
                 <p>First Name: {first_name === null ? <i>First Name</i> : first_name}</p>
                 <p>Last Name: {last_name === null ? <i>Last Name</i> : last_name}</p>
                 <p>Email: {email === null ? <i>Email Address</i> : email}</p>
-                <p>Address: {address === null ? <i>Address</i> : address}</p>
+                <p>Address: {address === null ? <i>Shipping Address</i> : address}</p>
                 <p></p>
                 <div className="mt-3">
                 <button className="w-100 btn btn-lg btn-primary" type="submit" onClick={profileEdit}>Edit Profile</button>
