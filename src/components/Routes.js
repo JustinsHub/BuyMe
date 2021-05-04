@@ -11,7 +11,7 @@ import ProfileEdit from './users/ProfileEdit'
 import AccessError from './users/AccessError'
 
 const Routes = () => {
-    const {login, register, currentUser} = useContext(AppContext)
+    const {login, register, currentUser, editUser} = useContext(AppContext)
     return (
         <div>
             <Switch>
@@ -28,7 +28,7 @@ const Routes = () => {
                 </EnsureLoginRoute>
 
                 <EnsureLoginRoute exact path="/profile/edit">
-                    <ProfileEdit/>
+                    <ProfileEdit editUser={editUser}/>
                 </EnsureLoginRoute>
 
                 <Route exact path="/">

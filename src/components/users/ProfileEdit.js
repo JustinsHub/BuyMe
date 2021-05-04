@@ -1,23 +1,34 @@
 import React, {useContext} from 'react'
+import {useHistory} from 'react-router-dom'
 import AppContext from '../AppContext'
 import useFormData from '../custom-hooks/useFormData'
+import User from '../api'
+import '../styles/SignUp.css'
 
-const ProfileEdit = () => {
+const ProfileEdit = ({editUser}) => {
+    const {currentUser} = useContext(AppContext)
+    const history = useHistory()
     const INITIAL_STATE = {
-        firstName: "",
-        lastName: "",
-        email: "",
+        first_name: "",
+        last_name: "",
+        email: currentUser.data.email,
         address: ""
     }
-    const {currentUser} = useContext(AppContext)
     const [editData, handleChange] = useFormData(INITIAL_STATE)
 
+    //handleSubmit request API to update user
+    const handleSubmit = async(e) => {
+        e.preventDefault()
+        const res = await User.editUser(currentUser.data.id, editData) //object info added on api request
+        return (res.status === 200) ? res : console.log("nope, error.")
+    }
+
     return (
-        <main>
+        <main className="SignUp-form card">
         <div className="text-center">
             <div>
-            <form >
-                <h1 className="SignUp-create-account h2 mb-2 fw-normal">Create Account</h1>
+            <form onSubmit={handleSubmit}>
+                <h1 className="SignUp-create-account h2 mb-2 fw-normal">Manage Account</h1>
 
                 <div>
                 <label htmlFor="firstName"/>
@@ -26,8 +37,8 @@ const ProfileEdit = () => {
                     className="form-control"
                     type="text"
                     placeholder="First Name"
-                    name="firstName"
-                    value={editData.firstName}
+                    name="first_name"
+                    value={editData.first_name}
                     onChange={handleChange}
                     />
                 </div>
@@ -38,8 +49,8 @@ const ProfileEdit = () => {
                     className="form-control"
                     type="text"
                     placeholder="Last Name"
-                    name="lastName"
-                    value={editData.lastName}
+                    name="last_name"
+                    value={editData.last_name}
                     onChange={handleChange}
                     />
                 </div>
@@ -71,7 +82,7 @@ const ProfileEdit = () => {
                 </div>
 
                 <div className="mt-3">
-                <button className="w-100 btn btn-lg btn-primary" type="submit">Update User</button>
+                <button className="w-100 btn btn-lg btn-warning" type="submit">Update</button> 
                 </div>
                 <p className="mt-5 mb-3 text-muted">&copy; BuyMe</p>
             </form>

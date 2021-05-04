@@ -20,7 +20,7 @@ class User {
         return users
     }
     static async getUserId(id){
-        const results = await db.query(`SELECT id, username, password, first_name, last_name, email, address
+        const results = await db.query(`SELECT id, username, first_name, last_name, email, address
                                         FROM users WHERE id=$1`, [id])
         const u =  results.rows[0]
         if(!u){
@@ -54,8 +54,8 @@ class User {
     }
 
     async updateUser(){
-        await db.query(`UPDATE users SET username=$1, password=$2, first_name=$3, last_name=$4, email=$5, address=$6 WHERE id=$7
-                                    `,[this.username, this.password, this.first_name, this.last_name, this.email, this.address, this.id])
+        await db.query(`UPDATE users SET first_name=$1, last_name=$2, email=$3, address=$4 WHERE id=$5 
+                                    `,[this.first_name, this.last_name, this.email, this.address, this.id])
     }
 
     async deleteUser(){

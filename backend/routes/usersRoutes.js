@@ -24,11 +24,9 @@ router.get('/:id', async (req, res, next)=> {
 
 router.patch('/update/:id', async(req,res,next)=>{
     const {id} = req.params
-    const {username, password, first_name, last_name, email, address} = req.body
+    const {first_name, last_name, email, address} = req.body
     try{
     const user = await User.getUserId(id)
-    user.username = username
-    user.password = password
     user.first_name = first_name
     user.last_name = last_name
     user.email = email

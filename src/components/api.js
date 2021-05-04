@@ -36,12 +36,13 @@ static async getUserId(id){
     }
 }
 
-static async editUser(id){
+static async editUser(id, editInfo){
     try{
-    const res = await axios.get(`${BASE_URL}/update/${id}`)
+        //requests user id to match our user and looks for edited info
+    const res = await axios.patch(`${BASE_URL}/users/update/${id}`, editInfo) // object must be passed in for editInfo and match the API req.body
     return res
     }catch(e){
-        return e.response.data.error.message
+        return e.response.data
     }
 }
 }
