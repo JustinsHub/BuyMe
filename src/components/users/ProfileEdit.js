@@ -1,4 +1,4 @@
-import React, {useContext} from 'react'
+import React, {useState, useContext} from 'react'
 import {useHistory} from 'react-router-dom'
 import AppContext from '../AppContext'
 import useFormData from '../custom-hooks/useFormData'
@@ -7,7 +7,7 @@ import useError from '../custom-hooks/useError'
 import '../styles/SignUp.css'
 
 const ProfileEdit = () => {
-    const {currentUser} = useContext(AppContext)
+    const {currentUser, deleteUser} = useContext(AppContext)
     const history = useHistory()
     const INITIAL_STATE = {
         first_name: currentUser.data.first_name,
@@ -17,17 +17,23 @@ const ProfileEdit = () => {
     }
     const [editData, handleChange] = useFormData(INITIAL_STATE)
     const [editError, setEditError] = useError([])
+    const [dataWarning, setDataWarning] = useState("")
 
     //handleSubmit request API to update user
     const handleSubmit = async(e) => {
         e.preventDefault()
         //adding user data info as second parameter to save edited version
         const res = await User.editUser(currentUser.data.id, editData) //object/editData must match API data names.
-        return (res.status === 201) ? history.push('/profile') : setEditError('An error has occured.') // change to errors
+        return (res.status === 201) ? history.push('/profile') : setEditError('An error has occured.') // change to correct error
     }
 
-    //handleDelete
-
+    //apply asks for password in order to delete // gives onclick warning
+    const handleDelete = async (e) => {
+        e.preventDefault()
+        setDataWarning("WARNING: If you continue, your account will be deleted forever!") //place this somewhere in the JSX
+        const res = await deleteUser(currentUser.data.id)
+        return (res.status === 200) ? history.push('/') : console.log("error") //message successfully deleted
+    }
     return (
         <main className="SignUp-form card">
         <div className="text-center">
@@ -91,7 +97,7 @@ const ProfileEdit = () => {
                 <button className="w-100 btn btn-lg btn-warning" type="submit">Update</button> 
                 </div>
                 <div className="mt-3">
-                <button className="w-100 btn btn-lg btn-danger" type="submit">Delete Profile
+                <button className="w-100 btn btn-lg btn-danger" type="submit" onClick={handleDelete}>Delete Profile
                 </button> 
                 </div>
                 <p className="mt-5 mb-3 text-muted">&copy; BuyMe</p>

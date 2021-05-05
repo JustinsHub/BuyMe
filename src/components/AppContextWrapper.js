@@ -31,15 +31,17 @@ const AppContextWrapper = ({children}) => {
             const user = await User.getUserId(id)
             delete user.data.password //deletes hashed password to not show on data
             setCurrentUser(user)
-
         }catch(e){
             return e
         }
+        }
         setLoading(true)
-        }}
+    }
+        
         getCurrentUser()
     }, [token])
 
+    //requests to register // creates jwt // sets token token to local storage
     const register = async(userInfo) => {
         const res = await User.register(userInfo)
         if(res.data){
@@ -48,6 +50,7 @@ const AppContextWrapper = ({children}) => {
         return res
     }
 
+    //requests to login // checks jwt // sets token token to local storage
     const login = async(loginInfo) => {
         const res = await User.login(loginInfo)
         if(res.data){   
@@ -56,16 +59,24 @@ const AppContextWrapper = ({children}) => {
         return res 
     }
 
+    //redirects after setting the currentUser to null when executed
     const logout = () => {
         setCurrentUser(null)
         history.push('/login') 
+    }
+
+    //requests to delete user and set the currentUser to back to null
+    const deleteUser = async(id) => {
+        const res = await User.deleteUser(id)
+        setCurrentUser(null)
+        return res 
     }
     
     if(!loading) return <LoadSpinner/> //if anything is not loaded on the page, render this component
 
     return (
         <div>
-            <AppContext.Provider value={{currentUser, register, login, logout, token}}>
+            <AppContext.Provider value={{currentUser, register, login, logout, token, deleteUser}}>
             {children}
             </AppContext.Provider>
         </div>

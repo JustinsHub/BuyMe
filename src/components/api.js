@@ -45,6 +45,15 @@ static async editUser(id, editInfo){
         return e.response.data.error.message
     }
 }
+
+static async deleteUser(id){
+    try {
+    const res = await axios.delete(`${BASE_URL}/users/delete/${id}`)
+    return res
+    }catch(e){
+        return e
+    }
+}
 }
 
 export default User
