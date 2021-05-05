@@ -54,8 +54,11 @@ class User {
     }
 
     async updateUser(){
-        await db.query(`UPDATE users SET first_name=$1, last_name=$2, email=$3, address=$4 WHERE id=$5 
+        const res = await db.query(`UPDATE users SET first_name=$1, last_name=$2, email=$3, address=$4 WHERE id=$5 
                                     `,[this.first_name, this.last_name, this.email, this.address, this.id])
+        if(!res) {
+            throw new ExpressError('Must fill out all input', 400)
+        }
     }
 
     async deleteUser(){

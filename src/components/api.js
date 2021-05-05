@@ -42,7 +42,7 @@ static async editUser(id, editInfo){
     const res = await axios.patch(`${BASE_URL}/users/update/${id}`, editInfo) // object must be passed in for editInfo and match the API req.body
     return res
     }catch(e){
-        return e.response.data
+        return e.response.data.error.message
     }
 }
 }

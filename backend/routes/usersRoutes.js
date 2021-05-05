@@ -32,7 +32,7 @@ router.patch('/update/:id', async(req,res,next)=>{
     user.email = email
     user.address = address
     await user.updateUser()
-    return res.json(user)
+    return res.status(201).json(user)
     }catch(e){
         return next(e)
     }

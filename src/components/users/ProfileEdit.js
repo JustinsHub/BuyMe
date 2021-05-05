@@ -3,29 +3,35 @@ import {useHistory} from 'react-router-dom'
 import AppContext from '../AppContext'
 import useFormData from '../custom-hooks/useFormData'
 import User from '../api'
+import useError from '../custom-hooks/useError'
 import '../styles/SignUp.css'
 
-const ProfileEdit = ({editUser}) => {
+const ProfileEdit = () => {
     const {currentUser} = useContext(AppContext)
     const history = useHistory()
     const INITIAL_STATE = {
-        first_name: "",
-        last_name: "",
+        first_name: currentUser.data.first_name,
+        last_name: currentUser.data.last_name,
         email: currentUser.data.email,
-        address: ""
+        address: currentUser.data.address
     }
     const [editData, handleChange] = useFormData(INITIAL_STATE)
+    const [editError, setEditError] = useError([])
 
     //handleSubmit request API to update user
     const handleSubmit = async(e) => {
         e.preventDefault()
-        const res = await User.editUser(currentUser.data.id, editData) //object info added on api request
-        return (res.status === 200) ? res : console.log("nope, error.")
+        //adding user data info as second parameter to save edited version
+        const res = await User.editUser(currentUser.data.id, editData) //object/editData must match API data names.
+        return (res.status === 201) ? history.push('/profile') : setEditError('An error has occured.') // change to errors
     }
+
+    //handleDelete
 
     return (
         <main className="SignUp-form card">
         <div className="text-center">
+        <p>{editError}</p>
             <div>
             <form onSubmit={handleSubmit}>
                 <h1 className="SignUp-create-account h2 mb-2 fw-normal">Manage Account</h1>
@@ -83,6 +89,10 @@ const ProfileEdit = ({editUser}) => {
 
                 <div className="mt-3">
                 <button className="w-100 btn btn-lg btn-warning" type="submit">Update</button> 
+                </div>
+                <div className="mt-3">
+                <button className="w-100 btn btn-lg btn-danger" type="submit">Delete Profile
+                </button> 
                 </div>
                 <p className="mt-5 mb-3 text-muted">&copy; BuyMe</p>
             </form>

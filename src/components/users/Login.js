@@ -2,7 +2,6 @@ import React from 'react'
 import {useHistory} from 'react-router-dom'
 import useFormData from '../custom-hooks/useFormData'
 import useError from '../custom-hooks/useError'
-import NoAccess from './AccessError'
 
 const Login = ({login, user}) => {
     const INITIAL_STATE = {
@@ -19,6 +18,7 @@ const Login = ({login, user}) => {
         const res = await login(formData)
         return (res.status === 201) ? history.push('/profile'): setLoginError(res)
     }
+    //if a user is logged in, they will be redirected if they try to access this component
     if(user){
         history.push('/access/error') 
     }
