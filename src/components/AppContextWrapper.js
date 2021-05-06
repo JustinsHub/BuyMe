@@ -35,9 +35,8 @@ const AppContextWrapper = ({children}) => {
             return e
         }
         }
-        setLoading(true)
     }
-        
+        setLoading(true)
         getCurrentUser()
     }, [token])
 

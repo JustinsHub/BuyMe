@@ -10,10 +10,10 @@ const ProfileEdit = () => {
     const {currentUser, deleteUser} = useContext(AppContext)
     const history = useHistory()
     const INITIAL_STATE = {
-        first_name: currentUser.data.first_name,
-        last_name: currentUser.data.last_name,
-        email: currentUser.data.email,
-        address: currentUser.data.address
+        first_name: currentUser.data.first_name || "",
+        last_name: currentUser.data.last_name || "",
+        email: currentUser.data.email || "",
+        address: currentUser.data.address || ""
     }
     const [editData, handleChange] = useFormData(INITIAL_STATE)
     const [editError, setEditError] = useError([])
@@ -94,11 +94,33 @@ const ProfileEdit = () => {
                 </div>
 
                 <div className="mt-3">
-                <button className="w-100 btn btn-lg btn-warning" type="submit">Update</button> 
+                <button className="w-100 btn btn-warning" type="submit">Update</button> 
                 </div>
                 <div className="mt-3">
-                <button className="w-100 btn btn-lg btn-danger" type="submit" onClick={handleDelete}>Delete Profile
-                </button> 
+
+                {/* opens up modal warning */}
+                <button type="button" className="w-100 btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                Delete Profile
+                </button>
+
+                {/* Modal  TODO:CSS center warning text and red*/}
+                <div className="modal fade" id="exampleModal" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div className="modal-dialog">
+                    <div className="modal-content">
+                    <div className="modal-header">
+                        <h3 className="modal-title text-center" id="exampleModalLabel">Warning!</h3>
+                        <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div className="modal-body">
+                        This action cannot be undone. Once you delete your profile, it is gone forever!
+                    </div>
+                    <div className="modal-footer">
+                        <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="button" className="btn btn-danger" onClick={handleDelete}>Delete Profile</button>
+                    </div>
+                    </div>
+                </div>
+                </div>
                 </div>
                 <p className="mt-5 mb-3 text-muted">&copy; BuyMe</p>
             </form>
