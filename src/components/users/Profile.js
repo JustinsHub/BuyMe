@@ -14,7 +14,6 @@ const Profile = () => {
      //how to delete user as well.
     
     const {username, first_name, last_name, email, address} = currentUser.data
-    
     return (
         <main className="">
         <div className="text-center">

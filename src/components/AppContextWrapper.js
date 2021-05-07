@@ -61,6 +61,7 @@ const AppContextWrapper = ({children}) => {
     //redirects after setting the currentUser to null when executed
     const logout = () => {
         setCurrentUser(null)
+        localStorage.clear()
         history.push('/login') 
     }
 
