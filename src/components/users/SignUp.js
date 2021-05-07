@@ -1,5 +1,5 @@
 import React from 'react'
-import {useHistory} from 'react-router-dom'
+import {useHistory, Redirect} from 'react-router-dom'
 import useFormData from '../custom-hooks/useFormData'
 import useError from '../custom-hooks/useError'
 import '../styles/SignUp.css'
@@ -19,9 +19,9 @@ const SignUp = ({register, user}) => {
         const res = await register(formData)
         return (res.status === 201) ? history.push('/') : setRegisterError(res) //map through errors with css?
     }
-
+    //intentional access to this component will result to redirect
     if(user){
-        history.push('/access/error') 
+        return <Redirect to="/access/error"/>
     }
     return (
         <main className="SignUp-form card">
@@ -73,7 +73,6 @@ const SignUp = ({register, user}) => {
                 <div className="mt-3">
                 <button className="w-100 btn btn-lg btn-primary" type="submit">Register</button>
                 </div>
-                <p className="mt-5 mb-3 text-muted">&copy; BuyMe</p>
             </form>
         </div>
     </div>

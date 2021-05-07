@@ -1,5 +1,5 @@
 import React from 'react'
-import {useHistory} from 'react-router-dom'
+import {useHistory, Redirect} from 'react-router-dom'
 import useFormData from '../custom-hooks/useFormData'
 import useError from '../custom-hooks/useError'
 
@@ -20,7 +20,7 @@ const Login = ({login, user}) => {
     }
     //if a user is logged in, they will be redirected if they try to access this component
     if(user){
-        history.push('/access/error') 
+        return <Redirect to="/access/error"/>
     }
 
     return (

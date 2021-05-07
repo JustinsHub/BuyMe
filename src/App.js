@@ -1,6 +1,7 @@
 import AppContextWrapper from './components/AppContextWrapper'
 import Navbar from './components/Navbar'
 import Routes from './components/Routes'
+import Footer from './components/Footer'
 import './App.css';
 
 function App() {
@@ -9,6 +10,7 @@ function App() {
       <AppContextWrapper>
         <Navbar/>
         <Routes/>
+        <Footer/>
       </AppContextWrapper>
     </div>
   );

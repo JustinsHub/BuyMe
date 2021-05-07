@@ -31,7 +31,7 @@ const ProfileEdit = () => {
         return (res.status === 201) ? history.push('/profile') : setEditError('An error has occured.') // change to correct error
     }
 
-    //apply asks for password in order to delete // gives onclick warning
+    //apply asks for password in order to delete
     const handleDelete = async (e) => {
         e.preventDefault()
         // setDataWarning("WARNING: If you continue, your account will be deleted forever!") //place this somewhere in the JSX
@@ -39,7 +39,6 @@ const ProfileEdit = () => {
         return (res.status === 200) ? history.push('/') : console.log("error") //set message successfully deleted
     }
 
-    if(!currentUser) history.push('/access/error')
     return (
         <main className="SignUp-form card">
         <div className="text-center">
@@ -114,10 +113,9 @@ const ProfileEdit = () => {
                             animation={false}
                         >
                             <Modal.Header>
-                            <Modal.Title className="text-center">Warning!</Modal.Title>
                             </Modal.Header>
                             <Modal.Body className="text-center">
-                            This action cannot be undone! Once you delete your user profile, it will be gone forever!
+                            Hello <b>{currentUser.data.username}</b>! This action cannot be undone! Once you delete your user profile, it will be gone forever!
                             </Modal.Body>
                             <Modal.Footer>
                             <Button variant="secondary" onClick={handleShow}>
