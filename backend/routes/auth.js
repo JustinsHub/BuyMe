@@ -33,4 +33,17 @@ router.post('/login', async(req, res, next)=>{
     }
 })
 
+router.post('/authorize/:id', async(req, res, next)=> {
+    const {id} = req.params
+    const {password} = req.body
+    try{
+        const user = await User.getUserId(id)
+        await User.checkPassword(user, password) //try and request this after
+        return res.json({Authorized: user.username})
+    }catch(e){
+        return next(e)
+    }
+})
+
+
 module.exports = router
