@@ -1,4 +1,4 @@
-import React, {useState, useContext} from 'react'
+import React, {useState, useEffect, useContext} from 'react'
 import {useHistory} from 'react-router-dom'
 import AppContext from '../AppContext'
 import useFormData from '../custom-hooks/useFormData'
@@ -8,6 +8,7 @@ import {Modal, Button} from 'react-bootstrap'
 import '../styles/SignUp.css'
 
 const ProfileEdit = () => {
+    //gets currentUsers profile initial value and update the value
     const {currentUser, deleteUser} = useContext(AppContext)
     const INITIAL_STATE = {
         first_name: currentUser.data.first_name || "",
@@ -24,38 +25,35 @@ const ProfileEdit = () => {
     const [counter, setCounter] = useState(10)
     const history = useHistory()
 
-    const ourTimer = React.useEffect(() => {
-        deleteTimer()
+    //the countdown for enabling delete button based on counter state initial value
+    const disableTimer = useEffect(() => {
         const timer =
         counter > 0 && setInterval(() => setCounter(counter - 1), 1000);
-        counter === 0 && setCounter(null)
+        if(counter === 0) {
+            setDisableButton(false) 
+            setCounter(null)
+        }
         return () => clearInterval(timer);
     }, [counter]);
 
+    //toggles show component. returning disableTimer is specifically for the delete button
     const handleShow = () => {
         setShow(show => !show)
-        return ourTimer
-    }
-
-    const deleteTimer = () => {
-        setTimeout(()=> {
-            setDisableButton(false) 
-        }, 10000)
+        return disableTimer
     }
 
     //handleSubmit request API to update user
     const handleSubmit = async(e) => {
         e.preventDefault()
-        //adding user data info as second parameter to save edited version
+        //adding user data info as second parameter to save updated initial value
         const res = await User.editUser(currentUser.data.id, editData) //object/editData must match API data names.
-        console.log(res)
         return (res.status === 201) ? history.push('/profile') : setEditError('An error has occured.') // change to correct error
     }
     
-    //apply asks for password in order to delete
+    //handleDelete request API to delete the user permanently
     const handleDelete = async (e) => {
         e.preventDefault()
-        const res = await deleteUser(currentUser.data.id) //add a disable button for 10 setTimer second delete button
+        const res = await deleteUser(currentUser.data.id) 
         return (res.status === 200) ? history.push('/') : setEditError('Something went wrong.') //set message successfully deleted
     }
 
@@ -143,7 +141,7 @@ const ProfileEdit = () => {
                             <Button variant="secondary" onClick={handleShow} >
                                 Close
                             </Button> 
-                            <Button variant="danger" onClick={handleDelete} disabled={disableButton}>Delete Profile {counter} </Button>
+                            <Button variant="danger" onClick={handleDelete} disabled={disableButton}>Delete Profile {counter}</Button>
                             </Modal.Footer>
                         </Modal>
                     </div>
