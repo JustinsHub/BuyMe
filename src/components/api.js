@@ -54,6 +54,15 @@ static async deleteUser(id){
         return e
     }
 }
+
+static async checkPassword(id, userPass){
+    try{
+    const res = await axios.post(`${BASE_URL}/users/authorization/${id}`, {password: userPass})
+    return res
+    }catch(e){
+        return e
+    }
+}
 }
 
 export default User

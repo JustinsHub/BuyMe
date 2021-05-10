@@ -53,13 +53,14 @@ class User {
         throw new ExpressError('Username/Password are required.', 400)
     }
 
-    static async checkPassword(userId, password){
-        const results = await db.query(`SELECT id, password FROM users WHERE id=$1`, [userId])
+    static async checkPassword(id, password){ //keep this for now
+        const results = await db.query(`SELECT id, password FROM users WHERE id=$1`, [id])
         const userId = results.rows[0]
         const validPassword = await bcrypt.compare(password, userId.password)
         if(validPassword === true){
             return validPassword
         }
+        throw new ExpressError(`Wrong Password!`, 400)
 
     }
     async updateUser(){

@@ -67,6 +67,10 @@ const AppContextWrapper = ({children}) => {
 
     //requests to delete user and set the currentUser to back to null
     const deleteUser = async(id) => {
+        // const checkPassword = await User.checkPassword(id, userInfo) // keep for now for future feature?
+        // if(!checkPassword){
+        //     console.log('wrong')
+        // }
         const res = await User.deleteUser(id)
         setCurrentUser(null)
         return res 

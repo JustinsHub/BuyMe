@@ -4,7 +4,7 @@ import AppContext from '../AppContext'
 import '../styles/SignUp.css'
 
 const Profile = () => {
-    const {currentUser} = useContext(AppContext)
+    const {currentUser} = useContext(AppContext) //how to make this render when updated?
     const history = useHistory()
 
     const profileEdit = () => {

@@ -38,7 +38,7 @@ router.post('/authorize/:id', async(req, res, next)=> {
     const {password} = req.body
     try{
         const user = await User.getUserId(id)
-        await User.checkPassword(user, password) //try and request this after
+        await User.checkPassword(user, password) //TODO: fix and check this on insomnia
         return res.json({Authorized: user.username})
     }catch(e){
         return next(e)
