@@ -1,10 +1,16 @@
-import React, {useContext} from 'react'
+import React, {useState} from 'react'
 import {useHistory} from 'react-router-dom'
-import AppContext from '../AppContext'
 import '../styles/SignUp.css'
 
-const Profile = () => {
-    const {currentUser} = useContext(AppContext) //how to make this render when updated?
+const Profile = ({currentUser}) => {
+    //TODO: 
+    //how to make this render when updated? 
+    //icons on page 
+    //bootstrap for login component
+    //api for our the website (payment/what are we selling)
+
+    //how to pass in editdata to setUserData to be from ProfileEdit // how to update the currentUser with state?
+
     const history = useHistory()
 
     const profileEdit = () => {
@@ -16,6 +22,8 @@ const Profile = () => {
     if(!currentUser){
         history.push('/access/error')
     }
+
+    //create a map through the 
     return (
         <main className="SignUp-form card">
         <div className="text-center">
@@ -25,7 +33,6 @@ const Profile = () => {
                 <p><b>Last Name:</b> {last_name === null ? <i>Last Name</i> : last_name}</p>
                 <p><b>Email:</b> {email === null ? <i>Email Address</i> : email}</p>
                 <p><b>Address:</b> {address === null ? <i>Shipping Address</i> : address}</p>
-                <p></p>
                 <div className="mt-3">
                 <button className="w-100 btn btn-primary" type="submit" onClick={profileEdit}>Edit Profile</button>
                 </div>

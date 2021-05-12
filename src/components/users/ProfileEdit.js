@@ -7,15 +7,14 @@ import useError from '../custom-hooks/useError'
 import {Modal, Button} from 'react-bootstrap'
 import '../styles/SignUp.css'
 
-const ProfileEdit = () => {
-    //gets currentUsers profile initial value and update the value
-    const {currentUser, deleteUser} = useContext(AppContext)
+//Profile Edit component gets currentUsers profile initial value and update the value based on form input
+const ProfileEdit = ({currentUser}) => {
+    const {updateUser, deleteUser} = useContext(AppContext)
     const INITIAL_STATE = {
         first_name: currentUser.data.first_name || "",
         last_name: currentUser.data.last_name || "",
         email: currentUser.data.email || "",
         address: currentUser.data.address || "",
-        password: currentUser.data.password
     }
 
     const [editData, handleChange] = useFormData(INITIAL_STATE)
@@ -33,20 +32,23 @@ const ProfileEdit = () => {
             setDisableButton(false) 
             setCounter(null)
         }
+        //useEffect clean up
         return () => clearInterval(timer);
     }, [counter]);
 
-    //toggles show component. returning disableTimer is specifically for the delete button
+    //toggles show component and resets button to initial value returning disableTimer is specifically for the delete button
     const handleShow = () => {
         setShow(show => !show)
+        setCounter(counter => 10)
+        setDisableButton(true)
         return disableTimer
     }
 
     //handleSubmit request API to update user
-    const handleSubmit = async(e) => {
+    const handleSubmit = async(e) => { // e.preventDefault() taken out for refresh for update? Find a better way
         e.preventDefault()
         //adding user data info as second parameter to save updated initial value
-        const res = await User.editUser(currentUser.data.id, editData) //object/editData must match API data names.
+        const res = await updateUser(currentUser.data.id, editData) //object/editData must match API data names to be able to update
         return (res.status === 201) ? history.push('/profile') : setEditError('An error has occured.') // change to correct error
     }
     
@@ -54,7 +56,7 @@ const ProfileEdit = () => {
     const handleDelete = async (e) => {
         e.preventDefault()
         const res = await deleteUser(currentUser.data.id) 
-        return (res.status === 200) ? history.push('/') : setEditError('Something went wrong.') //set message successfully deleted
+        return (res.status === 200) ? history.push('/') : setEditError('Something went wrong.') //set message successfully deleted on redirect page
     }
 
     return (

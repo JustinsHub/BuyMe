@@ -65,6 +65,10 @@ const AppContextWrapper = ({children}) => {
         history.push('/login') 
     }
 
+    const updateUser = async(id, userInfo) => {
+        const res = await User.updateUser(id, userInfo)
+        return res
+    }
     //requests to delete user and set the currentUser to back to null
     const deleteUser = async(id) => {
         // const checkPassword = await User.checkPassword(id, userInfo) // keep for now for future feature?
@@ -80,7 +84,7 @@ const AppContextWrapper = ({children}) => {
 
     return (
         <div>
-            <AppContext.Provider value={{currentUser, register, login, logout, token, deleteUser}}>
+            <AppContext.Provider value={{currentUser, register, login, logout, token, updateUser, deleteUser}}>
             {children}
             </AppContext.Provider>
         </div>

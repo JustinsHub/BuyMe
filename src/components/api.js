@@ -36,7 +36,7 @@ static async getUserId(id){
     }
 }
 
-static async editUser(id, editInfo){
+static async updateUser(id, editInfo){
     try{
         //requests user id to match our user and looks for edited info
     const res = await axios.patch(`${BASE_URL}/users/update/${id}`, editInfo) // object must be passed in for editInfo and match the API req.body

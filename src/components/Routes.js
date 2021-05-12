@@ -24,11 +24,11 @@ const Routes = () => {
                 </Route>
 
                 <EnsureLoginRoute exact path="/profile">
-                    <Profile/>
+                    <Profile currentUser={currentUser}/>
                 </EnsureLoginRoute>
 
                 <EnsureLoginRoute exact path="/profile/edit">
-                    <ProfileEdit/>
+                    <ProfileEdit currentUser={currentUser}/>
                 </EnsureLoginRoute>
 
                 <Route exact path="/">
