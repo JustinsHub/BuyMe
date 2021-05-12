@@ -15,10 +15,6 @@ const AppContextWrapper = ({children}) => {
 
     const history = useHistory()
 
-    //TODO: apply token on useEffect. Check to see if the user is logged in (currentUser)
-    //Apply private routes if(!currentUser)
-    //Change navbar when currentUser/logout button
-    //Update profile route for user info and edit/delete feature(API Requests)
     //Look for API on what to build on the website.
 
     useEffect(()=> {
@@ -65,8 +61,10 @@ const AppContextWrapper = ({children}) => {
         history.push('/login') 
     }
 
+    //updates user user id as first parameter and updated values for second. Must setCurrentUser so render correctly
     const updateUser = async(id, userInfo) => {
         const res = await User.updateUser(id, userInfo)
+        setCurrentUser(res)
         return res
     }
     //requests to delete user and set the currentUser to back to null

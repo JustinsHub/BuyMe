@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React from 'react'
 import {useHistory} from 'react-router-dom'
 import '../styles/SignUp.css'
 
@@ -7,10 +7,7 @@ const Profile = ({currentUser}) => {
     //how to make this render when updated? 
     //icons on page 
     //bootstrap for login component
-    //api for our the website (payment/what are we selling)
-
-    //how to pass in editdata to setUserData to be from ProfileEdit // how to update the currentUser with state?
-
+    //api for our the website (payment/what are we selling
     const history = useHistory()
 
     const profileEdit = () => {

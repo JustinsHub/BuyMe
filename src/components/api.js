@@ -51,7 +51,7 @@ static async deleteUser(id){
     const res = await axios.delete(`${BASE_URL}/users/delete/${id}`)
     return res
     }catch(e){
-        return e
+        return e.response.data.error.message
     }
 }
 
