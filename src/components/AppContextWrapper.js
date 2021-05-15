@@ -54,14 +54,14 @@ const AppContextWrapper = ({children}) => {
         return res 
     }
 
-    //redirects after setting the currentUser to null when executed
+    //redirects after setting the currentUser to null and clearing localStorage when executed
     const logout = () => {
         setCurrentUser(null)
         localStorage.clear()
         history.push('/login') 
     }
 
-    //updates user user id as first parameter and updated values for second. Must setCurrentUser so render correctly
+    //updates user user id as first parameter and updated values for second. Must setCurrentUser to render correctly
     const updateUser = async(id, userInfo) => {
         const res = await User.updateUser(id, userInfo)
         setCurrentUser(res)
@@ -78,7 +78,7 @@ const AppContextWrapper = ({children}) => {
         return res 
     }
     
-    if(!loading) return <LoadSpinner/> //if anything is not loaded on the page, render this component
+    if(loading) return <LoadSpinner/> //if anything is not loaded on the page, render this component
 
     return (
         <div>

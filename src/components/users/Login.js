@@ -24,31 +24,42 @@ const Login = ({login, user}) => {
     }
 
     return (
-        <div>
+        <main className="global-form card">
+            <div className="text-center">
             {/* change UI errors warning */}
         {loginError && <h1>{loginError}</h1>}
         <form onSubmit={handleSubmit}>
-            <label htmlFor="username">Username:</label>
-            <input
-            id="username"
-            type="text"
-            name="username"
-            value={formData.username}
-            placeholder="Username"
-            onChange={handleChange}
-            />
-            <label htmlFor="password">Password</label>
-            <input
-            id="password"
-            type="password"
-            name="password"
-            value={formData.password}
-            placeholder="Password"
-            onChange={handleChange}
-            />
-            <button>Login</button>
+        <h1 className="global-create-account h2 mb-2 fw-normal">Login</h1>
+            <div>
+                <label htmlFor="username"/>
+                <input
+                id="username"
+                className="form-control"
+                type="text"
+                name="username"
+                value={formData.username}
+                placeholder="Username"
+                onChange={handleChange}
+                />
+            </div>
+            <div>
+                <label htmlFor="password"/>
+                <input
+                id="password"
+                className="form-control"
+                type="password"
+                name="password"
+                value={formData.password}
+                placeholder="Password"
+                onChange={handleChange}
+                />
+            </div>
+            <div className="mt-3">
+                <button className="w-100 btn btn-lg btn-primary">Login</button>
+            </div>
         </form>
         </div>
+        </main>
     )
 }
 

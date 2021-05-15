@@ -2,7 +2,7 @@ import React from 'react'
 import {useHistory, Redirect} from 'react-router-dom'
 import useFormData from '../custom-hooks/useFormData'
 import useError from '../custom-hooks/useError'
-import '../styles/SignUp.css'
+import '../styles/global.css'
 
 const SignUp = ({register, user}) => {
     const INITIAL_STATE = {
@@ -24,13 +24,13 @@ const SignUp = ({register, user}) => {
         return <Redirect to="/access/error"/>
     }
     return (
-        <main className="SignUp-form card">
+        <main className="global-form card">
         <div className="text-center">
             <div>
                 {/* //change UI error */}
             {registerError && <h1>{registerError}</h1>} 
             <form onSubmit={handleSubmit}>
-                <h1 className="SignUp-create-account h2 mb-2 fw-normal">Create Account</h1>
+                <h1 className="global-create-account h2 mb-2 fw-normal">Create Account</h1>
 
                 <div>
                 <label htmlFor="usernameInput"/>

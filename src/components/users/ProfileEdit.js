@@ -4,7 +4,7 @@ import AppContext from '../AppContext'
 import useFormData from '../custom-hooks/useFormData'
 import useError from '../custom-hooks/useError'
 import {Modal, Button} from 'react-bootstrap'
-import '../styles/SignUp.css'
+import '../styles/global.css'
 
 //Profile Edit component gets currentUsers profile initial value and update the value based on form input
 const ProfileEdit = ({currentUser}) => {
@@ -59,12 +59,12 @@ const ProfileEdit = ({currentUser}) => {
     }
 
     return (
-        <main className="SignUp-form card">
+        <main className="global-form card">
         <div className="text-center">
         <p>{editError}</p>
             <div>
             <form onSubmit={handleSubmit}>
-                <h1 className="SignUp-create-account h2 mb-2 fw-normal">Manage Account</h1>
+                <h1 className="global-create-account h2 mb-2 fw-normal">Manage Account</h1>
 
                 <div>
                 <label htmlFor="firstName"/>
