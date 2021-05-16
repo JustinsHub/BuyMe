@@ -7,16 +7,16 @@ const LoadSpinner = () => {
     const defaultOptions = {
         loop: true,
         autoplay: true,
-        animationData: require('./gearLoading.json'), // the path to the animation json
+        animationData: require('../logos/gearLoading.json'), // the path to the animation json
         rendererSettings: {
             preserveAspectRatio: 'xMidYMid slice'
         }
-        };
-    
-    //resizing 
+    };
+
     return (
-        <div>
+        <div className="Loading">
             <Lottie options={defaultOptions} height={200} width={200}/>
+            <p>Loading</p>
         </div>
     )
 }

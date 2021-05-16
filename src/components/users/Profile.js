@@ -4,7 +4,6 @@ import '../styles/global.css'
 
 const Profile = ({currentUser}) => {
     //TODO: 
-    //icons on page 
     //bootstrap for login component
     //api for our the website (payment/what are we selling
     const history = useHistory()
