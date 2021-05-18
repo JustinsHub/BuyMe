@@ -24,7 +24,7 @@ const SignUp = ({register, user}) => {
         return <Redirect to="/access/error"/>
     }
     return (
-        <main className="global-form card">
+        <main className="global-form card rounded mx-auto d-block">
         <div className="text-center">
             <div>
                 {/* //change UI error */}

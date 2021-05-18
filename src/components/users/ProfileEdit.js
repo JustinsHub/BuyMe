@@ -1,4 +1,4 @@
-import React, {useState, useEffect, useContext} from 'react'
+import React, {useState, useEffect, useContext, useRef} from 'react'
 import {useHistory} from 'react-router-dom'
 import AppContext from '../AppContext'
 import useFormData from '../custom-hooks/useFormData'
@@ -20,6 +20,7 @@ const ProfileEdit = ({currentUser}) => {
     const [editError, setEditError] = useError([])
     const [show, setShow] = useState(false);
     const [disableButton, setDisableButton] = useState(true)
+    const [disableUpdate, setDisableUpdate] = useState(true)
     const [counter, setCounter] = useState(10)
     const history = useHistory()
 
@@ -34,6 +35,16 @@ const ProfileEdit = ({currentUser}) => {
         //useEffect clean up
         return () => clearInterval(timer);
     }, [counter]);
+
+    //holds render disabling update button at first load by useRef and enables when/on editData
+    const loaded = useRef(false);
+        useEffect(() => {
+            if (loaded.current) {
+                setDisableUpdate(false)
+            } else {
+                loaded.current = true;
+            }
+}, [editData]);
 
     //toggles show component and resets button to initial value returning disableTimer is specifically for the delete button
     const handleShow = () => {
@@ -59,7 +70,7 @@ const ProfileEdit = ({currentUser}) => {
     }
 
     return (
-        <main className="global-form card">
+        <main className="global-form card rounded mx-auto d-block" style={{height: "30rem"}}>
         <div className="text-center">
         <p>{editError}</p>
             <div>
@@ -118,10 +129,10 @@ const ProfileEdit = ({currentUser}) => {
                 </div>
 
                 <div className="mt-3">
-                <button className="w-100 btn btn-warning" type="submit">Update</button> 
+                <button className="btn btn-warning" type="submit" disabled={disableUpdate}>Update</button> 
                 </div>
-                <div className="mt-3">
-                    <Button className="w-100" variant="danger" onClick={handleShow}>
+                <div>
+                    <Button style={{fontSize: "12px", color:"red", marginTop:"5rem"}} variant="none" onClick={handleShow}>
                             Delete Profile
                         </Button>
                         <Modal

@@ -24,7 +24,7 @@ const Login = ({login, user}) => {
     }
 
     return (
-        <main className="global-form card">
+        <main className="global-form card rounded mx-auto d-block">
             <div className="text-center">
             {/* change UI errors warning */}
         {loginError && <h1>{loginError}</h1>}

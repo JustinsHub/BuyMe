@@ -33,7 +33,7 @@ const Navbar = () => {
                 <ul className="nav">
                     <div className="dropdown">
                     <li className="nav-item" data-bs-toggle="dropdown">
-                        <Lottie options={avatarLogo} height={50} width={50} style={{marginRight: "25px"}}/>
+                        <Lottie options={avatarLogo} height={50} width={50}/>
                     </li>
                     <ul className="dropdown-menu">
                         <li><NavLink className="dropdown-item" to="/profile">Profile</NavLink></li>

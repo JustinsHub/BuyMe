@@ -3,9 +3,6 @@ import {useHistory} from 'react-router-dom'
 import '../styles/global.css'
 
 const Profile = ({currentUser}) => {
-    //TODO: 
-    //bootstrap for login component
-    //api for our the website (payment/what are we selling
     const history = useHistory()
 
     const profileEdit = () => {
@@ -19,8 +16,7 @@ const Profile = ({currentUser}) => {
     }
 
     return (
-        <main className="global-form card">
-        <div className="text-center">
+        <main className="global-form card rounded mx-auto d-block" style={{height: "17rem"}}>
             <div className="text-center">
                 <h1 className="global-create-account h2 mb-2 fw-normal">{username} Profile</h1>
                 <p><b>First Name:</b> {first_name === null ? <i>First Name</i> : first_name}</p>
@@ -28,11 +24,10 @@ const Profile = ({currentUser}) => {
                 <p><b>Email:</b> {email === null ? <i>Email Address</i> : email}</p>
                 <p><b>Address:</b> {address === null ? <i>Shipping Address</i> : address}</p>
                 <div className="mt-3">
-                <button className="w-100 btn btn-primary" type="submit" onClick={profileEdit}>Edit Profile</button>
+                <button className="btn btn-primary" type="submit" onClick={profileEdit}>Edit Profile</button>
                 </div>
-        </div>
-    </div>
-    </main>
+            </div>
+        </main>
     )
 }
 
