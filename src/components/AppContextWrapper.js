@@ -78,7 +78,7 @@ const AppContextWrapper = ({children}) => {
         return res 
     }
     
-    if(!loading) return <LoadSpinner/> //if anything is not loaded on the page, render this component
+    if(loading) return <LoadSpinner/> //if anything is not loaded on the page, render this component
 
     return (
         <div>

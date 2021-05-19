@@ -2,6 +2,10 @@
   color: black;
 }
 
+.Navbar-hover:hover {
+  color: #da4343;
+}
+
 .dropdown-menu {
   min-width: 80px !important;
 }

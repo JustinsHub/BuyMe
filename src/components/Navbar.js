@@ -7,11 +7,10 @@ import './styles/navbar.css'
 const Navbar = () => {
     const {currentUser, logout} = useContext(AppContext)
     //Todo: 
-    //fix this on animation
-    //hover on links turn logo color
+    //fix buttons and input sizes
+    //hover on links turn logo color/background navbar css
     //Find navbar/brand icon 
-    //api for our the website (payment/what are we selling
-
+    //api for our the website (payment/what are we selling?)
 
     const avatarLogo = {
         loop: false,
@@ -45,10 +44,10 @@ const Navbar = () => {
                 :
                 <ul className="nav justify-content-end">
                     <li className="nav-item">
-                        <NavLink className="Navbar-color m-3" to="/signup">Sign Up</NavLink>
+                        <NavLink className="Navbar-color Navbar-hover m-3" to="/signup">Sign Up</NavLink>
                     </li>
                     <li className="nav-item">
-                        <NavLink className="Navbar-color" to="/login">
+                        <NavLink className="Navbar-color Navbar-hover" to="/login">
                             Login
                         </NavLink>
                     </li>

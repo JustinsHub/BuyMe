@@ -36,8 +36,8 @@ const ProfileEdit = ({currentUser}) => {
         return () => clearInterval(timer);
     }, [counter]);
 
-    //holds render disabling update button at first load by useRef and enables when/on editData
-    const loaded = useRef(false);
+    //holds useEffect render; disabling update button at first load by useRef and enables when/on .current(editData) is executed
+    const loaded = useRef(null);
         useEffect(() => {
             if (loaded.current) {
                 setDisableUpdate(false)
@@ -132,7 +132,7 @@ const ProfileEdit = ({currentUser}) => {
                 <button className="btn btn-warning" type="submit" disabled={disableUpdate}>Update</button> 
                 </div>
                 <div>
-                    <Button style={{fontSize: "12px", color:"red", marginTop:"5rem"}} variant="none" onClick={handleShow}>
+                    <Button style={{fontSize: "12px", color:"#da4343", marginTop:"5rem"}} variant="none" onClick={handleShow}>
                             Delete Profile
                         </Button>
                         <Modal
