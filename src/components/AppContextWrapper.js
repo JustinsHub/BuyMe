@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react'
 import {useHistory} from 'react-router-dom'
 import AppContext from './AppContext'
-import User from './api'
+import User from './users/usersApi'
 import useLocalStorage from './custom-hooks/useLocalStorage'
 import jwt from 'jsonwebtoken'
 import LoadSpinner from './commons/LoadSpinner'
@@ -14,8 +14,6 @@ const AppContextWrapper = ({children}) => {
     const [loading, setLoading] = useState(false)
 
     const history = useHistory()
-
-    //Look for API on what to build on the website.
 
     useEffect(()=> {
         const getCurrentUser = async()=> {
@@ -78,7 +76,7 @@ const AppContextWrapper = ({children}) => {
         return res 
     }
     
-    if(loading) return <LoadSpinner/> //if anything is not loaded on the page, render this component
+    if(!loading) return <LoadSpinner/> //if anything is not loaded on the page, render this component
 
     return (
         <div>

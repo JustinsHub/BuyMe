@@ -10,7 +10,11 @@ const Navbar = () => {
     //fix buttons and input sizes
     //hover on links turn logo color/background navbar css
     //Find navbar/brand icon 
-    //api for our the website (payment/what are we selling?)
+    //api for our the website (payment/what are we selling?) Put it on a README File
+    //test render api and make API.js for food. 
+    //cart? // prices of api items
+    //fake terms and conditions //already logged in... (register) //
+    //while on access/error have a random food joke request for entertainment
 
     const avatarLogo = {
         loop: false,

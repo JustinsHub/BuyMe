@@ -16,7 +16,7 @@ const LoadSpinner = () => {
     return (
         <div className="Loading">
             <Lottie options={defaultOptions} height={200} width={200}/>
-            <p>Loading</p>
+            <p>Loading deliciousness.</p>
         </div>
     )
 }
