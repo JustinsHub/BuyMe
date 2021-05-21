@@ -14,12 +14,12 @@ const Navbar = () => {
     //test render api and make API.js for food. 
     //cart? // prices of api items
     //fake terms and conditions //already logged in... (register) //
-    //while on access/error have a random food joke request for entertainment
+    //while on access/error have a random food joke request for entertainment 
 
     const avatarLogo = {
         loop: false,
         autoplay: true,
-        animationData: require('./logos/avatarLogo.json'), // the path to the animation json
+        animationData: require('./styles/logos/avatarLogo.json'), // the path to the animation json
         rendererSettings: {
             preserveAspectRatio: 'xMidYMid slice'
         }

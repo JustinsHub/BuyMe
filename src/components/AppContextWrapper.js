@@ -17,7 +17,7 @@ const AppContextWrapper = ({children}) => {
 
     useEffect(()=> {
         const getCurrentUser = async()=> {
-            //getting the current user using the token we stored in localStorage
+            //getting the current user using the token we stored in localStorage (from register/login)
             //if token, get current user by decoding the token object
         if(token){
             try{
@@ -59,7 +59,7 @@ const AppContextWrapper = ({children}) => {
         history.push('/login') 
     }
 
-    //updates user user id as first parameter and updated values for second. Must setCurrentUser to render correctly
+    //updates user; user's id as first parameter and updated values for second. Must setCurrentUser to render correctly
     const updateUser = async(id, userInfo) => {
         const res = await User.updateUser(id, userInfo)
         setCurrentUser(res)

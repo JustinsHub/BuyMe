@@ -7,7 +7,7 @@ const LoadSpinner = () => {
     const defaultOptions = {
         loop: true,
         autoplay: true,
-        animationData: require('../logos/polygonLoading.json'), // the path to the animation json
+        animationData: require('../styles/logos/polygonLoading.json'), // the path to the animation json
         rendererSettings: {
             preserveAspectRatio: 'xMidYMid slice'
         }

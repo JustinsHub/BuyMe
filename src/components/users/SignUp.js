@@ -11,9 +11,10 @@ const SignUp = ({register, user}) => {
         email: ""
     }
     const history = useHistory()
-    const [formData, handleChange] = useFormData(INITIAL_STATE)  //custom hook has to be in order even if not in use.
+    const [formData, handleChange] = useFormData(INITIAL_STATE)  //custom hook has to be in order of return even if not in use.
     const [registerError, setRegisterError] = useError([])
 
+    //requests register when submitted
     const handleSubmit = async (e) => {
         e.preventDefault()
         const res = await register(formData)

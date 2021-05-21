@@ -13,6 +13,7 @@ const Login = ({login, user}) => {
     const [formData, handleChange] = useFormData(INITIAL_STATE)
     const [loginError, setLoginError] = useError([])
 
+    //requests login api when submitted
     const handleSubmit = async (e) => {
         e.preventDefault()
         const res = await login(formData)

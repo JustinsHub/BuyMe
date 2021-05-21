@@ -2,6 +2,7 @@ import React from 'react'
 import {useHistory} from 'react-router-dom'
 import '../styles/global.css'
 
+//User profile and information with edit button
 const Profile = ({currentUser}) => {
     const history = useHistory()
 
