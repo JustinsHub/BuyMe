@@ -1,71 +1,78 @@
-# Getting Started with Create React App
+#BuyMe
+Capstone 2 (Food/Cuisine Website)
+Goal: First website to purchase random food/cuisine with crypto currency.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Website Goal
 
-## Available Scripts
+Choose food for clients who are indecisive on picking food. Purchases are only made with crypto currency.
 
-In the project directory, you can run:
+# User Demographics
 
-### `yarn start`
+_User Demographics_
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+- Users who are hungry and have no clue on what to eat.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+# Project creation plan
 
-### `yarn test`
+Database Models
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+> `User`
 
-### `yarn build`
+- Id (primary key)
+- username (required, unique)
+- password (required)
+- first_name (optional)
+- last_name (optional)
+- email (required) `very important to email market for future products`
+- address (optional) `Only way to deliver the food to the customer`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+> `Purchases`
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- Id (primary key)
+- product_id (required, API)
+- user_id (ForeignKey required)
+- purchase date/time
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+# API
 
-### `yarn eject`
+- Spoontacular API
+- Crypto payment API...
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+# Potential Issues with API
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+> Possible issues include:
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+- Exceeding the limits of the API token quota
+- Security on payments
+- There may be other issues I haven't foreseen
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+# Sensitive Information
 
-## Learn More
+- Users will need to log in. Therefore, passwords/information will need to be secured.
+- Confirming purchases.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+# App functionality
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+- Users can register, login, and logout.
+- Users have to login to purchase anything.
+- Users are able to see the Deal Of The Day.
 
-### Code Splitting
+# User workflow
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+1. Place the product for the user to see right away to create interest and have a call to action (ex: 20% discount off right now (set a timer for discount?).
+2. Once signed up, can purchase the product/service.
+3. Add to cart. (Set up to have a min/max add on to cart)
+4. `optional` Have a Modal to show other products in the future before finalizing a sale to create potential add on to cart?
+5. Sale -> send email
 
-### Analyzing the Bundle Size
+# CRUD features
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+- Create account
+- Make purchases
+- Update account/purchases
+- Delete account/purchases
 
-### Making a Progressive Web App
+# Stretch Goals
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
-# BuyMe
+- Once the email has been captured. Optimize email marketing.
+- Sell other products for crypto currency

@@ -2,7 +2,7 @@ import AppContextWrapper from './components/AppContextWrapper'
 import Navbar from './components/Navbar'
 import Routes from './components/Routes'
 import Footer from './components/Footer'
-import './App.css';
+import './components/styles/App.css';
 
 function App() {
   return (
