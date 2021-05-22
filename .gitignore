@@ -4,7 +4,15 @@
 /node_modules
 /.pnp
 .pnp.js
+<<<<<<< HEAD
 config.js
+=======
+<<<<<<< HEAD
+.config.js
+=======
+/config.js
+>>>>>>> 122bdc7a96fb3511012cb640b2916d5e1278883b
+>>>>>>> 585ed111c875f8c2b08279f20b22794e80b286c3
 
 # testing
 /coverage
