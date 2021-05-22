@@ -1,0 +1,17 @@
+.Home {
+  background-color: rgb(248, 234, 213);
+}
+
+.Home-title {
+  margin-top: 6rem;
+}
+
+.Home-ourTitle {
+  font-weight: bold;
+  font-size: 45px;
+}
+
+.Home-p {
+  font-size: 20px;
+  font-weight: 250;
+}

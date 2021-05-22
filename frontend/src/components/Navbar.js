@@ -8,6 +8,7 @@ const Navbar = () => {
     const {currentUser, logout} = useContext(AppContext)
     //Todo: 
     //fix buttons and input sizes
+    //fade navbar on scroll // darker color of theme background
     //hover on links turn logo color/background navbar css
     //Find navbar/brand icon 
     //api for our the website (payment/what are we selling?) Put it on a README File
