@@ -1,7 +1,7 @@
 import axios from 'axios'
+import {API_KEY} from '../../config'
 
-const API_KEY = "540029da543b484184c482340c5424bd"
-const BASE_URL = "https://api.spoonacular.com/recipes/random" //change to spoontacular 
+const BASE_URL = "https://api.spoonacular.com/recipes/random" 
 
 class Products {
     static async getRandomProduct() {
