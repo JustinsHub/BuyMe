@@ -1,5 +1,7 @@
 import React, {useState} from 'react'
 import Products from './products/foodApi'
+import HowItWorks from './products/HowItWorks'
+import Reviews from './products/Reviews'
 import './styles/Home.css'
 
 const Home = () => {
@@ -11,6 +13,7 @@ const Home = () => {
         console.log(res.data)
         setOurProducts(res.data.recipes[0].image)
     }
+
     return (
         <main className="Home">
             <section>
@@ -24,12 +27,24 @@ const Home = () => {
                     </p>
                 </div>
                 <div>
-                    <p className="Home-p">Explore our food of the day!</p>
+                    <p className="Home-p">Get started and explore our choices!</p>
                 </div>
-                <button className="btn btn-danger" onClick={ourFunction}>Food of the day!</button>
-            </section>
-                {/* When user clicks it reverts them to a must login error page? */}
 
+                {/* should redirect to login? or below the page and pick a random food/pairing */}
+                {/* When user clicks it reverts them to a must login error page? */}
+                {/* get started button expands when hovered */}
+                <button className="btn btn-danger" onClick={ourFunction}>Get Started!</button>
+            </section>
+                {/* Have the page scroll to buy or add to cart about pricing? */}
+                
+            <section>
+                <HowItWorks/>
+            </section>
+
+            <section>
+                <Reviews/>
+            </section>
+                
             <img src={ourProducts}></img>
         </main>
     )

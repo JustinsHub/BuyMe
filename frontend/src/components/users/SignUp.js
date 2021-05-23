@@ -5,6 +5,9 @@ import useError from '../custom-hooks/useError'
 import '../styles/global.css'
 
 const SignUp = ({register, user}) => {
+    //add already have an account link to login component
+    //add mock terms and condition
+
     const INITIAL_STATE = {
         username: "",
         password: "",

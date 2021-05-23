@@ -4,6 +4,8 @@ import useFormData from '../custom-hooks/useFormData'
 import useError from '../custom-hooks/useError'
 
 const Login = ({login, user}) => {
+
+    //add dont have an account? link to sign up
     const INITIAL_STATE = {
         username: "",
         password: ""

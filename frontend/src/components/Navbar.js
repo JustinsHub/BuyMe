@@ -30,7 +30,7 @@ const Navbar = () => {
         <main>
         <nav className="navbar navbar-light bg-light">
             <div className="container">
-                <NavLink className="navbar-brand" to="/">BuyMe</NavLink>
+                <NavLink className="navbar-brand" to="/">Pickout</NavLink>
                 
                 {/* if logged in, render username with dropdown else signup/login routes */}
                 {currentUser ? 
@@ -49,11 +49,13 @@ const Navbar = () => {
                 :
                 <ul className="nav justify-content-end">
                     <li className="nav-item">
-                        <NavLink className="Navbar-color Navbar-hover m-3" to="/signup">Sign Up</NavLink>
-                    </li>
-                    <li className="nav-item">
                         <NavLink className="Navbar-color Navbar-hover" to="/login">
                             Login
+                        </NavLink>
+                    </li>
+                    <li className="nav-item">
+                        <NavLink className="Navbar-color Navbar-hover m-3" to="/signup">
+                            Get Started
                         </NavLink>
                     </li>
                 </ul>
