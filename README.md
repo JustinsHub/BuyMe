@@ -1,4 +1,4 @@
-# BuyMe
+# Pickout
 
 # Capstone 2 (Food/Cuisine Website)
 
