@@ -2,7 +2,6 @@ import React from 'react'
 import Lottie from 'react-lottie'
 
 const HowItWorks = () => {
-    //add animation from Lottie/Lordicon?
 
     const randomFoodScroll = {
         loop: true,
@@ -31,7 +30,6 @@ const HowItWorks = () => {
         }
     };
 
-    //food background
     return (
         <div>
         <div class="container">
