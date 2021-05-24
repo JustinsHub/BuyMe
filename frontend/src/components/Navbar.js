@@ -5,14 +5,14 @@ import Lottie from 'react-lottie'
 import './styles/navbar.css'
 
 const Navbar = () => {
-    const {currentUser, logout} = useContext(AppContext)
+    const {currentUser, logout} = useContext(AppContext) 
     //Todo: 
     //fix buttons and input sizes
+    //fixed navbar on scroll
     //fade navbar on scroll // darker color of theme background
     //hover on links turn logo color/background navbar css
     //Find navbar/brand icon 
-    //api for our the website (payment/what are we selling?) Put it on a README File
-    //test render api and make API.js for food. 
+    //api for our the website (payment/what are we selling?) 
     //cart? // prices of api items
     //fake terms and conditions //already logged in... (register) //
     //while on access/error have a random food joke request for entertainment 
@@ -30,7 +30,7 @@ const Navbar = () => {
         <main>
         <nav className="navbar navbar-light bg-light">
             <div className="container">
-                <NavLink className="navbar-brand" to="/">Pickout</NavLink>
+                <NavLink className="navbar-brand" to="/">PICKOUT</NavLink>
                 
                 {/* if logged in, render username with dropdown else signup/login routes */}
                 {currentUser ? 

@@ -36,8 +36,8 @@ const Home = () => {
                 <button className="btn btn-danger" onClick={ourFunction}>Get Started!</button>
             </section>
                 {/* Have the page scroll to buy or add to cart about pricing? */}
-                
-            <section>
+
+            <section className="mt-5">
                 <HowItWorks/>
             </section>
 
