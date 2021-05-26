@@ -41,7 +41,7 @@ const Home = () => {
                 <HowItWorks/>
             </section>
 
-            <section>
+            <section className="mt-5">
                 <Reviews/>
             </section>
                 
