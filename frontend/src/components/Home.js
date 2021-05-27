@@ -15,25 +15,25 @@ const Home = () => {
     }
 
     return (
-        <main className="Home">
-            <section>
-                <div className="Home-title container">
-                    <h1 className="Home-ourTitle">Hungry?</h1>
-                    <p className="h1">Can't think of what to eat?</p>
-                </div>
+        <main className="Home col-md">
+            <section className="Home-bg col-md">
+                <div className="container">
+                    <p className="Home-spacing">.</p>
+                        <div className="Home-title">
+                            <p className="Home-ourTitle">Hungry?</p>
+                            <p className="Home-p">Having a hard time thinking of what to eat?</p>
+                        </div>
                 <div>
                     <p className="Home-p">
                         Save yourself the headache and have us pick out what to eat for you!
                     </p>
-                </div>
-                <div>
-                    <p className="Home-p">Get started and explore our choices!</p>
                 </div>
 
                 {/* should redirect to login? or below the page and pick a random food/pairing */}
                 {/* When user clicks it reverts them to a must login error page? */}
                 {/* get started button expands when hovered */}
                 <button className="btn btn-danger" onClick={ourFunction}>Get Started!</button>
+                </div>
             </section>
                 {/* Have the page scroll to buy or add to cart about pricing? */}
 

@@ -1,8 +1,7 @@
 import React from 'react'
-import fiveStar from '../styles/logos/5star.png'
+import fiveStar from '../styles/images/5star.png'
 import '../styles/Reviews.css'
 
-//add review stars
 const Reviews = () => {
 
     return (

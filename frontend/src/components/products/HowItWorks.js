@@ -1,5 +1,6 @@
 import React from 'react'
 import Lottie from 'react-lottie'
+import '../styles/HowItWorks.css'
 
 const HowItWorks = () => {
 
@@ -34,7 +35,7 @@ const HowItWorks = () => {
         <div>
         <div class="container">
             <div>
-                <h1>How it works</h1>
+                <h1 className="HowItWorks-t">How it works</h1>
             </div>
             <div class="row">
                 <div class="col-md">
