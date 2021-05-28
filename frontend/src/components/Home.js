@@ -1,4 +1,5 @@
 import React, {useState} from 'react'
+import {Link} from 'react-router-dom'
 import Products from './products/foodApi'
 import HowItWorks from './products/HowItWorks'
 import Reviews from './products/Reviews'
@@ -32,7 +33,7 @@ const Home = () => {
                 {/* should redirect to login? or below the page and pick a random food/pairing */}
                 {/* When user clicks it reverts them to a must login error page? */}
                 {/* get started button expands when hovered */}
-                <button className="btn btn-danger" onClick={ourFunction}>Get Started!</button>
+                <Link className="btn btn-danger" to="/plans&amp;pricing">Get Started!</Link>
                 </div>
             </section>
                 {/* Have the page scroll to buy or add to cart about pricing? */}

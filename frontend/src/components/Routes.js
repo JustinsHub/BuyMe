@@ -8,6 +8,7 @@ import AppContext from './AppContext'
 import EnsureLoginRoute from './EnsureLoginRoute'
 import Profile from './users/Profile'
 import ProfileEdit from './users/ProfileEdit'
+import PriceAndPlans from './products/PriceAndPlans'
 import AccessError from './users/AccessError'
 
 const Routes = () => {
@@ -30,6 +31,10 @@ const Routes = () => {
                 <EnsureLoginRoute exact path="/profile/edit">
                     <ProfileEdit currentUser={currentUser}/>
                 </EnsureLoginRoute>
+
+                <Route exact path="/plans&amp;pricing">
+                    <PriceAndPlans/>
+                </Route>
 
                 <Route exact path="/">
                     <Home/>
