@@ -5,7 +5,7 @@ import '../styles/Reviews.css'
 const Reviews = () => {
 
     return (
-    <div>
+    <div className="Reviews">
     <div id="carouselExampleControls" className="carousel slide col-md" data-bs-ride="carousel">
         <h1 className="Reviews-title mb-5">What people are saying</h1>
         <div className="carousel-inner">

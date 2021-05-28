@@ -1,4 +1,4 @@
-import React, {useContext} from 'react'
+import React, {useState, useContext} from 'react'
 import AppContext from './AppContext'
 import {NavLink} from 'react-router-dom'
 import Lottie from 'react-lottie'
@@ -6,6 +6,7 @@ import './styles/navbar.css'
 
 const Navbar = () => {
     const {currentUser, logout} = useContext(AppContext) 
+    const [navbar, setNavbar] = useState(false)
     //Todo: 
     //fix buttons and input sizes
     //fixed navbar on scroll
@@ -26,11 +27,18 @@ const Navbar = () => {
         }
     };
 
+    const changeOnScroll = () => {
+        window.scrollY >= 1 ? setNavbar(true) : setNavbar(false)
+        }
+    
+
+    window.addEventListener('scroll', changeOnScroll)
+
     return (
-        <main>
-        <nav className="navbar navbar-light bg-light">
+        <main className="Navbar">
+        <nav className={navbar ? 'navbar active fixed-top' : 'navbar fixed-top'}>
             <div className="container">
-                <NavLink className="navbar-brand" to="/">PICKOUT</NavLink>
+                <NavLink className="Navbar-hover navbar-brand" to="/">PICKOUT</NavLink>
                 
                 {/* if logged in, render username with dropdown else signup/login routes */}
                 {currentUser ? 
@@ -49,13 +57,13 @@ const Navbar = () => {
                 :
                 <ul className="nav justify-content-end">
                     <li className="nav-item">
-                        <NavLink className="Navbar-color Navbar-hover" to="/login">
+                        <NavLink className="Navbar-color Navbar-hover btn" to="/login">
                             Login
                         </NavLink>
                     </li>
                     <li className="nav-item">
-                        <NavLink className="Navbar-color Navbar-hover m-3" to="/signup">
-                            Get Started
+                        <NavLink className="Navbar-hover btn btn-default" style={{color: "white"}}to="/signup">
+                            Sign Up
                         </NavLink>
                     </li>
                 </ul>

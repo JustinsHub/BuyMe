@@ -1,9 +1,13 @@
 import React from 'react'
+import {Link} from 'react-router-dom'
+import './styles/Footer.css'
 
 const Footer = () => {
     return (
-        <div className="fixed-bottom" style={{position: "static"}}>
-            <p className="mt-5 mb-5 text-muted">&copy; 2021 BuyMe</p>
+        <div className="Footer">
+            <span className="text-muted">&copy; 2021 &nbsp;
+            <Link className="Footer-l text-muted" to='/'>Pickout</Link>
+            </span>
         </div>
     )
 }

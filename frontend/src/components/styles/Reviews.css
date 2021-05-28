@@ -3,6 +3,11 @@
   filter: invert(100%);
 }
 
+.Reviews {
+  margin-top: 6rem;
+  margin-bottom: 5rem;
+}
+
 .Reviews-title {
   font-size: 3rem;
   font-weight: 700;
