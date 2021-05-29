@@ -15,10 +15,11 @@
 }
 
 .Home-ourTitle {
-  font-size: 4.7rem;
+  font-size: 5rem;
   font-weight: 700;
   color: black;
   text-shadow: 1px 1px 1px white;
+  font-family: Courier New, Courier, monospace;
 }
 
 .Home-p {
