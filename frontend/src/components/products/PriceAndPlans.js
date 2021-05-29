@@ -15,38 +15,46 @@ const PriceAndPlans = () => {
     //card has shadow/ when hover on card shadow and transition
     //button pops when hovered
     return (
-        <div className="PriceAndPlans">
-            <div class="PriceAndPlans-c container">
+        <section className="PriceAndPlans">
+            <div className="PriceAndPlans-c container">
                 <div className="PriceAndPlans-content">
-                <h1 className="PriceAndPlans-t">Plans and Pricing</h1>
-                <div class="row">
-                    <div class="col-md">
-                        <div class="card" style={{width: "18rem;"}}>
-                            <img src={randomMeal} class="card-img-top" alt="Alternative Text"/>
-                            <div class="card-body">
-                                <h5 class="card-title">Signature</h5>
-                                <p class="card-text">The Signature let's us choose a random meal from a wide variety of choices.</p>
+                <div>
+                    <h1 className="PriceAndPlans-t">Plans and Pricing
+                    <p className="PriceAndPlans-sub mt-1">The meals are chosen for your conveniency!</p>
+                    </h1>
+                </div>
+                <div className="row">
+                <div className="col-md-2"></div>
+                    <div className="col-md-4">
+                        <div className="card" >
+                            <img src={randomMeal} className="card-img-top" alt="Alternative Text"/>
+                            <div className="card-body">
+                                <h5 className="card-title">Signature</h5>
+                                <p className="card-text">The Signature let's us choose a random meal from a wide variety of choices.</p>
+                                <p></p>
                                 <button className="w-100 btn btn-primary">Select</button>
                             </div>
                         </div>
                     </div>
-                    <div class="col-md">
-                    <div class="card" style={{width: "18rem;"}}>
-                        <img src={mealAndWine} class="PriceAndPlans-m-w card-img-top" alt="Alternative Text"/>
-                            <div class="card-body">
-                                <h5 class="card-title">The Pair</h5>
-                                <p class="card-text">The Pair! Receive a surprising meal along with our finest glass of wine that pairs well.</p>
+                    
+                    <div className="col-md-4">
+                    <div className="card">
+                        <img src={mealAndWine} class="card-img-top" alt="Alternative Text"/>
+                            <div className="card-body">
+                                <h5 className="card-title">The Pair</h5>
+                                <p className="card-text">The Pair! Receive a surprising meal along with our finest glass of wine that pairs well.</p>
                                 <button className="w-100 btn btn-primary">Select</button>
                             </div>
                         </div>
                     </div>
+                    <div className="col-md-2"></div>
                 </div>
                 </div>
             </div>
-            <div>
-                Questions fix this piece of shit
-            </div>
-        </div>
+        <section className="PriceAndPlans-q">
+            Question section
+        </section>
+        </section>
     )
 }
 
