@@ -7,7 +7,6 @@ const PriceAndPlans = () => {
 
     //food and wine pairing prices grid
     //add mock common questions?
-        
 
     //put pricing on the each plan
     //when clicked api is called (have to create) on backend and add it on table 
@@ -16,7 +15,7 @@ const PriceAndPlans = () => {
     //button pops when hovered
     return (
         <section className="PriceAndPlans">
-            <div className="PriceAndPlans-c container">
+            <div className="container">
                 <div className="PriceAndPlans-content">
                 <div>
                     <h1 className="PriceAndPlans-t">Plans and Pricing
@@ -26,24 +25,24 @@ const PriceAndPlans = () => {
                 <div className="row">
                 <div className="col-md-2"></div>
                     <div className="col-md-4">
-                        <div className="card" >
+                        <div className="PriceAndPlans-c card" style={{border: "0px"}}>
                             <img src={randomMeal} className="card-img-top" alt="Alternative Text"/>
                             <div className="card-body">
                                 <h5 className="card-title">Signature</h5>
                                 <p className="card-text">The Signature let's us choose a random meal from a wide variety of choices.</p>
                                 <p></p>
-                                <button className="w-100 btn btn-primary">Select</button>
+                                <button className="PriceAndPlans-btn w-100 btn btn-default" style={{color: "white"}}>Select</button>
                             </div>
                         </div>
                     </div>
                     
                     <div className="col-md-4">
-                    <div className="card">
+                    <div className="PriceAndPlans-c card" style={{border: "0px"}}>
                         <img src={mealAndWine} class="card-img-top" alt="Alternative Text"/>
                             <div className="card-body">
                                 <h5 className="card-title">The Pair</h5>
                                 <p className="card-text">The Pair! Receive a surprising meal along with our finest glass of wine that pairs well.</p>
-                                <button className="w-100 btn btn-primary">Select</button>
+                                <button className="PriceAndPlans-btn btn btn-default w-100" style={{color: "white"}}>Select</button>
                             </div>
                         </div>
                     </div>

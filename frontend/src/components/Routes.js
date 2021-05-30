@@ -9,6 +9,7 @@ import EnsureLoginRoute from './EnsureLoginRoute'
 import Profile from './users/Profile'
 import ProfileEdit from './users/ProfileEdit'
 import PriceAndPlans from './products/PriceAndPlans'
+import Cart from './products/Cart'
 import AccessError from './users/AccessError'
 
 const Routes = () => {
@@ -31,6 +32,10 @@ const Routes = () => {
                 <EnsureLoginRoute exact path="/profile/edit">
                     <ProfileEdit currentUser={currentUser}/>
                 </EnsureLoginRoute>
+
+                <Route exact path="/cart">
+                    <Cart/>
+                </Route>
 
                 <Route exact path="/plans&amp;pricing">
                     <PriceAndPlans/>
