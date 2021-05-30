@@ -4,7 +4,7 @@ const bcrypt = require('bcrypt')
 const {BCRYPT_WORK_FACTOR} = require('../config')
 
 class User {
-    constructor(id, username, password, first_name, last_name, email, address){
+    constructor(id, username, password, first_name, last_name, email, address, created_on){
         this.id = id;
         this.username = username;
         this.password = password;
@@ -12,6 +12,7 @@ class User {
         this.last_name = last_name; 
         this.email = email;
         this.address = address;
+        this.created_on = created_on
     }
     static async getAll(){
         const results = await db.query(`SELECT id, username, password, first_name, last_name, email, address
@@ -30,9 +31,11 @@ class User {
     }
 
     static async register(user, pass, mail){
-        const hashedPassword = await bcrypt.hash(pass, BCRYPT_WORK_FACTOR)
-        const results = await db.query(`INSERT INTO users (username, password, email) VALUES ($1,$2,$3)
-                                        RETURNING id, username`, [user, hashedPassword, mail])
+        const currentDate = new Date(Date.now())
+        const timeCreated = currentDate
+        const hashedPassword = await bcrypt.hash(pass, BCRYPT_WORK_FACTOR) 
+        const results = await db.query(`INSERT INTO users (username, password, email, created_on) VALUES ($1,$2,$3,$4)
+                                        RETURNING id, username`, [user, hashedPassword, mail, timeCreated])
         const newUser = results.rows[0] 
         if(newUser){
             delete newUser.password
