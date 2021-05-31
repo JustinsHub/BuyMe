@@ -28,12 +28,20 @@ Database Models
 - email (required) `very important to email market for future products`
 - address (optional) `Only way to deliver the food to the customer`
 
+> `Signature Meal`
+
+- Id (primary_key)
+
+> `Pair Meal`
+
+- Id (primary_key)
+
 > `Purchases`
 
 - Id (primary key)
 - product_id (required, API)
 - user_id (ForeignKey required)
-- purchase date/time
+- purchased_on date/time
 
 # API
 

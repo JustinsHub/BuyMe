@@ -31,8 +31,7 @@ class User {
     }
 
     static async register(user, pass, mail){
-        const currentDate = new Date(Date.now())
-        const timeCreated = currentDate
+        const timeCreated = new Date(Date.now())
         const hashedPassword = await bcrypt.hash(pass, BCRYPT_WORK_FACTOR) 
         const results = await db.query(`INSERT INTO users (username, password, email, created_on) VALUES ($1,$2,$3,$4)
                                         RETURNING id, username`, [user, hashedPassword, mail, timeCreated])

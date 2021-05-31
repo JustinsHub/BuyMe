@@ -4,10 +4,7 @@ CREATE DATABASE Pickout;
 
 \c Pickout;
 
-DROP TABLE IF EXISTS users;
-DROP TABLE IF EXISTS signature_meal;
-DROP TABLE IF EXISTS pair_meal;
-DROP TABLE IF EXISTS purchases;
+DROP TABLE IF EXISTS users, signature_meal, pair_meal, purchases;
 
 CREATE TABLE users (
     id serial PRIMARY KEY,
@@ -35,7 +32,8 @@ CREATE TABLE purchases (
     signature_meal INTEGER 
         REFERENCES signature_meal ON DELETE CASCADE,
     pair_meal INTEGER 
-        REFERENCES pair_meal ON DELETE CASCADE
+        REFERENCES pair_meal ON DELETE CASCADE,
+    purchased_on TIMESTAMP 
 );
 
 INSERT INTO users (username, password, first_name, last_name, email, address) 
