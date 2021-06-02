@@ -1,9 +1,19 @@
 import React from 'react'
+import {useHistory} from 'react-router-dom'
 import '../styles/Price&Plans.css'
 import randomMeal from '../styles/images/randomMeal.jpeg'
 import mealAndWine from '../styles/images/mealAndWine.jpeg'
 
 const PriceAndPlans = () => {
+    const history = useHistory()
+
+    const signatureMealPath = () => {
+        history.push('/signature-meal')
+    }
+
+    const pairMealPath = () => {
+        history.push('/pair-meal')
+    }
 
     //food and wine pairing prices grid
     //add mock common questions?
@@ -31,7 +41,7 @@ const PriceAndPlans = () => {
                                 <h5 className="card-title">Signature</h5>
                                 <p className="card-text">The Signature let's us choose a random meal from a wide variety of choices.</p>
                                 <p></p>
-                                <button className="PriceAndPlans-btn w-100 btn btn-default" style={{color: "white"}}>Select</button>
+                                <button className="PriceAndPlans-btn w-100 btn btn-default" onClick={signatureMealPath} style={{color: "white"}} >Select</button>
                             </div>
                         </div>
                     </div>
@@ -42,7 +52,7 @@ const PriceAndPlans = () => {
                             <div className="card-body">
                                 <h5 className="card-title">The Pair</h5>
                                 <p className="card-text">The Pair! Receive a surprising meal along with our finest glass of wine that pairs well.</p>
-                                <button className="PriceAndPlans-btn btn btn-default w-100" style={{color: "white"}}>Select</button>
+                                <button className="PriceAndPlans-btn btn btn-default w-100" onClick={pairMealPath} style={{color: "white"}}>Select</button>
                             </div>
                         </div>
                     </div>

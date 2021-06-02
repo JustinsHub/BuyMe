@@ -9,7 +9,7 @@ const NotFound = () => {
     }
 
     return (
-        <div>
+        <div className="global-mt">
             <h1>PAGE NOT FOUND</h1>
             <button className="btn btn-primary" onClick={goHome}>Go Home</button>
         </div>

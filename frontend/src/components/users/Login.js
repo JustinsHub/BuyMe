@@ -21,6 +21,7 @@ const Login = ({login, user}) => {
         const res = await login(formData)
         return (res.status === 201) ? history.push('/profile'): setLoginError(res)
     }
+    
     //if a user is logged in, they will be redirected if they try to access this component
     if(user){
         return <Redirect to="/access/error"/>
@@ -28,9 +29,9 @@ const Login = ({login, user}) => {
 
     return (
         <main className="global-form card rounded mx-auto d-block">
+            {loginError && <h1>{loginError}</h1>}
             <div className="text-center">
             {/* change UI errors warning */}
-        {loginError && <h1>{loginError}</h1>}
         <form onSubmit={handleSubmit}>
         <h1 className="global-create-account h2 mb-2 fw-normal">Login</h1>
             <div>

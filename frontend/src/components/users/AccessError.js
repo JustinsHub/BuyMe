@@ -8,8 +8,8 @@ const AccessError = () => {
     }
 
     return(
-    <div>
-        <h2>Must logout in order to sign Up or login.</h2>
+    <div className="global-mt">
+        <h2>Must logout in order to sign up or login.</h2>
         <div>
             <button className="btn btn-primary" onClick={goHome}>Go Home</button>
         </div>

@@ -1,20 +1,10 @@
 import React, {useState} from 'react'
 import {Link} from 'react-router-dom'
-import Products from './products/foodApi'
 import HowItWorks from './products/HowItWorks'
 import Reviews from './products/Reviews'
 import './styles/Home.css'
 
 const Home = () => {
-    const [ourProducts, setOurProducts] = useState(null)
-
-    const ourFunction = async() =>{
-        //make sure when clicked it wont allow request when not logged in
-        const res = await Products.getRandomProduct()
-        console.log(res.data)
-        setOurProducts(res.data.recipes[0].image)
-    }
-
     return (
         <main className="Home col-md">
             <section className="Home-bg col-md">
@@ -29,9 +19,6 @@ const Home = () => {
                         Save yourself the headache and have us pick out what to eat for you!
                     </p>
                 </div>
-
-                {/* should redirect to login? or below the page and pick a random food/pairing */}
-                {/* When user clicks it reverts them to a must login error page? */}
                 {/* get started button expands when hovered */}
                 <Link className="btn btn-danger" to="/plans&amp;pricing">Get Started!</Link>
                 </div>
@@ -45,8 +32,6 @@ const Home = () => {
             <section className="mt-5">
                 <Reviews/>
             </section>
-                
-            <img src={ourProducts}></img>
         </main>
     )
 }
