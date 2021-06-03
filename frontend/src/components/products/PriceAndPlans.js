@@ -3,17 +3,16 @@ import {useHistory} from 'react-router-dom'
 import '../styles/Price&Plans.css'
 import randomMeal from '../styles/images/randomMeal.jpeg'
 import mealAndWine from '../styles/images/mealAndWine.jpeg'
+import useError from '../custom-hooks/useError'
 
-const PriceAndPlans = () => {
+const PriceAndPlans = ({user}) => {
     const history = useHistory()
+    const [loginError, setLoginError] = useError(null)
 
-    const signatureMealPath = () => {
-        history.push('/signature-meal')
-    }
-
-    const pairMealPath = () => {
-        history.push('/pair-meal')
-    }
+    const signatureMealPath = () => user ? history.push('/signature-meal') : setLoginError('Must login in order to continue') //make alert popup/modal?
+    
+    const pairMealPath = () => user ? history.push('/pair-meal') : setLoginError('Must login in order to continue')
+    
 
     //food and wine pairing prices grid
     //add mock common questions?
@@ -25,6 +24,7 @@ const PriceAndPlans = () => {
     //button pops when hovered
     return (
         <section className="PriceAndPlans">
+            <h1>{loginError}</h1>
             <div className="container">
                 <div className="PriceAndPlans-content">
                 <div>

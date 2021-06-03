@@ -45,7 +45,7 @@ const Routes = () => {
                 </Route>
 
                 <Route exact path="/plans&amp;pricing">
-                    <PriceAndPlans/>
+                    <PriceAndPlans user={currentUser}/>
                 </Route>
 
                 <Route exact path="/">
