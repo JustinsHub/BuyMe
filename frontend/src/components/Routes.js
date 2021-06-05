@@ -11,8 +11,10 @@ import ProfileEdit from './users/ProfileEdit'
 import PriceAndPlans from './products/PriceAndPlans'
 import SignatureMeal from './products/SignatureMeal'
 import PairMeal from './products/PairMeal'
+import Policy from './products/Policy'
 import ErrorRedirect from './users/ErrorRedirect'
 import AccessError from './users/AccessError'
+
 
 
 const Routes = () => {
@@ -46,6 +48,10 @@ const Routes = () => {
 
                 <Route exact path="/plans&amp;pricing">
                     <PriceAndPlans user={currentUser}/>
+                </Route>
+
+                <Route exact path="/policy">
+                    <Policy/>
                 </Route>
 
                 <Route exact path="/">

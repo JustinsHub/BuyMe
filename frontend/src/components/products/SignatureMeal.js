@@ -1,8 +1,7 @@
 import React, {useState} from 'react'
 import parse from 'html-react-parser'
-import {useHistory} from 'react-router-dom'
+import {useHistory, Link} from 'react-router-dom'
 import Products from './foodApi'
-import Policy from './Policy'
 import LoadSpinner from '../commons/LoadSpinner'
 import '../styles/SignatureMeal.css'
 
@@ -58,9 +57,11 @@ const SignatureMeal = ({user}) => {
                             <div className="col-md-3">
                             </div>
                         </div>
-                        <p>{parse(mealSummary)}</p>
+                            <p>{parse(mealSummary)}</p>
                         </div>
+                        <button className="btn btn-default mt-2" style={{color: "white"}}>Proceed to checkout</button>
                     </div>
+                    <p className="Signature-Meal-policy">Not satisfied with this choice? Check out our meal <Link style={{textDecoration: "none"}} to="/policy">policy</Link></p>
                 </div>
                 :   
                 // add a conditional inside to render loading statement when requesting

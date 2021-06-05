@@ -2,8 +2,8 @@ import React from 'react'
 
 const Policy = () => {
     return (
-        <div>
-            Policy
+        <div className="global-mt">
+            Too bad.
         </div>
     )
 }

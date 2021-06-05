@@ -11,6 +11,7 @@
   font-weight: 700;
 }
 
+/* image */
 .Signature-Meal-i {
   width: 100%;
   height: auto;
@@ -26,6 +27,12 @@
   justify-content: center;
 }
 
+/* policy font */
+.Signature-Meal-policy {
+  margin-top: 10px;
+  font-size: 0.75rem;
+  color: rgb(161, 161, 161);
+}
 /* paragraph font */
 .Signature-Meal-p-f {
   font-family: Courier New, Courier, monospace;

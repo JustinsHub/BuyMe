@@ -14,9 +14,7 @@ const PriceAndPlans = ({user}) => {
     const pairMealPath = () => user ? history.push('/pair-meal') : setLoginError('Must login in order to continue')
     
 
-    //food and wine pairing prices grid
     //add mock common questions?
-
     //put pricing on the each plan
     //when clicked api is called (have to create) on backend and add it on table 
     //when chosen shows which food/wine they're going to get (go to another page?)
