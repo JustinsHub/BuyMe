@@ -7,7 +7,7 @@ const LoadSpinner = () => {
     const defaultOptions = {
         loop: true,
         autoplay: true,
-        animationData: require('../styles/logos/polygonLoading.json'), // the path to the animation json
+        animationData: require('../styles/logos/foodLoading.json'), // the path to the animation json
         rendererSettings: {
             preserveAspectRatio: 'xMidYMid slice'
         }
@@ -16,7 +16,6 @@ const LoadSpinner = () => {
     return (
         <div className="Loading">
             <Lottie options={defaultOptions} height={200} width={200}/>
-            <p>Loading deliciousness.</p>
         </div>
     )
 }
