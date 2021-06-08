@@ -3,7 +3,8 @@ const cors = require('cors')
 const morgan = require('morgan')
 const {authenticateJWT} = require('./middleware/auth')
 const usersRoutes = require('./routes/usersRoutes')
-const authRouter = require('./routes/auth')
+const authRoutes = require('./routes/auth')
+const productsRoutes = require('./routes/productRoutes')
 
 const app = express()
 
@@ -14,7 +15,8 @@ app.use(morgan('dev'))
 app.use(authenticateJWT)
 
 app.use('/users', usersRoutes)
-app.use('/auth', authRouter)
+app.use('/auth', authRoutes)
+// app.use('/products', productsRoutes)
 
 app.use((error, req, res, next)=> {
     let status = error.status || 500

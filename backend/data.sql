@@ -18,11 +18,13 @@ CREATE TABLE users (
 );
 
 CREATE TABLE signature_meal (
-    id serial PRIMARY KEY
+    id serial PRIMARY KEY,
+    price INTEGER NOT NULL
 );
 
 CREATE TABLE pair_meal (
-    id serial PRIMARY KEY
+    id serial PRIMARY KEY,
+    price INTEGER NOT NULL
 );
 
 CREATE TABLE purchases (
@@ -37,4 +39,8 @@ CREATE TABLE purchases (
 );
 
 INSERT INTO users (username, password, first_name, last_name, email, address) 
-VALUES ('Someone', 'yolobolo', 'dexter', 'wexter', 'dexter@wexter.com', '1227 Dog st. #445, Los Angeles, CA 90068')
+VALUES ('Someone', 'yolobolo', 'dexter', 'wexter', 'dexter@wexter.com', '1227 Dog st. #445, Los Angeles, CA 90068');
+
+INSERT INTO signature_meal (price) VALUES (49.99);
+
+INSERT INTO pair_meal (price) VALUES (79.99);
