@@ -16,7 +16,7 @@ app.use(authenticateJWT)
 
 app.use('/users', usersRoutes)
 app.use('/auth', authRoutes)
-// app.use('/products', productsRoutes)
+app.use('/meals', productsRoutes)
 
 app.use((error, req, res, next)=> {
     let status = error.status || 500
