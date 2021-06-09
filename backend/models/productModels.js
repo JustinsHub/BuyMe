@@ -6,8 +6,18 @@ const timePurchased = new Date(Date.now())
 //add error handling
 class Product {
     //Both queries add to DB when meal is purchased depending on which choice. (Can be both?)
-    
-    //signature Meal query
+
+    //signature meal query
+    static async getSignatureMeal() {
+        const results = await db.query(`SELECT id, price FROM signature_meal`)
+        return results.rows
+    }
+
+    //pair meal query
+    static async getPairMeal() {
+        const results = await db.query(`SELECT id, price FROM pair_meal`)
+        return results.rows
+    }
     static async signatureMealPurchase(userId, mealId) {
         await db.query(
             //must match the exact DB names when inserting
