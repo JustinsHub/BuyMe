@@ -4,7 +4,7 @@ CREATE DATABASE Pickout;
 
 \c Pickout;
 
-DROP TABLE IF EXISTS users, signature_meal, pair_meal, purchases;
+DROP TABLE IF EXISTS users, user_address, signature_meal, pair_meal, purchases;
 
 CREATE TABLE users (
     id serial PRIMARY KEY,
@@ -13,8 +13,25 @@ CREATE TABLE users (
     first_name TEXT,
     last_name TEXT,
     email TEXT NOT NULL,
-    address TEXT,
-    created_on TIMESTAMP 
+    created_on TIMESTAMP
+);
+
+CREATE TABLE user_address (
+    address_id serial PRIMARY KEY,
+    street_address TEXT,
+    address_number INTEGER,
+    city TEXT,
+    state TEXT,
+    zip_code INTEGER,
+    country TEXT
+);
+
+CREATE TABLE matching_address (
+    PRIMARY KEY (user_id, address_id),
+    user_id INTEGER
+        REFERENCES users(id) ON DELETE CASCADE,
+    address_id INTEGER 
+        REFERENCES user_address(address_id) ON DELETE CASCADE
 );
 
 CREATE TABLE signature_meal (
@@ -38,8 +55,8 @@ CREATE TABLE purchases (
     purchased_on TIMESTAMP 
 );
 
-INSERT INTO users (username, password, first_name, last_name, email, address) 
-VALUES ('Someone', 'yolobolo', 'dexter', 'wexter', 'dexter@wexter.com', '1227 Dog st. #445, Los Angeles, CA 90068');
+-- INSERT INTO users (username, password, first_name, last_name, email) 
+-- VALUES ('Someone', 'yolobolo', 'dexter', 'wexter', 'dexter@wexter.com');
 
 INSERT INTO signature_meal (price) VALUES (49.99);
 

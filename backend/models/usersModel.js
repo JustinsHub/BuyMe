@@ -14,12 +14,16 @@ class User {
         this.address = address;
         this.created_on = created_on
     }
+
+    //Gets all users
     static async getAll(){
         const results = await db.query(`SELECT id, username, password, first_name, last_name, email, address
                                         FROM users`)
         const users = results.rows.map(u => new User(u.id, u.username, u.password, u.first_name, u.last_name, u.email, u.address))
         return users
     }
+
+    //get user by id by plugging in currentUser id
     static async getUserId(id){
         const results = await db.query(`SELECT id, username, first_name, last_name, email, address
                                         FROM users WHERE id=$1`, [id])
@@ -30,6 +34,7 @@ class User {
         return new User(u.id, u.username, u.password, u.first_name, u.last_name, u.email, u.address)
     }
 
+    //sign up a user by hashing their password with timestamp
     static async register(user, pass, mail){
         const timeCreated = new Date(Date.now())
         const hashedPassword = await bcrypt.hash(pass, BCRYPT_WORK_FACTOR) 
@@ -42,6 +47,7 @@ class User {
         return new User(newUser)
     }
 
+    //login a user by checking hashed password
     static async login(username, password){
         const results = await db.query(`SELECT id, username, password FROM users WHERE username = $1`, [username])
         const user = results.rows[0]
@@ -55,6 +61,7 @@ class User {
         throw new ExpressError('Username/Password are required.', 400)
     }
 
+    //check user password for extra authenication
     static async checkPassword(id, password){ //keep this for now
         const results = await db.query(`SELECT id, password FROM users WHERE id=$1`, [id])
         const userId = results.rows[0]
@@ -65,6 +72,8 @@ class User {
         throw new ExpressError(`Wrong Password!`, 400)
 
     }
+
+    //update user when user edits profile 
     async updateUser(){
         const res = await db.query(`UPDATE users SET first_name=$1, last_name=$2, email=$3, address=$4 WHERE id=$5 
                                     `,[this.first_name, this.last_name, this.email, this.address, this.id])
@@ -73,6 +82,7 @@ class User {
         }
     }
 
+    //be gone user
     async deleteUser(){
         if(this.id === undefined){
             throw new ExpressError('Invalid User', 404)
