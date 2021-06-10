@@ -5,6 +5,7 @@ const {authenticateJWT} = require('./middleware/auth')
 const usersRoutes = require('./routes/usersRoutes')
 const authRoutes = require('./routes/auth')
 const productsRoutes = require('./routes/productRoutes')
+const addressRoutes = require('./routes/addressRoutes')
 
 const app = express()
 
@@ -16,6 +17,7 @@ app.use(authenticateJWT)
 
 app.use('/users', usersRoutes)
 app.use('/auth', authRoutes)
+app.use('/address', addressRoutes)
 app.use('/meals', productsRoutes)
 
 app.use((error, req, res, next)=> {
