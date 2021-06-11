@@ -4,34 +4,33 @@ const bcrypt = require('bcrypt')
 const {BCRYPT_WORK_FACTOR} = require('../config')
 
 class User {
-    constructor(id, username, password, first_name, last_name, email, address, created_on){
+    constructor(id, username, password, first_name, last_name, email, created_on){
         this.id = id;
         this.username = username;
         this.password = password;
         this.first_name = first_name;
         this.last_name = last_name; 
         this.email = email;
-        this.address = address;
         this.created_on = created_on
     }
 
     //Gets all users
     static async getAll(){
-        const results = await db.query(`SELECT id, username, password, first_name, last_name, email, address
+        const results = await db.query(`SELECT id, username, password, first_name, last_name, email
                                         FROM users`)
-        const users = results.rows.map(u => new User(u.id, u.username, u.password, u.first_name, u.last_name, u.email, u.address))
+        const users = results.rows.map(u => new User(u.id, u.username, u.password, u.first_name, u.last_name, u.email))
         return users
     }
 
     //get user by id by plugging in currentUser id
     static async getUserId(id){
-        const results = await db.query(`SELECT id, username, first_name, last_name, email, address
+        const results = await db.query(`SELECT id, username, first_name, last_name, email
                                         FROM users WHERE id=$1`, [id])
         const u =  results.rows[0]
         if(!u){
             throw new ExpressError("User not found", 404)
         }
-        return new User(u.id, u.username, u.password, u.first_name, u.last_name, u.email, u.address)
+        return new User(u.id, u.username, u.password, u.first_name, u.last_name, u.email)
     }
 
     //sign up a user by hashing their password with timestamp
@@ -75,8 +74,8 @@ class User {
 
     //update user when user edits profile 
     async updateUser(){
-        const res = await db.query(`UPDATE users SET first_name=$1, last_name=$2, email=$3, address=$4 WHERE id=$5 
-                                    `,[this.first_name, this.last_name, this.email, this.address, this.id])
+        const res = await db.query(`UPDATE users SET first_name=$1, last_name=$2, email=$3 WHERE id=$4 
+                                    `,[this.first_name, this.last_name, this.email, this.id])
         if(!res) {
             throw new ExpressError('Must fill out all input', 400)
         }

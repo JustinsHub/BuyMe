@@ -1,10 +1,12 @@
 const express = require('express')
 const router = new express.Router()
 const User = require('../models/usersModel')
+const Address = require('../models/addressModel')
 const ExpressError = require('../expressError')
 const jwt = require('jsonwebtoken')
 const { SECRET_KEY } = require('../config')
 
+//requests API path to register user on Users table and address on Address Table with jsonwebtoken
 router.post('/register', async(req, res, next)=> {
     const {username, password, email} = req.body
     try{
@@ -12,6 +14,7 @@ router.post('/register', async(req, res, next)=> {
         throw new ExpressError('All Field Inputs are required.', 400)
     }
     const newUser = await User.register(username, password, email)
+    await Address.registerAddress(newUser.id.id)
     const token = jwt.sign({id: newUser.id.id}, SECRET_KEY) //signing ID only (must be the same sign as login to have no conflict in login/register)
     return res.status(201).json({Registered: username, token})
     }catch(e){

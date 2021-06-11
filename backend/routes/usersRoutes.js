@@ -30,7 +30,6 @@ router.patch('/update/:id', async(req,res,next)=>{
     user.first_name = first_name
     user.last_name = last_name
     user.email = email
-    user.address = address
     await user.updateUser()
     return res.status(201).json(user)
     }catch(e){
