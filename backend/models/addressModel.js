@@ -20,15 +20,18 @@ class Address {
         const address = res.rows.map(a => new Address(a.user_id, a.street_address, a.address_number, a.city, a.state, a.zip_code, a.country))
         return address
     }
-    //When I add a user it adds the user ID to the address.
+    
+    
     static async getAddressId(user_id){
         const res = await db.query(`SELECT 
                                         user_id, street_address, address_number, city, state, zip_code, country 
-                                    WHERE id=$1`, [user_id])
+                                    FROM user_address 
+                                    WHERE user_id=$1`, [user_id])
         const a = res.rows[0]
         return new Address(a.user_id, a.street_address, a.address_number, a.city, a.state, a.zip_code, a.country)
     }
 
+    //register address when users registers (foreign key constraint)
     static async registerAddress(user_id){
         const res = await db.query(`INSERT INTO user_address (user_id)
                                     VALUES ($1) RETURNING user_id`,
@@ -37,13 +40,15 @@ class Address {
         return new Address(ourAddress)
     }
 
-    
+    //updates address based on user_id (must search currentUser id first before updates)
     async updateAddress(){
-        await db.query(`UPDATE 
-                            user_address    
-                        SET 
-                            street_address=$1, address_number=$2, city=$3, state=$4, zip_code=$5, country=$6`,
-                        [this.street_address, this.address_number, this.city, this.state, this.zip_code, this.country])
+        const res = await db.query(`UPDATE 
+                                        user_address    
+                                    SET 
+                                        street_address=$1, address_number=$2, city=$3, state=$4, zip_code=$5, country=$6
+                                    WHERE user_id =$7`,
+                                    [this.street_address, this.address_number, this.city, this.state, this.zip_code, this.country, this.user_id])
+        if(!res) throw new ExpressError('Must fill out all input', 400)
     }
 }
 
