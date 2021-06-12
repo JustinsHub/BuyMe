@@ -24,8 +24,10 @@ const AppContextWrapper = ({children}) => {
             try{
             const {id} = jwt.decode(token)
             const user = await User.getUserId(id)
+            const address = await User.getUserAddress(id)
             delete user.data.password //deletes hashed password to not show on data
             setCurrentUser(user)
+            setCurrentAddress(address)
         }catch(e){
             return e
         }

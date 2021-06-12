@@ -16,14 +16,14 @@ const ProfileEdit = ({currentUser, currentAddress}) => {
     }
 
     const INITIAL_ADDRESS = {
-        street_address: currentAddress.street_name || "",
-        address_number: currentAddress.address_number || "", 
-        city: currentAddress.city || "",
-        state: currentAddress.state || "",
-        zip_code: currentAddress.zip_code || "",
-        country: currentAddress.country || ""
+        street_address: currentAddress.data.street_address || "",
+        address_number: currentAddress.data.address_number || "", 
+        city: currentAddress.data.city || "",
+        state: currentAddress.data.state || "",
+        zip_code: currentAddress.data.zip_code || "",
+        country: currentAddress.data.country || ""
     }
-    
+
     const [editData, handleChange] = useFormData(INITIAL_STATE)
     const [editAddress, handleAddressChange] = useFormData(INITIAL_ADDRESS)
     const [editError, setEditError] = useError([])
@@ -53,7 +53,7 @@ const ProfileEdit = ({currentUser, currentAddress}) => {
             } else {
                 loaded.current = true;
             }
-}, [editData]);
+}, [editData, editAddress]);
 
     //toggles show component and resets button to initial value returning disableTimer is specifically for the delete button
     const handleShow = () => {

@@ -55,6 +55,15 @@ static async deleteUser(id){
     }
 }
 
+static async getUserAddress(id) {
+    try{
+        const res = await axios.get(`${BASE_URL}/address/${id}`)
+        return res
+    }catch(e){
+        return e
+    }
+}
+
 static async updateAddress(id, addressInfo){
     try{
         const res = await axios.patch(`${BASE_URL}/address/update/${id}`, addressInfo)
