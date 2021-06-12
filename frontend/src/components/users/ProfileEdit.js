@@ -4,7 +4,6 @@ import AppContext from '../AppContext'
 import useFormData from '../custom-hooks/useFormData'
 import useError from '../custom-hooks/useError'
 import {Modal, Button} from 'react-bootstrap'
-import '../styles/global.css'
 
 //Profile Edit component gets currentUsers profile initial value and update the value based on form input
 const ProfileEdit = ({currentUser, currentAddress}) => {
@@ -79,16 +78,16 @@ const ProfileEdit = ({currentUser, currentAddress}) => {
     }
 
     return (
-        <main className="global-form card rounded mx-auto d-block">
-        <div className="text-center">
+        <main className="global-form card rounded mx-auto d-block" style={{marginBottom: "5rem"}}>
+        <div className="d-flex justify-content-center">
         <p>{editError}</p>
-            <div>
+            <div className="mt-3">
             <form onSubmit={handleSubmit}>
                 <h1 className="global-create-account h2 mb-2 fw-normal">Manage Account</h1>
 
                 {/* User Edit */}
                 <div>
-                <label htmlFor="firstName"/>
+                <label htmlFor="firstName">First Name</label> 
                 <input
                     id="firstName"
                     className="form-control"
@@ -100,7 +99,7 @@ const ProfileEdit = ({currentUser, currentAddress}) => {
                     />
                 </div>
                 <div>
-                <label htmlFor="lastName"/>
+                <label htmlFor="lastName">Last Name</label>
                 <input
                     id="lastName"
                     className="form-control"
@@ -113,7 +112,7 @@ const ProfileEdit = ({currentUser, currentAddress}) => {
                 </div>
 
                 <div>
-                <label htmlFor="emailEdit"/>
+                <label htmlFor="emailEdit">Email</label>
                 <input    
                     id="emailEdit"
                     className="form-control"
@@ -127,7 +126,7 @@ const ProfileEdit = ({currentUser, currentAddress}) => {
 
                 {/* Address edit */}
                 <div>
-                    <label htmlFor="street-address"/>
+                    <label htmlFor="street-address">Street Address</label>
                     <input
                     id="street-address"
                     type="text"
@@ -139,19 +138,19 @@ const ProfileEdit = ({currentUser, currentAddress}) => {
                 </div>
 
                 <div>
-                    <label htmlFor="address-number"/>
+                    <label htmlFor="address-number">Apartment, Suite, etc.</label>
                     <input
                     id="address-number"
                     type="number"
                     name="address_number"
                     value={editAddress.address_number}
                     className="form-control" 
-                    placeholder="Suite/Apartment Number"
+                    placeholder="Apartment, Suite, etc."
                     onChange={handleAddressChange}/>
                 </div>
 
                 <div>
-                    <label htmlFor="city"/>
+                    <label htmlFor="city">City</label>
                     <input
                     id="city"
                     type="text"
@@ -162,7 +161,7 @@ const ProfileEdit = ({currentUser, currentAddress}) => {
                     onChange={handleAddressChange}/>
                 </div>
                 <div>
-                    <label htmlFor="State"/>
+                    <label htmlFor="State">State</label>
                     <input
                     id="state"
                     type="text"
@@ -173,7 +172,7 @@ const ProfileEdit = ({currentUser, currentAddress}) => {
                     onChange={handleAddressChange}/>
                 </div>
                 <div>
-                    <label htmlFor="zip-code"/>
+                    <label htmlFor="zip-code">Zip Code</label>
                     <input
                     id="zip-code"
                     type="text"
@@ -184,7 +183,7 @@ const ProfileEdit = ({currentUser, currentAddress}) => {
                     onChange={handleAddressChange}/>
                 </div>
                 <div>
-                    <label htmlFor="Country"/>
+                    <label htmlFor="Country">Country</label>
                     <input
                     id="country"
                     type="text"
@@ -201,7 +200,7 @@ const ProfileEdit = ({currentUser, currentAddress}) => {
 
                 {/* Delete button features has a model and timer */}
                 <div>
-                    <Button style={{fontSize: "12px", color:"#da4343", marginTop:"5rem"}} variant="none" onClick={handleShow}>
+                    <Button style={{fontSize: "10px", color:"#da4343", marginTop:"0.5rem"}} variant="none" onClick={handleShow}>
                             Delete Profile
                         </Button>
                         <Modal

@@ -26,7 +26,17 @@ Database Models
 - first_name (optional)
 - last_name (optional)
 - email (required) `very important to email market for future products`
-- address (optional) `Only way to deliver the food to the customer`
+- timestamp (when the user was created)
+
+> `Address`
+
+- user_id (PK/FK)
+- street_address
+- address_number
+- city
+- state
+- zip_code
+- country
 
 > `Signature Meal`
 

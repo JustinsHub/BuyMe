@@ -30,7 +30,7 @@ const Login = ({login, user}) => {
     return (
         <main className="global-form card rounded mx-auto d-block">
             {loginError && <h1>{loginError}</h1>}
-            <div className="text-center">
+            <div className="d-flex justify-content-center">
             {/* change UI errors warning */}
         <form onSubmit={handleSubmit}>
         <h1 className="global-create-account h2 mb-2 fw-normal">Login</h1>

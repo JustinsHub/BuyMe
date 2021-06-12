@@ -39,7 +39,7 @@ class User {
         const hashedPassword = await bcrypt.hash(pass, BCRYPT_WORK_FACTOR) 
         const results = await db.query(`INSERT INTO users (username, password, email, created_on) VALUES ($1,$2,$3,$4)
                                         RETURNING id, username`, [user, hashedPassword, mail, timeCreated])
-        const newUser = results.rows[0] 
+        const newUser = results.rows[0]
         if(newUser){
             delete newUser.password
         }

@@ -21,7 +21,7 @@ class Address {
         return address
     }
     
-    
+    //get address by user_id
     static async getAddressId(user_id){
         const res = await db.query(`SELECT 
                                         user_id, street_address, address_number, city, state, zip_code, country 

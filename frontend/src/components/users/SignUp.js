@@ -29,7 +29,7 @@ const SignUp = ({register, user}) => {
     }
     return (
         <main className="global-form card rounded mx-auto d-block">
-        <div className="text-center">
+        <div className="d-flex justify-content-center">
             <div>
                 {/* //change UI error */}
             {registerError && <h1>{registerError}</h1>} 

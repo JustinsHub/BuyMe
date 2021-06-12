@@ -4,6 +4,7 @@ import '../styles/global.css'
 
 //User profile and information with edit button
 const Profile = ({currentUser}) => {
+
     const history = useHistory()
 
     const profileEdit = () => {

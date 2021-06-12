@@ -3,7 +3,7 @@ const { user } = require('../db')
 const router = new express.Router()
 const Address = require('../models/addressModel')
 
-//get all users address
+//get all users address (ensureCreator only middleware later on)
 router.get('/all', async(req, res, next) => {
     try{
     const results = await Address.getAllAddress()
@@ -24,7 +24,7 @@ router.get('/:id', async(req, res, next)=> {
     }
 })
 
-//search for user based on id on params path and updates that specific users address
+//get user_id and apply to on params path and updates that specific users address. (add schema later for cleaner code)
 router.patch('/update/:id', async(req, res, next)=> {
     try{
         const {id} = req.params
@@ -42,14 +42,5 @@ router.patch('/update/:id', async(req, res, next)=> {
         return next(e)
     }
 })
-// router.post('/register/:id', async(req, res, next) => {
-//     try{
-//         const {id} = req.params
-//         const results = await Address.registerAddress(id)
-//         return res.json({results})
-//     }catch(e){
-//         return next(e)
-//     }
-// })
 
 module.exports = router

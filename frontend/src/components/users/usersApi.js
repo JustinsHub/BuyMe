@@ -60,7 +60,7 @@ static async getUserAddress(id) {
         const res = await axios.get(`${BASE_URL}/address/${id}`)
         return res
     }catch(e){
-        return e
+        return e.response.data.error.message
     }
 }
 
@@ -69,7 +69,7 @@ static async updateAddress(id, addressInfo){
         const res = await axios.patch(`${BASE_URL}/address/update/${id}`, addressInfo)
         return res
     }catch(e){
-        return e
+        return e.response.data.error.message
     }
 }
 

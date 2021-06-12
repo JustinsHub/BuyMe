@@ -18,6 +18,15 @@
   user-select: none;
 }
 
+label {
+  font-size: 10px;
+  color: rgb(160, 159, 159);
+}
+
+.set-width {
+  width: 16rem;
+  display: block;
+}
 @media (min-width: 768px) {
   .bd-placeholder-img-lg {
     font-size: 3.5rem;
