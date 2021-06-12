@@ -55,6 +55,16 @@ static async deleteUser(id){
     }
 }
 
+static async updateAddress(id, addressInfo){
+    try{
+        const res = await axios.patch(`${BASE_URL}/address/update/${id}`, addressInfo)
+        return res
+    }catch(e){
+        return e
+    }
+}
+
+//check for extra authentication (not in use right now)
 static async checkPassword(id, userPass){
     try{
     const res = await axios.post(`${BASE_URL}/users/authorization/${id}`, {password: userPass})

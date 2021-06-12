@@ -1,5 +1,5 @@
 import React, {useContext} from 'react'
-import {Switch, Route} from 'react-router-dom'
+import {Switch, Route, Link} from 'react-router-dom'
 import Home from './Home'
 import Login from './users/Login'
 import SignUp from './users/SignUp'
@@ -11,6 +11,7 @@ import ProfileEdit from './users/ProfileEdit'
 import PriceAndPlans from './products/PriceAndPlans'
 import SignatureMeal from './products/SignatureMeal'
 import PairMeal from './products/PairMeal'
+import Checkout from './products/Checkout'
 import Policy from './products/Policy'
 import ErrorRedirect from './users/ErrorRedirect'
 import AccessError from './users/AccessError'
@@ -18,7 +19,7 @@ import AccessError from './users/AccessError'
 
 
 const Routes = () => {
-    const {login, register, currentUser} = useContext(AppContext)
+    const {login, register, currentUser, currentAddress} = useContext(AppContext)
     return (
         <div>
             <Switch>
@@ -35,7 +36,7 @@ const Routes = () => {
                 </EnsureLoginRoute>
 
                 <EnsureLoginRoute exact path="/profile/edit">
-                    <ProfileEdit currentUser={currentUser}/>
+                    <ProfileEdit currentUser={currentUser} currentAddress={currentAddress}/>
                 </EnsureLoginRoute>
 
                 <Route exact path="/signature-meal">
@@ -48,6 +49,10 @@ const Routes = () => {
 
                 <Route exact path="/plans&amp;pricing">
                     <PriceAndPlans user={currentUser}/>
+                </Route>
+
+                <Route exact path="/checkout">
+                    <Checkout user={currentUser}/>
                 </Route>
 
                 <Route exact path="/policy">

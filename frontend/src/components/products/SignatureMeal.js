@@ -13,6 +13,10 @@ const SignatureMeal = ({user}) => {
     const [mealSummary, setMealSummary] = useState("")
     const [isRequesting, setIsRequesting] = useState(false)
 
+    const checkoutPath = () =>{ 
+        history.push('/checkout')
+    }
+
     //look for payment api
     //move on to requesting our api when purchased
     //make user only be able to pick one random meal a day
@@ -59,9 +63,9 @@ const SignatureMeal = ({user}) => {
                         </div>
                             <p>{parse(mealSummary)}</p>
                         </div>
-                        <button className="btn btn-default mt-2" style={{color: "white"}}>Proceed to checkout</button>
+                        <button className="btn btn-default mt-2" style={{color: "white"}} onClick={checkoutPath}>Proceed to checkout</button>
                     </div>
-                    <p className="Signature-Meal-policy">Not satisfied with this choice? Check out our meal <Link style={{textDecoration: "none"}} to="/policy">policy</Link></p>
+                    <p className="Signature-Meal-policy">Not satisfied with this choice? Check out our meal <Link style={{textDecoration: "none"}} to="/policy">policy</Link>.</p>
                 </div>
                 :   
                 // add a conditional inside to render loading statement when requesting
@@ -88,7 +92,7 @@ const SignatureMeal = ({user}) => {
                 </div>
                 : <div>
                     <LoadSpinner/> 
-                    <p className="Signature-Meal-p-f m-4">Please wait while we are retrieving your food!</p>
+                    <p className="Signature-Meal-p-f m-4">Please wait while we retrieve your food!</p>
                 </div>
                 }
                 {/* Not satisfied? make a quick policy and make it a modal about 24 hour rule */}

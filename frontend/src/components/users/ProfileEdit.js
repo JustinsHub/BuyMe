@@ -7,16 +7,25 @@ import {Modal, Button} from 'react-bootstrap'
 import '../styles/global.css'
 
 //Profile Edit component gets currentUsers profile initial value and update the value based on form input
-const ProfileEdit = ({currentUser}) => {
+const ProfileEdit = ({currentUser, currentAddress}) => {
     const {updateUser, deleteUser} = useContext(AppContext)
     const INITIAL_STATE = {
         first_name: currentUser.data.first_name || "",
         last_name: currentUser.data.last_name || "",
         email: currentUser.data.email || "",
-        address: currentUser.data.address || "",
     }
 
+    const INITIAL_ADDRESS = {
+        street_address: currentAddress.street_name || "",
+        address_number: currentAddress.address_number || "", 
+        city: currentAddress.city || "",
+        state: currentAddress.state || "",
+        zip_code: currentAddress.zip_code || "",
+        country: currentAddress.country || ""
+    }
+    
     const [editData, handleChange] = useFormData(INITIAL_STATE)
+    const [editAddress, handleAddressChange] = useFormData(INITIAL_ADDRESS)
     const [editError, setEditError] = useError([])
     const [show, setShow] = useState(false);
     const [disableButton, setDisableButton] = useState(true)
@@ -58,7 +67,7 @@ const ProfileEdit = ({currentUser}) => {
     const handleSubmit = async(e) => { // e.preventDefault() taken out for refresh for update? Find a better way
         e.preventDefault()
         //adding user data info as second parameter to save updated initial value
-        const res = await updateUser(currentUser.data.id, editData) //object/editData must match API data names to be able to update
+        const res = await updateUser(currentUser.data.id, editData, editAddress) //object/editData must match API data names to be able to update
         return (res.status === 201) ? history.push('/profile') : setEditError('An error has occured.') // change to correct error
     }
     
@@ -70,13 +79,14 @@ const ProfileEdit = ({currentUser}) => {
     }
 
     return (
-        <main className="global-form card rounded mx-auto d-block" style={{height: "30rem"}}>
+        <main className="global-form card rounded mx-auto d-block">
         <div className="text-center">
         <p>{editError}</p>
             <div>
             <form onSubmit={handleSubmit}>
                 <h1 className="global-create-account h2 mb-2 fw-normal">Manage Account</h1>
 
+                {/* User Edit */}
                 <div>
                 <label htmlFor="firstName"/>
                 <input
@@ -107,7 +117,7 @@ const ProfileEdit = ({currentUser}) => {
                 <input    
                     id="emailEdit"
                     className="form-control"
-                    type="text"
+                    type="email"
                     placeholder="Email"
                     name="email"
                     value={editData.email}
@@ -115,22 +125,81 @@ const ProfileEdit = ({currentUser}) => {
                     />
                 </div>
 
+                {/* Address edit */}
                 <div>
-                <label htmlFor="addressEdit"/>
-                <input    
-                    id="addressEdit"
-                    className="form-control"
+                    <label htmlFor="street-address"/>
+                    <input
+                    id="street-address"
                     type="text"
-                    placeholder="Shipping Address"
-                    name="address"
-                    value={editData.address}
-                    onChange={handleChange}
-                    />
+                    name="street_address"
+                    value={editAddress.street_address}
+                    className="form-control" 
+                    placeholder="Street Address"
+                    onChange={handleAddressChange}/>
+                </div>
+
+                <div>
+                    <label htmlFor="address-number"/>
+                    <input
+                    id="address-number"
+                    type="number"
+                    name="address_number"
+                    value={editAddress.address_number}
+                    className="form-control" 
+                    placeholder="Suite/Apartment Number"
+                    onChange={handleAddressChange}/>
+                </div>
+
+                <div>
+                    <label htmlFor="city"/>
+                    <input
+                    id="city"
+                    type="text"
+                    name="city"
+                    value={editAddress.city}
+                    className="form-control" 
+                    placeholder="City"
+                    onChange={handleAddressChange}/>
+                </div>
+                <div>
+                    <label htmlFor="State"/>
+                    <input
+                    id="state"
+                    type="text"
+                    name="state"
+                    value={editAddress.state}
+                    className="form-control" 
+                    placeholder="State"
+                    onChange={handleAddressChange}/>
+                </div>
+                <div>
+                    <label htmlFor="zip-code"/>
+                    <input
+                    id="zip-code"
+                    type="text"
+                    name="zip_code"
+                    value={editAddress.zip_code}
+                    className="form-control" 
+                    placeholder="Zip Code"
+                    onChange={handleAddressChange}/>
+                </div>
+                <div>
+                    <label htmlFor="Country"/>
+                    <input
+                    id="country"
+                    type="text"
+                    name="country"
+                    value={editAddress.country}
+                    className="form-control" 
+                    placeholder="Country"
+                    onChange={handleAddressChange}/>
                 </div>
 
                 <div className="mt-3">
                 <button className="btn btn-warning" type="submit" disabled={disableUpdate}>Update</button> 
                 </div>
+
+                {/* Delete button features has a model and timer */}
                 <div>
                     <Button style={{fontSize: "12px", color:"#da4343", marginTop:"5rem"}} variant="none" onClick={handleShow}>
                             Delete Profile
@@ -163,5 +232,7 @@ const ProfileEdit = ({currentUser}) => {
     </main>
     )
 }
+
+
 
 export default ProfileEdit

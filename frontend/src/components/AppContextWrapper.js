@@ -10,6 +10,7 @@ const AppContextWrapper = ({children}) => {
     const localStorageKey = "token"
 
     const [currentUser, setCurrentUser] = useState(null)
+    const [currentAddress, setCurrentAddress] = useState(null)
     const [token, setToken] = useLocalStorage(localStorageKey) 
     const [loading, setLoading] = useState(false)
 
@@ -60,10 +61,12 @@ const AppContextWrapper = ({children}) => {
     }
 
     //updates user; user's id as first parameter and updated values for second. Must setCurrentUser to render correctly
-    const updateUser = async(id, userInfo) => {
-        const res = await User.updateUser(id, userInfo)
-        setCurrentUser(res)
-        return res
+    const updateUser = async(id, userInfo, addressInfo) => {
+        const userResults = await User.updateUser(id, userInfo)
+        const addressResults = await User.updateAddress(id, addressInfo)
+        setCurrentUser(userResults)
+        setCurrentAddress(addressResults)
+        return userResults
     }
     //requests to delete user and set the currentUser to back to null
     const deleteUser = async(id) => {
@@ -80,7 +83,7 @@ const AppContextWrapper = ({children}) => {
 
     return (
         <div>
-            <AppContext.Provider value={{currentUser, register, login, logout, token, updateUser, deleteUser}}>
+            <AppContext.Provider value={{currentUser, currentAddress, register, login, logout, token, updateUser, deleteUser}}>
             {children}
             </AppContext.Provider>
         </div>
