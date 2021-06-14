@@ -4,7 +4,7 @@ import './styles/Footer.css'
 
 const Footer = () => {
     return (
-        <div className="Footer">
+        <div className="Footer global-t-a">
             <span className="text-muted">&copy; 2021 &nbsp;
             <Link className="Footer-l text-muted" to='/'>Pickout</Link>
             </span>

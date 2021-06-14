@@ -32,7 +32,7 @@ const Routes = () => {
                 </Route>
 
                 <EnsureLoginRoute exact path="/profile">
-                    <Profile currentUser={currentUser}/>
+                    <Profile currentUser={currentUser} currentAddress={currentAddress}/>
                 </EnsureLoginRoute>
 
                 <EnsureLoginRoute exact path="/profile/edit">

@@ -6,7 +6,7 @@ import './styles/Home.css'
 
 const Home = () => {
     return (
-        <main className="Home col-md">
+        <main className="Home global-t-a col-md">
             <section className="Home-bg col-md">
                 <div className="container">
                     <p className="Home-spacing">.</p>

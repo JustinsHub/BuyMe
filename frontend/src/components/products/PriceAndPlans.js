@@ -21,7 +21,7 @@ const PriceAndPlans = ({user}) => {
     //card has shadow/ when hover on card shadow and transition
     //button pops when hovered
     return (
-        <section className="PriceAndPlans">
+        <section className="PriceAndPlans global-t-a">
             <h1>{loginError}</h1>
             <div className="container">
                 <div className="PriceAndPlans-content">

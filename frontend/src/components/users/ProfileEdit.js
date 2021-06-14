@@ -65,7 +65,7 @@ const ProfileEdit = ({currentUser, currentAddress}) => {
     //handleSubmit request API to update user
     const handleSubmit = async(e) => { // e.preventDefault() taken out for refresh for update? Find a better way
         e.preventDefault()
-        //adding user data info as second parameter to save updated initial value
+        //adding user data info as second parameter to save updated initial value and address value
         const res = await updateUser(currentUser.data.id, editData, editAddress) //object/editData must match API data names to be able to update
         return (res.status === 201) ? history.push('/profile') : setEditError('An error has occured.') // change to correct error
     }
@@ -78,15 +78,16 @@ const ProfileEdit = ({currentUser, currentAddress}) => {
     }
 
     return (
-        <main className="global-form card rounded mx-auto d-block" style={{marginBottom: "5rem"}}>
-        <div className="d-flex justify-content-center">
+        <main className="global-form-p-e card rounded mx-auto d-block" style={{marginBottom: "5rem"}}>
+        <div style={{margin: "1rem"}}>
         <p>{editError}</p>
             <div className="mt-3">
             <form onSubmit={handleSubmit}>
-                <h1 className="global-create-account h2 mb-2 fw-normal">Manage Account</h1>
+                <h1 className="global-create-account text-center h2 mb-2 fw-normal">Manage Account</h1>
 
                 {/* User Edit */}
-                <div>
+                
+                <div className="blocker">
                 <label htmlFor="firstName">First Name</label> 
                 <input
                     id="firstName"
@@ -97,9 +98,8 @@ const ProfileEdit = ({currentUser, currentAddress}) => {
                     value={editData.first_name}
                     onChange={handleChange}
                     />
-                </div>
-                <div>
-                <label htmlFor="lastName">Last Name</label>
+
+                <label  htmlFor="lastName">Last Name</label>
                 <input
                     id="lastName"
                     className="form-control"
@@ -194,13 +194,14 @@ const ProfileEdit = ({currentUser, currentAddress}) => {
                     onChange={handleAddressChange}/>
                 </div>
 
-                <div className="mt-3">
-                <button className="btn btn-warning" type="submit" disabled={disableUpdate}>Update</button> 
+                <div className="d-flex justify-content-center mt-3 m-1">
+                <button className="btn btn-secondary m-1" onClick={()=> history.push('/profile')} >Cancel</button>
+                <button className="btn btn-warning m-1" type="submit" disabled={disableUpdate}>Update</button> 
                 </div>
 
                 {/* Delete button features has a model and timer */}
-                <div>
-                    <Button style={{fontSize: "10px", color:"#da4343", marginTop:"0.5rem"}} variant="none" onClick={handleShow}>
+                <div className="d-flex justify-content-center">
+                    <Button style={{fontSize: "10px", color:"#da4343", marginTop:"0.7rem"}} variant="none" onClick={handleShow}>
                             Delete Profile
                         </Button>
                         <Modal

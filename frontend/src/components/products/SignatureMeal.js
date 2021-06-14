@@ -45,7 +45,7 @@ const SignatureMeal = ({user}) => {
     // }
 
     return (
-        <div className="Signature-Meal-m">
+        <div className="Signature-Meal-m global-t-a">
             {/* if the request has been filled then render the API(food) */}
             {randomMeal ? 
                 <div className="Signature-Meal-c card">
