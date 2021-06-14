@@ -34,7 +34,7 @@ const SignUp = ({register, user}) => {
                 {/* //change UI error */}
             {registerError && <h1>{registerError}</h1>} 
             <form onSubmit={handleSubmit}>
-                <h1 className="global-create-account h2 mb-2 fw-normal">Create Account</h1>
+                <h1 className="global-font h2 mb-2" style={{color: "#da4343"}}>Create Account</h1>
 
                 <div>
                 <label htmlFor="usernameInput"/>
@@ -75,10 +75,10 @@ const SignUp = ({register, user}) => {
                 </div>
                 
                 <div className="mt-3">
-                <button className="w-100 btn btn-lg btn-primary" type="submit">Register</button>
+                <button className="w-100 btn btn-lg btn-default"style={{color: "white"}}  type="submit">Register</button>
                 </div>
                 <div className="mt-3">
-                    <p style={{fontSize: "12px", color: "#949494"}}>Already have an account? Login <Link to="/login">here.</Link></p>
+                    <p style={{fontSize: "12px", color: "#949494"}}>Already have an account? Login <Link className="global-link" to="/login">here.</Link></p>
                 </div>
             </form>
         </div>

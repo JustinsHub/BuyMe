@@ -21,7 +21,7 @@ const Profile = ({currentUser, currentAddress}) => {
     return (
         <main className="global-form card rounded mx-auto d-block global-mb">
             <div className="text-center m-3">
-                <h1 className="global-create-account h2 mb-2 fw-normal">{username} Profile</h1>
+                <h1 className="global-title h2 mb-2 fw-normal">{username} Profile</h1>
                 <label>First Name</label>
                 <p>{first_name === null ? <i>(First Name)</i> : first_name}</p>
                 

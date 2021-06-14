@@ -34,7 +34,7 @@ const Login = ({login, user}) => {
             <div className="text-center m-3">
             {/* change UI errors warning */}
         <form onSubmit={handleSubmit}>
-        <h1 className="global-create-account h2 mb-2 fw-normal">Login</h1>
+        <h1 className="global-font h2 mb-2" style={{color: "#da4343"}}>Log In</h1>
             <div>
                 <label htmlFor="username"/>
                 <input
@@ -60,10 +60,10 @@ const Login = ({login, user}) => {
                 />
             </div>
             <div className="mt-3">
-                <button className="w-100 btn btn-lg btn-primary">Login</button>
+                <button className="w-100 btn btn-lg btn-default" style={{color: "white"}}>Sign In</button>
             </div>
             <div className="mt-3">
-                <p style={{fontSize: "12px", color: "#949494"}}>Don't have an account? Sign up <Link to="/signup">here</Link>.</p>
+                <p style={{fontSize: "12px", color: "#949494"}}>Don't have an account? Sign up <Link className="global-link" to="/signup">here</Link>.</p>
             </div>
         </form>
         </div>

@@ -83,11 +83,11 @@ const ProfileEdit = ({currentUser, currentAddress}) => {
         <p>{editError}</p>
             <div className="mt-3">
             <form onSubmit={handleSubmit}>
-                <h1 className="global-create-account text-center h2 mb-2 fw-normal">Manage Account</h1>
+                <h1 className="global-title text-center h2 mb-2">Manage Account</h1>
 
                 {/* User Edit */}
                 
-                <div className="blocker">
+                <div>
                 <label htmlFor="firstName">First Name</label> 
                 <input
                     id="firstName"

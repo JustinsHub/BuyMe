@@ -25,8 +25,18 @@
   box-shadow: 0px 0px 10px 1px rgba(0, 0, 0, 0.229);
 }
 
-.global-create-account {
-  background-color: rgb(241, 241, 241);
+.global-title {
+  background-color: #da4343;
+  color: white;
+  border-radius: 50px;
+}
+
+.global-font {
+  font-family: Courier New, Courier, monospace;
+}
+
+.global-link {
+  color: #da4343;
 }
 
 .bd-placeholder-img {
