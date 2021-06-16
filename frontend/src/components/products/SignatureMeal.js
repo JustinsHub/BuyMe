@@ -63,7 +63,7 @@ const SignatureMeal = ({user}) => {
                         </div>
                             <p>{parse(mealSummary)}</p>
                         </div>
-                        <button className="btn btn-default mt-2" style={{color: "white"}} onClick={checkoutPath}>Proceed to checkout</button>
+                        <button className="btn btn-default mt-2" style={{color: "white"}} onClick={checkoutPath}>Add to Cart</button>
                     </div>
                     <p className="Signature-Meal-policy">Not satisfied with this choice? Check out our meal <Link style={{textDecoration: "none"}} to="/policy">policy</Link>.</p>
                 </div>

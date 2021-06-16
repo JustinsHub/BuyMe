@@ -8,15 +8,11 @@ const Navbar = () => {
     const {currentUser, logout} = useContext(AppContext) 
     const [navbar, setNavbar] = useState(false)
     //Todo: 
-    //fix buttons and input sizes
-    //fixed navbar on scroll
-    //fade navbar on scroll // darker color of theme background
-    //hover on links turn logo color/background navbar css
     //Find navbar/brand icon 
-    //api for our the website (payment/what are we selling?) 
+    //api for our the website (payment) 
     //cart? // prices of api items
     //fake terms and conditions //already logged in... (register) //
-    //while on access/error have a random food joke request for entertainment 
+    //while on access/error have a random food joke request for entertainment?
 
     const avatarLogo = {
         loop: false,
@@ -39,7 +35,7 @@ const Navbar = () => {
         <nav className={navbar ? 'navbar active fixed-top' : 'navbar fixed-top'}>
             <div className="container">
                 <NavLink className="Navbar-hover navbar-brand" to="/">PICKOUT</NavLink>
-                
+
                 {/* if logged in, render username with dropdown else signup/login routes */}
                 {currentUser ? 
                 <ul className="nav">
@@ -49,6 +45,7 @@ const Navbar = () => {
                     </li>
                     <ul className="dropdown-menu">
                         <li><NavLink className="dropdown-item" to="/profile">Profile</NavLink></li>
+                        <li><NavLink className="dropdown-item" to="/checkout">Cart</NavLink></li>
                         <li className="dropdown-item" onClick={logout}>Logout</li>
                     </ul>
                     </div>

@@ -47,7 +47,7 @@ const Profile = ({currentUser, currentAddress}) => {
                 <p>{zip_code === null ? <i>(Zip Code)</i> :zip_code}</p>
                 
                 <label>Country</label>
-                <p>{country === null ? <i>(Country)</i> : country}</p>
+                <p>{country === null ? <i>(United States)</i> : country}</p>
                 
                 <div className="mt-3 mb-4">
                 <button className="btn btn-primary mt-2" type="submit" onClick={profileEdit}>Edit Profile</button>

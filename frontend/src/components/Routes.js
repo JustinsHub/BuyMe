@@ -52,7 +52,7 @@ const Routes = () => {
                 </Route>
 
                 <Route exact path="/checkout">
-                    <Checkout user={currentUser}/>
+                    <Checkout user={currentUser} address={currentAddress}/>
                 </Route>
 
                 <Route exact path="/policy">

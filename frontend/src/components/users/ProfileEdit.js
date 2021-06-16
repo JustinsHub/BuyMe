@@ -15,13 +15,14 @@ const ProfileEdit = ({currentUser, currentAddress}) => {
     }
 
     const INITIAL_ADDRESS = {
-        street_address: currentAddress.data.street_address || "",
-        address_number: currentAddress.data.address_number || "", 
-        city: currentAddress.data.city || "",
-        state: currentAddress.data.state || "",
-        zip_code: currentAddress.data.zip_code || "",
-        country: currentAddress.data.country || ""
+        street_address: currentAddress.data.street_address,
+        address_number: currentAddress.data.address_number,
+        city: currentAddress.data.city,
+        state: currentAddress.data.state,
+        zip_code: currentAddress.data.zip_code,
+        country: "United States"
     }
+
 
     const [editData, handleChange] = useFormData(INITIAL_STATE)
     const [editAddress, handleAddressChange] = useFormData(INITIAL_ADDRESS)
@@ -175,7 +176,7 @@ const ProfileEdit = ({currentUser, currentAddress}) => {
                     <label htmlFor="zip-code">Zip Code</label>
                     <input
                     id="zip-code"
-                    type="text"
+                    type="number"
                     name="zip_code"
                     value={editAddress.zip_code}
                     className="form-control" 
@@ -190,8 +191,10 @@ const ProfileEdit = ({currentUser, currentAddress}) => {
                     name="country"
                     value={editAddress.country}
                     className="form-control" 
-                    placeholder="Country"
-                    onChange={handleAddressChange}/>
+                    placeholder="United States"
+                    onChange={handleAddressChange}
+                    disabled
+                    />
                 </div>
 
                 <div className="d-flex justify-content-center mt-3 m-1">
