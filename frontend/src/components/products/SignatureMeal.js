@@ -3,18 +3,21 @@ import parse from 'html-react-parser'
 import {useHistory, Link} from 'react-router-dom'
 import Products from './foodApi'
 import LoadSpinner from '../commons/LoadSpinner'
+import useLocalStorage from '../custom-hooks/useLocalStorage'
 import '../styles/SignatureMeal.css'
 
 //get a single random meal by requesting from API and render image and description
 const SignatureMeal = ({user}) => {
+    const signatureMealStorage = "signature-meal"
     const history = useHistory()
     const [randomMeal, setRandomMeal] = useState(null)
     const [mealTitle, setMealTitle] = useState(null)
     const [mealSummary, setMealSummary] = useState("")
     const [isRequesting, setIsRequesting] = useState(false)
+    const [getMeal, setGetMeal] = useLocalStorage(signatureMealStorage)
 
     const checkoutPath = () =>{ 
-        history.push('/checkout')
+        history.push('/checkout') //make a api to add to signature meal and pair meal  and use that to render on cart? form input just name and value
     }
 
     //look for payment api
@@ -31,9 +34,11 @@ const SignatureMeal = ({user}) => {
             setMealTitle(title)
             setRandomMeal(image)
             setMealSummary(summary)
+            setGetMeal(title)
         }, 4000)
         setIsRequesting(true)
         console.log(res.data)
+        console.log(getMeal)
     }
 
     //setLogin error when redirected if not logged in...
@@ -98,6 +103,7 @@ const SignatureMeal = ({user}) => {
                 {/* Not satisfied? make a quick policy and make it a modal about 24 hour rule */}
             </div>
         }
+
         </div>
     )
 }

@@ -28,6 +28,7 @@ const AppContextWrapper = ({children}) => {
             delete user.data.password //deletes hashed password to not show on data
             setCurrentUser(user)
             setCurrentAddress(address)
+            
         }catch(e){
             return e
         }

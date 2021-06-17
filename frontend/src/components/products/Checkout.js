@@ -7,13 +7,8 @@ const Checkout = ({user, address}) => {
     //if no user address then notify user to update their profile for address.
     const {first_name, last_name, email} = user.data
     const {street_address, address_number, city, state, zip_code, country} = address.data
-
-    const signatureMeal = async () => {
-        const res = await Product.getSignatureMeal()
-        return res
-    }
-
-    console.log(signatureMeal)
+    const getSignatureMeal = localStorage.getItem('signature-meal')
+    console.log(getSignatureMeal)
     
     // console.log(address.data)
     return (
