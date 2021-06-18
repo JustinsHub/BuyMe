@@ -14,7 +14,7 @@ const SignatureMeal = ({user}) => {
     const [mealTitle, setMealTitle] = useState(null)
     const [mealSummary, setMealSummary] = useState("")
     const [isRequesting, setIsRequesting] = useState(false)
-    const [getMeal, setGetMeal] = useLocalStorage(signatureMealStorage)
+    const [signatureMeal, setSignatureMeal] = useLocalStorage(signatureMealStorage)
 
     const checkoutPath = () =>{ 
         history.push('/checkout') //make a api to add to signature meal and pair meal  and use that to render on cart? form input just name and value
@@ -26,19 +26,19 @@ const SignatureMeal = ({user}) => {
     //have a countdown timer when clicked 24hour
     //css
 
-    //requests random meal timed for loading to show animation
+    //requests random meal timed for loading to show animation (stores in localStorage and must run through as json to store multiple)
     const getRandomMeal = async() => {
         const res = await Products.getRandomMeal()
+        const mealResults = await Products.getSignatureMeal()
+        const mealPrice = mealResults.data[0].price
         const {image, title, summary} = res.data.recipes[0]
         setTimeout(() => {
             setMealTitle(title)
             setRandomMeal(image)
             setMealSummary(summary)
-            setGetMeal(title)
+            setSignatureMeal(JSON.stringify({title, image, mealPrice}))
         }, 4000)
         setIsRequesting(true)
-        console.log(res.data)
-        console.log(getMeal)
     }
 
     //setLogin error when redirected if not logged in...

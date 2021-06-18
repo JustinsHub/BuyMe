@@ -39,6 +39,10 @@
   color: #da4343;
 }
 
+.global-ct {
+  line-height: 0.5;
+  font-size: 13.5px;
+}
 .bd-placeholder-img {
   font-size: 1.125rem;
   text-anchor: middle;

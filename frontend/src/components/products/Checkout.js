@@ -1,16 +1,14 @@
-import React from 'react'
+import React, {useState} from 'react'
 import {Link, NavLink} from 'react-router-dom'
-import Product from './foodApi'
 
 const Checkout = ({user, address}) => {
+    //after 24 hour use of local storage, remove item.
+    const [localSignatureMeal, setLocalSignatureMeal] = useState(JSON.parse(localStorage.getItem('signature-meal')))
     //user address for delivery. 
     //if no user address then notify user to update their profile for address.
     const {first_name, last_name, email} = user.data
     const {street_address, address_number, city, state, zip_code, country} = address.data
-    const getSignatureMeal = localStorage.getItem('signature-meal')
-    console.log(getSignatureMeal)
     
-    // console.log(address.data)
     return (
         //use effect the address here so when a user restarts it auto requests it
         //put this in a card
@@ -27,35 +25,80 @@ const Checkout = ({user, address}) => {
             </div>
             : 
             <div class="container">
+                <h1 className="global-font global-link text-center">Review Your Order</h1>
                 <div className="card">
                 <div class="row">
                     <div class="col-md-4">
-                        <div className="card">
                             <div className="card-body">
                                 <h6 className="card-subtitle mb-2 text-muted">Shipping address</h6>
                                 {/* modal change on address? */}
-                                    <p>{first_name} {last_name}</p>
-                                    <p className="card-text">{street_address} {address_number}</p>
-                                    <p className="card-text">{city}, {state} {zip_code}</p>
-                                    <p className="card-text">{country}</p>
                                 <div>
+                                    <p className="global-ct card-text">{first_name} {last_name}</p>
+                                    <p className="global-ct card-text">{street_address} {address_number}</p>
+                                    <p className="global-ct card-text">{city}, {state} {zip_code}</p>
+                                    <p className="global-ct card-text">{country}</p>
+                                </div>
+
+                                <div className="mt-5">
                                 <h6 className="card-subtitle mb-2 text-muted">Email address</h6>
-                                <p>{email}</p>
+                                <p className="global-ct">{email}</p>
                             </div>
                             </div>
-                        </div>
                     </div>
-                        <div class="col-md-4 text-center">
-                            Column
+                        <div className="mt-2 col-md-4 text-center">
+                            <h6 className="card-subtitle text-muted text-center">Items on your cart</h6>
+                            <div>
+                                {localSignatureMeal.title}
+                            </div>
+                            <div>
+                                <img className="col-9 rounded" src={localSignatureMeal.image} alt="signature-meal"></img>
+                            </div>
                         </div>
-                    <div class="col-md-4">
-                        <div className="card">
-                            <p>Item(s) total</p>
-                            <p>Shipping</p>
-                            <p>Sales tax</p>
-                            <hr></hr>
-                            <p>Order total</p>
-                            <div className="card-body">
+                    <div class="col-md-4 mt-2">
+                        <div className="card-body">
+                            <div className="card"> 
+                                <div className="container mt-4 mb-4">
+                                    <div className="row">
+                                        <div className="col-md-6"> 
+                                            <div className="d-flex justify-content-start">                            
+                                            <p className="card-subtitle text-muted">Item(s) total</p> 
+                                            </div>
+                                            
+                                            <div className="d-flex justify-content-start">
+                                            <p className="card-subtitle text-muted">Shipping</p> 
+                                            </div>
+
+                                            <div className="d-flex justify-content-start">
+                                            <p className="card-subtitle text-muted">Sales tax</p>
+                                            </div>
+                                        </div>
+                                    
+                                        <div className="col-md-6"> 
+                                            <div className="d-flex justify-content-end">
+                                                    <p className="card-subtitle text-muted">${localSignatureMeal.mealPrice}</p> 
+                                                </div>      
+                                                <div className="d-flex justify-content-end">
+                                                    <p className="card-subtitle" style={{color: "green"}}>FREE</p>
+                                                </div> 
+                                                <div className="d-flex justify-content-end">   
+                                                    <p className="card-subtitle text-muted">$0.00</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <hr></hr>
+                                        <div className="row">
+                                            <div className="col-md-6">
+                                                <p className="card-subtitle"><b>Order total</b></p> 
+                                            </div>
+
+                                            <div className="col-md-6 d-flex justify-content-end">
+                                                <p className="card-subtitle"><b>{localSignatureMeal.mealPrice}</b></p> 
+                                            </div>
+                                        <div>
+                                            <button className="w-100 btn btn-default mt-3" style={{color: "white"}}>Place your order</button>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     <p>Terms and conditions</p>
