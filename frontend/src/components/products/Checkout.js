@@ -47,12 +47,17 @@ const Checkout = ({user, address}) => {
                     </div>
                         <div className="mt-2 col-md-4 text-center">
                             <h6 className="card-subtitle text-muted text-center">Items on your cart</h6>
+                            {!localSignatureMeal ?
+                            <p><b>Your cart is currently empty</b></p> :
                             <div>
-                                {localSignatureMeal.title}
+                                <div>
+                                    <b>{localSignatureMeal.mealTitle}</b>
+                                </div>
+                                <div>
+                                    <img className="col-9 rounded" src={localSignatureMeal.mealImage} alt="signature-meal"></img>
+                                </div>
                             </div>
-                            <div>
-                                <img className="col-9 rounded" src={localSignatureMeal.image} alt="signature-meal"></img>
-                            </div>
+                            }
                         </div>
                     <div class="col-md-4 mt-2">
                         <div className="card-body">
@@ -75,7 +80,10 @@ const Checkout = ({user, address}) => {
                                     
                                         <div className="col-md-6"> 
                                             <div className="d-flex justify-content-end">
+                                                    {!localSignatureMeal ?
+                                                    <p className="card-subtitle text-muted">$0.00</p> :
                                                     <p className="card-subtitle text-muted">${localSignatureMeal.mealPrice}</p> 
+                                                    }
                                                 </div>      
                                                 <div className="d-flex justify-content-end">
                                                     <p className="card-subtitle" style={{color: "green"}}>FREE</p>
@@ -92,9 +100,13 @@ const Checkout = ({user, address}) => {
                                             </div>
 
                                             <div className="col-md-6 d-flex justify-content-end">
-                                                <p className="card-subtitle"><b>{localSignatureMeal.mealPrice}</b></p> 
+                                            {!localSignatureMeal ?
+                                                    <p className="card-subtitle text-muted"><b>$0.00</b></p> :
+                                                    <p className="card-subtitle text-muted"><b>${localSignatureMeal.mealPrice}</b></p> 
+                                            }
                                             </div>
                                         <div>
+                                            {/* if someone tries to make an order either disable or modal your cart is empty */}
                                             <button className="w-100 btn btn-default mt-3" style={{color: "white"}}>Place your order</button>
                                         </div>
                                     </div>

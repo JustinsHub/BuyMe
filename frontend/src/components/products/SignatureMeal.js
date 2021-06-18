@@ -10,15 +10,12 @@ import '../styles/SignatureMeal.css'
 const SignatureMeal = ({user}) => {
     const signatureMealStorage = "signature-meal"
     const history = useHistory()
-    const [randomMeal, setRandomMeal] = useState(null)
     const [mealTitle, setMealTitle] = useState(null)
+    const [mealImage, setMealImage] = useState(null)
+    const [mealPrice, setMealPrice] = useState(null)
     const [mealSummary, setMealSummary] = useState("")
     const [isRequesting, setIsRequesting] = useState(false)
     const [signatureMeal, setSignatureMeal] = useLocalStorage(signatureMealStorage)
-
-    const checkoutPath = () =>{ 
-        history.push('/checkout') //make a api to add to signature meal and pair meal  and use that to render on cart? form input just name and value
-    }
 
     //look for payment api
     //move on to requesting our api when purchased
@@ -34,11 +31,19 @@ const SignatureMeal = ({user}) => {
         const {image, title, summary} = res.data.recipes[0]
         setTimeout(() => {
             setMealTitle(title)
-            setRandomMeal(image)
+            setMealImage(image)
             setMealSummary(summary)
-            setSignatureMeal(JSON.stringify({title, image, mealPrice}))
+            setMealPrice(mealPrice)
         }, 4000)
         setIsRequesting(true)
+    }
+
+    //adds requested API info to localStorage to be able to pass info to Checkout component
+    const addToCart = async () =>{ 
+        await setSignatureMeal(JSON.stringify({mealTitle, mealImage, mealPrice}))
+        setTimeout(()=> {
+            history.push('/checkout')
+        }, 500)
     }
 
     //setLogin error when redirected if not logged in...
@@ -52,7 +57,7 @@ const SignatureMeal = ({user}) => {
     return (
         <div className="Signature-Meal-m global-t-a">
             {/* if the request has been filled then render the API(food) */}
-            {randomMeal ? 
+            {mealImage ? 
                 <div className="Signature-Meal-c card">
                     <div className="card-body">
                         <h1 className="Signature-Meal-f card-title">{mealTitle}</h1>
@@ -61,14 +66,14 @@ const SignatureMeal = ({user}) => {
                             <div className="col-md-3">
                             </div>
                             <div className="col-md-6">
-                            <img className="Signature-Meal-i" src={randomMeal} alt="Signature Meal"/>
+                            <img className="Signature-Meal-i" src={mealImage} alt="Signature Meal"/>
                             </div>
                             <div className="col-md-3">
                             </div>
                         </div>
                             <p>{parse(mealSummary)}</p>
                         </div>
-                        <button className="btn btn-default mt-2" style={{color: "white"}} onClick={checkoutPath}>Add to Cart</button>
+                        <button className="btn btn-default mt-2" style={{color: "white"}} onClick={addToCart}>Add to Cart</button>
                     </div>
                     <p className="Signature-Meal-policy">Not satisfied with this choice? Check out our meal <Link style={{textDecoration: "none"}} to="/policy">policy</Link>.</p>
                 </div>
