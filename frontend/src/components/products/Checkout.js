@@ -4,26 +4,14 @@ import {Link, NavLink} from 'react-router-dom'
 const Checkout = ({user, address}) => {
     //after 24 hour use of local storage, remove item.
     const [localSignatureMeal, setLocalSignatureMeal] = useState(JSON.parse(localStorage.getItem('signature-meal')))
-    //user address for delivery. 
-    //if no user address then notify user to update their profile for address.
     const {first_name, last_name, email} = user.data
     const {street_address, address_number, city, state, zip_code, country} = address.data
     
     return (
         //use effect the address here so when a user restarts it auto requests it
-        //put this in a card
-        //have the product in the middle?
         //problem with the changing the address and going back to checkout (put random meal in localStorage when going back to checkout?)
-        //create a cart on navbar for user to go back (css when theres something on the cart?)
         //conditional on picking a meal when it's already picked revert back to checkout for finalization. (24 hour timer)
         <div className="global-mt">
-            {street_address === null || "" ? 
-            <div className="card">
-                <div className="card-body">
-                    <h3>You current don't have a shipping address on your profile. Please <Link className="global-link" to="/profile/edit">update</Link> your address in order to continue checkout.</h3>
-                </div>
-            </div>
-            : 
             <div class="container">
                 <h1 className="global-font global-link text-center">Review Your Order</h1>
                 <div className="card">
@@ -31,12 +19,20 @@ const Checkout = ({user, address}) => {
                     <div class="col-md-4">
                             <div className="card-body">
                                 <h6 className="card-subtitle mb-2 text-muted">Shipping address</h6>
-                                {/* modal change on address? */}
                                 <div>
                                     <p className="global-ct card-text">{first_name} {last_name}</p>
+                                    {street_address === null ?
+                                    <div>
+                                    <div className="card-body">
+                                        <p style={{fontSize: "14px"}}>You current don't have a shipping address on your profile. Please <Link className="global-link" to="/profile/edit">update</Link> your address in order to continue checkout.</p>
+                                    </div>
+                                </div> :
+                                <div>
                                     <p className="global-ct card-text">{street_address} {address_number}</p>
                                     <p className="global-ct card-text">{city}, {state} {zip_code}</p>
                                     <p className="global-ct card-text">{country}</p>
+                                </div>
+                                }
                                 </div>
 
                                 <div className="mt-5">
@@ -113,12 +109,13 @@ const Checkout = ({user, address}) => {
                                 </div>
                             </div>
                         </div>
-                    <p>Terms and conditions</p>
+
+                        {/* create a mock terms of use and private policy */}
+                    <p className="text-center" >By clicking Place to order, you agree to Pickout's Terms of Use and Private Policy. </p>
                     </div>
                 </div>
                 </div>
                 </div>
-            }
         </div>
     )
 }
