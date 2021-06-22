@@ -17,7 +17,6 @@ import ErrorRedirect from './users/ErrorRedirect'
 import AccessError from './users/AccessError'
 
 
-
 const Routes = () => {
     const {login, register, currentUser, currentAddress} = useContext(AppContext)
     return (
@@ -66,6 +65,7 @@ const Routes = () => {
                 <Route exact path="/error/must-login-or-signup">
                     <ErrorRedirect/>
                 </Route>
+
                 <Route exact path="/access/error">
                     <AccessError/>
                 </Route>

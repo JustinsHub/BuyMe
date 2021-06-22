@@ -1,4 +1,5 @@
 import axios from 'axios'
+import {API_KEY} from '../../config'
 import {ourRandomTags, ourRandomWines, randNum} from '../commons/shuffleArray'
 
 const BASE_URL = "https://api.spoonacular.com" 
