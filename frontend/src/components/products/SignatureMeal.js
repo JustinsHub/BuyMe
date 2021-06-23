@@ -2,6 +2,7 @@ import React, {useState} from 'react'
 import parse from 'html-react-parser'
 import {useHistory, Link} from 'react-router-dom'
 import Products from './foodApi'
+import WineAddOn from './WineAddOn'
 import LoadSpinner from '../commons/LoadSpinner'
 import useLocalStorage from '../custom-hooks/useLocalStorage'
 import '../styles/SignatureMeal.css'
@@ -10,6 +11,7 @@ import '../styles/SignatureMeal.css'
 const SignatureMeal = ({user}) => {
     const signatureMealStorage = "signature-meal"
     const history = useHistory()
+    //Signature Meal states
     const [mealTitle, setMealTitle] = useState(null)
     const [mealImage, setMealImage] = useState(null)
     const [mealPrice, setMealPrice] = useState(null)
@@ -17,7 +19,13 @@ const SignatureMeal = ({user}) => {
     const [isRequesting, setIsRequesting] = useState(false)
     const [signatureMeal, setSignatureMeal] = useLocalStorage(signatureMealStorage)
 
-    //look for payment api
+    //Add on wine states //add this on a component 
+    const [wineTitle, setWineTitle] = useState(null)
+    const [wineImage, setWineImage] = useState(null)
+    const [wineDescription, setWineDescription] = useState(null)
+    const [winePrice, setWinePrice] = useState(null)
+
+
     //move on to requesting our api when purchased
     //make user only be able to pick one random meal a day
     //have a countdown timer when clicked 24hour
