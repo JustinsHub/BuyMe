@@ -20,11 +20,6 @@ const SignatureMeal = ({user}) => {
     const [signatureMeal, setSignatureMeal] = useLocalStorage(signatureMealStorage)
 
     //Add on wine states //add this on a component 
-    const [wineTitle, setWineTitle] = useState(null)
-    const [wineImage, setWineImage] = useState(null)
-    const [wineDescription, setWineDescription] = useState(null)
-    const [winePrice, setWinePrice] = useState(null)
-
 
     //move on to requesting our api when purchased
     //make user only be able to pick one random meal a day
@@ -74,6 +69,7 @@ const SignatureMeal = ({user}) => {
                             <div className="col-md-3">
                             </div>
                             <div className="col-md-6">
+                                {/* add on wine somewhere here */}
                             <img className="Signature-Meal-i" src={mealImage} alt="Signature Meal"/>
                             </div>
                             <div className="col-md-3">
