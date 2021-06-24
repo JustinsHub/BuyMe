@@ -33,22 +33,22 @@ const HowItWorks = () => {
 
     return (
         <div>
-        <div class="container">
+        <div className="container">
             <div>
                 <h1 className="HowItWorks-t">How it works</h1>
             </div>
-            <div class="row">
-                <div class="col-md">
+            <div className="row">
+                <div className="col-md">
                     <Lottie options={randomFoodScroll} width={250} height={210}></Lottie>
                     <h4>We choose a meal for you</h4>
                     <p>So you don't have to stress</p>
                 </div>
-                <div class="col-md">
+                <div className="col-md">
                     <Lottie options={clientChoice} width={310} height={210}></Lottie>
                     <h4>You make your own choice of how you want it</h4>
                     <p>You have the option to have the ingredients delivered to be a chef for the day or we can cook it for you!</p>
                 </div>
-                <div class="col-md">
+                <div className="col-md">
                     <Lottie options={deliveryDriver} width={250} height={210}></Lottie>
                     <h4>Delivery at your door!</h4>
                     <p>Have it ready to be enjoyed!</p>

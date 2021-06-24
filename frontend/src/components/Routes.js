@@ -8,9 +8,8 @@ import AppContext from './AppContext'
 import EnsureLoginRoute from './EnsureLoginRoute'
 import Profile from './users/Profile'
 import ProfileEdit from './users/ProfileEdit'
-import PriceAndPlans from './products/PriceAndPlans'
+import MealPlan from './products/MealPlan'
 import SignatureMeal from './products/SignatureMeal'
-import PairMeal from './products/PairMeal'
 import Checkout from './products/Checkout'
 import Policy from './products/Policy'
 import ErrorRedirect from './users/ErrorRedirect'
@@ -42,12 +41,8 @@ const Routes = () => {
                     <SignatureMeal user={currentUser}/>
                 </Route>
 
-                <Route exact path="/pair-meal">
-                    <PairMeal user={currentUser}/>
-                </Route>
-
-                <Route exact path="/plans&amp;pricing">
-                    <PriceAndPlans user={currentUser}/>
+                <Route exact path="/plans">
+                    <MealPlan user={currentUser}/>
                 </Route>
 
                 <Route exact path="/checkout">

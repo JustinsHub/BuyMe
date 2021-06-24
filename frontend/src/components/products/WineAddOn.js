@@ -9,9 +9,14 @@ const WineAddOn = () => {
 
     const wineAddOn = async() => {
         const res = await Products.getRandomWine()
-        console.log(res.data.recommendedWines)
+        const randomWine = shuffleArray(res.data.recommendedWines)
+        const {title, description, imageUrl} = randomWine
+        setWineTitle(title)
+        setWineImage(imageUrl)
+        setWineDescription(description)
     }
 
+    //get rid of pairmeal
     //conditional add on button if requested then no button and show the wine that is added on
     //figure out how to add on the price of wine with the meal to make it a paired meal
     return (
