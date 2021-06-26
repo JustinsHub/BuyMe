@@ -3,6 +3,7 @@ import {useStripe, useElements, CardElement} from '@stripe/react-stripe-js';
 import axios from 'axios'
 import '../../styles/StripePayments.css'
 
+//CSS prop add on
 const CARD_OPTIONS = {
   style: {
     base: {
@@ -21,7 +22,7 @@ const CARD_OPTIONS = {
   },
 };
 
-export default function CheckoutForm() {
+const CheckoutForm = () => {
   const [success, setSuccess] = useState(false)
   const stripe = useStripe();
   const elements = useElements();
@@ -72,3 +73,5 @@ export default function CheckoutForm() {
     </div>
   )
 }
+
+export default CheckoutForm

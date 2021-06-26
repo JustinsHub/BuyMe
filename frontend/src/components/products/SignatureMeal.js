@@ -4,7 +4,9 @@ import {useHistory, Link} from 'react-router-dom'
 import Products from './foodApi'
 import WineAddOn from './WineAddOn'
 import LoadSpinner from '../commons/LoadSpinner'
+import shuffleArray from '../commons/shuffleArray'
 import useLocalStorage from '../custom-hooks/useLocalStorage'
+import Lottie from 'react-lottie'
 import '../styles/SignatureMeal.css'
 
 //get a single random meal by requesting from API and render image and description
@@ -17,9 +19,23 @@ const SignatureMeal = ({user}) => {
     const [mealPrice, setMealPrice] = useState(null)
     const [mealSummary, setMealSummary] = useState("")
     const [isRequesting, setIsRequesting] = useState(false)
-    const [signatureMeal, setSignatureMeal] = useLocalStorage(signatureMealStorage)
+    const [signatureMeal, setSignatureMeal] = useLocalStorage(signatureMealStorage) 
 
-    //Add on wine states //add this on a component 
+    //Wine add on states
+    const [wineTitle, setWineTitle] = useState(null)
+    const [wineImage, setWineImage] = useState(null)
+
+    const defaultOptions = {
+        loop: true,
+        autoplay: true,
+        animationData: require('../styles/logos/foodLoading.json'), // the path to the animation json
+        rendererSettings: {
+            preserveAspectRatio: 'xMidYMid slice'
+        }
+    };
+
+    //make wineRequestLoading and conditional for classes on image when loaded/!loaded 
+    //classes for re rendering the correct size to fit in the image
 
     //move on to requesting our api when purchased
     //make user only be able to pick one random meal a day
@@ -41,6 +57,18 @@ const SignatureMeal = ({user}) => {
         setIsRequesting(true)
     }
 
+    //passes this function to WineAddOn prop. Uses it here to request just the image to render on the correct placement 
+    //for User UI next to request randomMeal
+    const getRandomWine = async () =>{
+        const res = await Products.getRandomWine()
+        const randomWine = shuffleArray(res.data.recommendedWines)
+        const {title, imageUrl} = randomWine
+        setTimeout(()=> {
+        setWineTitle(title)
+        setWineImage(imageUrl)
+        }, 4000)
+        return randomWine
+    }
     //adds requested API info to localStorage to be able to pass info to Checkout component
     const addToCart = async () =>{ 
         await setSignatureMeal(JSON.stringify({mealTitle, mealImage, mealPrice}))
@@ -63,26 +91,52 @@ const SignatureMeal = ({user}) => {
             {mealImage ? 
                 <div className="Signature-Meal-c card">
                     <div className="card-body">
-                        <h1 className="Signature-Meal-f card-title">{mealTitle}</h1>
                         <div className="container">   
                         <div className="row">
+                        
+                            {/* add on wine somewhere here and conditional for grid wine title/image */}
+                            <div>
+                            {!wineImage ?
+                            <div className="col-md-12 d-flex justify-content-center">
                             <div className="col-md-3">
                             </div>
                             <div className="col-md-6">
-                                {/* add on wine somewhere here */}
-                            <img className="Signature-Meal-i" src={mealImage} alt="Signature Meal"/>
+                                <h1 className="Signature-Meal-f card-title">{mealTitle}</h1>
+                                <img className="Signature-Meal-i" src={mealImage} alt="Signature Meal"/>
                             </div>
                             <div className="col-md-3">
                             </div>
+                            </div>
+                            :
+                            <div className="col-md-12 d-flex justify-content-center">
+                                <div className="col-md-6">
+                                    <h1 className="card-title">{mealTitle}</h1>
+                                    <img className="Signature-Meal-i" src={mealImage} alt="Signature Meal"/>
+                                </div>
+                                {wineTitle ?
+                                <div className="col-md-6">
+                                    <h1 className="card-title">{wineTitle}</h1>
+                                    <img src={wineImage} alt="wine-add-on"></img>
+                                </div>  
+                                    :
+                                    <div className="col-md-6">
+                                    <Lottie options={defaultOptions} height={200} width={200}/>
+                                    </div>
+                                } 
+                            </div>
+                            }
+                            </div>
+                            
                         </div>
                             <p>{parse(mealSummary)}</p>
+                            <WineAddOn wineRequest={getRandomWine}/>
                         </div>
                         <button className="btn btn-default mt-2" style={{color: "white"}} onClick={addToCart}>Add to Cart</button>
                     </div>
                     <p className="Signature-Meal-policy">Not satisfied with this choice? Check out our meal <Link style={{textDecoration: "none"}} to="/policy">policy</Link>.</p>
                 </div>
                 :   
-                // add a conditional inside to render loading statement when requesting
+                // added a conditional inside to render loading statement when requesting
             <div className="Signature-Meal-e" style={{width: "30rem"}}>
                 {!isRequesting ?  
                 <div className="Signature-Meal-e-c card">
@@ -94,7 +148,7 @@ const SignatureMeal = ({user}) => {
                     <p className="Signature-Meal-p-f col-md-12">
                             When you're ready, you <b>click the button</b>, we have a system that randomly chooses a meal for you from our wide variety of choices. Foods from all over the world.
                             The meal is one serving, for one person, at one sitting - <b>just heat and eat.</b>
-                    </p>     
+                    </p>
                     <div className="col-md-0">
                     </div>
                     

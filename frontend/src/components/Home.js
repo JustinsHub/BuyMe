@@ -20,7 +20,7 @@ const Home = () => {
                     </p>
                 </div>
                 {/* get started button expands when hovered */}
-                <Link className="btn btn-danger" to="/plans&amp;pricing">Get Started!</Link>
+                <Link className="btn btn-danger" to="/plans">Get Started!</Link>
                 </div>
             </section>
                 {/* Have the page scroll to buy or add to cart about pricing? */}
