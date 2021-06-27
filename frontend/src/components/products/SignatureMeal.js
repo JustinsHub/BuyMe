@@ -24,15 +24,7 @@ const SignatureMeal = ({user}) => {
     //Wine add on states
     const [wineTitle, setWineTitle] = useState(null)
     const [wineImage, setWineImage] = useState(null)
-
-    const defaultOptions = {
-        loop: true,
-        autoplay: true,
-        animationData: require('../styles/logos/foodLoading.json'), // the path to the animation json
-        rendererSettings: {
-            preserveAspectRatio: 'xMidYMid slice'
-        }
-    };
+    const [isClickedNo, setIsClickedNo] = useState(false)
 
     //make wineRequestLoading and conditional for classes on image when loaded/!loaded 
     //classes for re rendering the correct size to fit in the image
@@ -77,6 +69,14 @@ const SignatureMeal = ({user}) => {
         }, 500)
     }
 
+
+    const clickedButton = () => {
+        setIsClickedNo(state => !state)
+        //yes or no. 
+        //Yes shows the button for add wine (when add to cart, add to localstorage)
+        //No shows add to cart without adding the wine to localStorage (conditional on addToCart about adding it to local)
+    }
+
     //setLogin error when redirected if not logged in...
     //useState change if theres added to cart
     //We can request the API HERE and users can either continue with purchase or wait till next time. (Have a second random pick?)
@@ -113,25 +113,25 @@ const SignatureMeal = ({user}) => {
                                     <h1 className="card-title">{mealTitle}</h1>
                                     <img className="Signature-Meal-i" src={mealImage} alt="Signature Meal"/>
                                 </div>
-                                {wineTitle ?
                                 <div className="col-md-6">
                                     <h1 className="card-title">{wineTitle}</h1>
                                     <img src={wineImage} alt="wine-add-on"></img>
                                 </div>  
-                                    :
-                                    <div className="col-md-6">
-                                    <Lottie options={defaultOptions} height={200} width={200}/>
-                                    </div>
-                                } 
                             </div>
                             }
                             </div>
                             
                         </div>
                             <p>{parse(mealSummary)}</p>
-                            <WineAddOn wineRequest={getRandomWine}/>
                         </div>
+                        
+                        {/* state isClickedNo prop passed on to WineAddOn component to render this conditional if user clicks No */}
+                        {isClickedNo ?
                         <button className="btn btn-default mt-2" style={{color: "white"}} onClick={addToCart}>Add to Cart</button>
+                        :
+                        <WineAddOn wineRequest={getRandomWine} clickNo={setIsClickedNo}/>
+                        }
+
                     </div>
                     <p className="Signature-Meal-policy">Not satisfied with this choice? Check out our meal <Link style={{textDecoration: "none"}} to="/policy">policy</Link>.</p>
                 </div>
@@ -146,7 +146,7 @@ const SignatureMeal = ({user}) => {
                     <div className="col-md-0">
                     </div> 
                     <p className="Signature-Meal-p-f col-md-12">
-                            When you're ready, you <b>click the button</b>, we have a system that randomly chooses a meal for you from our wide variety of choices. Foods from all over the world.
+                            When you're ready, you <b>click the button</b>. We have a system that randomly chooses a meal for you from our wide variety of choices. Foods from all over the world.
                             The meal is one serving, for one person, at one sitting - <b>just heat and eat.</b>
                     </p>
                     <div className="col-md-0">
