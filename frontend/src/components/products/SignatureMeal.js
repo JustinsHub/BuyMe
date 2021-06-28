@@ -12,6 +12,7 @@ import '../styles/SignatureMeal.css'
 //get a single random meal by requesting from API and render image and description
 const SignatureMeal = ({user}) => {
     const signatureMealStorage = "signature-meal"
+    const wineAddOnStorage = "wine-add-on"
     const history = useHistory()
     //Signature Meal states
     const [mealTitle, setMealTitle] = useState(null)
@@ -20,10 +21,12 @@ const SignatureMeal = ({user}) => {
     const [mealSummary, setMealSummary] = useState("")
     const [isRequesting, setIsRequesting] = useState(false)
     const [signatureMeal, setSignatureMeal] = useLocalStorage(signatureMealStorage) 
+    const [wineAddOn, setWineAddOn] = useLocalStorage(wineAddOnStorage)
 
     //Wine add on states
     const [wineTitle, setWineTitle] = useState(null)
     const [wineImage, setWineImage] = useState(null)
+    const [winePrice, setWinePrice] = useState(null)
     const [isClickedNo, setIsClickedNo] = useState(false)
 
     //make wineRequestLoading and conditional for classes on image when loaded/!loaded 
@@ -53,6 +56,14 @@ const SignatureMeal = ({user}) => {
     //for User UI next to request randomMeal
     const getRandomWine = async () =>{
         const res = await Products.getRandomWine()
+        const wineResults = await Products.getPairMeal()
+
+
+
+        //console.log the results and find the price to match. Add on to localStorage
+        //find out how to add cart with yes on Wine
+
+
         const randomWine = shuffleArray(res.data.recommendedWines)
         const {title, imageUrl} = randomWine
         setTimeout(()=> {
@@ -67,14 +78,6 @@ const SignatureMeal = ({user}) => {
         setTimeout(()=> {
             history.push('/checkout')
         }, 500)
-    }
-
-
-    const clickedButton = () => {
-        setIsClickedNo(state => !state)
-        //yes or no. 
-        //Yes shows the button for add wine (when add to cart, add to localstorage)
-        //No shows add to cart without adding the wine to localStorage (conditional on addToCart about adding it to local)
     }
 
     //setLogin error when redirected if not logged in...
@@ -124,12 +127,12 @@ const SignatureMeal = ({user}) => {
                         </div>
                             <p>{parse(mealSummary)}</p>
                         </div>
-                        
+
                         {/* state isClickedNo prop passed on to WineAddOn component to render this conditional if user clicks No */}
                         {isClickedNo ?
                         <button className="btn btn-default mt-2" style={{color: "white"}} onClick={addToCart}>Add to Cart</button>
                         :
-                        <WineAddOn wineRequest={getRandomWine} clickNo={setIsClickedNo}/>
+                        <WineAddOn wineRequest={getRandomWine} clickNo={setIsClickedNo} mealTitle={mealTitle}/>
                         }
 
                     </div>

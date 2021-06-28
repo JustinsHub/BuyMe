@@ -1,11 +1,11 @@
 import React, {useState} from 'react'
 import Lottie from 'react-lottie'
 
-const WineAddOn = ({wineRequest, clickNo}) => {
+const WineAddOn = ({wineRequest, clickNo, mealTitle}) => {
     const [wineDescription, setWineDescription] = useState(null)
     const [isClickedYes, setIsClickedYes] = useState(false)
-    const [isClickedNo, setIsClickedNo] = useState(false)
     const [requestWine, setRequestWine] = useState(false)
+    const [wineTitle, setWineTitle] = useState(null)
 
     const defaultOptions = {
         loop: true,
@@ -19,10 +19,11 @@ const WineAddOn = ({wineRequest, clickNo}) => {
     //prop passed down from SignatureMeal. It extracts the already shuffled array title and description to render in the component
     const wineAddOn = async() => {
         const res = await wineRequest()
-        const {description} = res
-        setTimeout(()=> 
+        const {description, title} = res
+        setTimeout(()=> {
         setWineDescription(description)
-        , 4000)
+        setWineTitle(title)
+        }, 4000)
         setRequestWine(true)
     }
 
@@ -35,7 +36,6 @@ const WineAddOn = ({wineRequest, clickNo}) => {
         clickNo((state) => !state)
     }
     
-
     //add a setTimeout for delay for loading... 
     //conditional add on button if requested then no button and show the wine that is added on
     //figure out how to add on the price of wine with the meal to make it a paired meal
@@ -46,7 +46,10 @@ const WineAddOn = ({wineRequest, clickNo}) => {
                 <section className="card">
                     <div className="card-body">
                         {wineDescription ?
-                        <p className="card-text">{wineDescription}</p>
+                        <div>
+                        <p><b>{mealTitle}</b> goes well specifically with <b>{wineTitle}</b></p>
+                        <p className="card-text">This wine is a {wineDescription}</p>
+                        </div>
                         :
                         <div>
                         <Lottie options={defaultOptions} height={200} width={200}/>
@@ -64,8 +67,10 @@ const WineAddOn = ({wineRequest, clickNo}) => {
                     <button className="btn btn-secondary m-1" style={{color: "white"}} onClick={clickedNo}>No</button>
                 </div>
                 :
+                //setWine conditional if wine is request have add on button
+                
                 <div>
-                    <button onClick={wineAddOn}>Add on wine</button>
+                    <button className="btn btn-default m-1" style={{color: "white"}} onClick={wineAddOn}>Add on wine</button>
                 </div>
                 }
             </section>
