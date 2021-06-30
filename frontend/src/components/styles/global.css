@@ -39,6 +39,16 @@
   color: #da4343;
 }
 
+.global-remove-cart {
+  color: rgb(158, 158, 158);
+  font-size: 10px;
+}
+
+.global-remove-cart:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
 .global-ct {
   line-height: 0.5;
   font-size: 13.5px;

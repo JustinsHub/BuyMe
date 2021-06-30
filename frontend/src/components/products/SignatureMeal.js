@@ -27,9 +27,6 @@ const SignatureMeal = ({user}) => {
     const [wineImage, setWineImage] = useState(null)
     const [isClickedNo, setIsClickedNo] = useState(false)
 
-    //make wineRequestLoading and conditional for classes on image when loaded/!loaded 
-    //classes for re rendering the correct size to fit in the image
-
     //move on to requesting our api when purchased
     //make user only be able to pick one random meal a day
     //have a countdown timer when clicked 24hour
@@ -87,7 +84,6 @@ const SignatureMeal = ({user}) => {
                         <div className="container">   
                         <div className="row">
                         
-                            {/* add on wine somewhere here and conditional for grid wine title/image */}
                             <div>
                             {!wineImage ?
                             <div className="col-md-12 d-flex justify-content-center">
