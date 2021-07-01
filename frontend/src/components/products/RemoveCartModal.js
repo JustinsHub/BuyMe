@@ -1,12 +1,17 @@
 import React, {useState} from 'react'
-import {Link} from 'react-router-dom'
 import { Button, Modal } from 'react-bootstrap';
 
-const RemoveCartModal = ({user}) => {
+const RemoveCartModal = ({user, removeLocalWine}) => {
     const [show, setShow] = useState(false);
 
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
+
+    const removeWine = () => {
+        setShow(false)
+        removeLocalWine(true)
+    }
+
     return (
         <>
     <p className="global-remove-cart" onClick={handleShow}>
@@ -23,7 +28,7 @@ const RemoveCartModal = ({user}) => {
         <Button variant="secondary" onClick={handleClose}>
             Close
         </Button>
-        <Button variant="danger" onClick={handleClose}>
+        <Button variant="danger" onClick={removeWine}>
             Remove
         </Button>
         </Modal.Footer>

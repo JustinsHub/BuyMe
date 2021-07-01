@@ -6,13 +6,11 @@ import WineAddOn from './WineAddOn'
 import LoadSpinner from '../commons/LoadSpinner'
 import shuffleArray from '../commons/shuffleArray'
 import useLocalStorage from '../custom-hooks/useLocalStorage'
-import Lottie from 'react-lottie'
 import '../styles/SignatureMeal.css'
 
 //get a single random meal by requesting from API and render image and description
 const SignatureMeal = ({user}) => {
     const signatureMealStorage = "signature-meal"
-    const wineAddOnStorage = "wine-add-on"
     const history = useHistory()
     //Signature Meal states
     const [mealTitle, setMealTitle] = useState(null)

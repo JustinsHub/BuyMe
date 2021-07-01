@@ -23,7 +23,6 @@ const ProfileEdit = ({currentUser, currentAddress}) => {
         country: "United States"
     }
 
-
     const [editData, handleChange] = useFormData(INITIAL_STATE)
     const [editAddress, handleAddressChange] = useFormData(INITIAL_ADDRESS)
     const [editError, setEditError] = useError([])

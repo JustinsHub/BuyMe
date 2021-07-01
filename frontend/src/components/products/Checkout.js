@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect, useRef} from 'react'
 import {Link} from 'react-router-dom'
 import RemoveCartModal from './RemoveCartModal'
 
@@ -8,9 +8,21 @@ const Checkout = ({user, address}) => {
 
     //after 24 hour use of local storage, remove item.
     const [localSignatureMeal] = useState(signatureMeal)
-    const [localPairMeal] = useState(pairMeal)
+    const [localPairMeal, setLocalPairMeal] = useState(pairMeal)
+    const [removeLocalWine, setRemoveLocalWine] = useState(false)
     const {first_name, last_name, email} = user.data
     const {street_address, address_number, city, state, zip_code, country} = address.data
+
+    //Prevents rendering on first render. Must setLocalPairMeal in order to render the checkout page. (The way it gets removed is based on)
+    //renders based on boolean prop passed down to RemoveCartModal
+    const loaded = useRef(null);
+        useEffect(() => {
+            if (loaded.current) {
+                setLocalPairMeal(localStorage.removeItem('pair-meal'))
+            } else {
+                loaded.current = true;
+            }
+}, [removeLocalWine]);
     
     return (
         //use effect the address here so when a user restarts it auto requests it
@@ -64,7 +76,7 @@ const Checkout = ({user, address}) => {
                                 :
                                 <div>
                                     <div>
-                                        <b>{localSignatureMeal.mealTitle}</b>
+                                        <b style={{textDecoration: "underline"}}>{localSignatureMeal.mealTitle}</b>
                                     </div>
                                     <div>
                                         <img className="col-6 rounded" src={localSignatureMeal.mealImage} alt="signature-meal"></img>
@@ -73,11 +85,11 @@ const Checkout = ({user, address}) => {
                                         <b style={{textDecoration: "underline"}}>{localPairMeal.wineTitle}</b>
                                     </div>
                                     <div>
-                                        <img className="col-6 rounded" src={localPairMeal.wineImage} alt="signature-meal"></img>
+                                        <img className="col-md-6 rounded" src={localPairMeal.wineImage} alt="signature-meal"></img>
                                         <div>
                                             {/* pop up modal if clicked make ask if they really want to remove it and have a description before */}
                                             {/* create a modal component */}
-                                            <p><RemoveCartModal user={user}/></p>
+                                            <p><RemoveCartModal user={user} removeLocalWine={setRemoveLocalWine}/></p>
                                         </div>
                                     </div>
                                 </div>
@@ -136,8 +148,15 @@ const Checkout = ({user, address}) => {
 
                                             <div className="col-md-6 d-flex justify-content-end">
                                             {!localSignatureMeal ?
-                                                    <p className="card-subtitle text-muted"><b>$0.00</b></p> :
-                                                    <p className="card-subtitle text-muted"><b>${+localSignatureMeal.mealPrice + +localPairMeal.winePrice}</b></p> 
+                                                    <p className="card-subtitle text-muted"><b>$0.00</b></p> 
+                                                    :
+                                                    <div>
+                                                    {localPairMeal ?
+                                                    <p className="card-subtitle text-muted">${+localSignatureMeal.mealPrice + +localPairMeal.winePrice}</p> 
+                                                        :
+                                                    <p className="card-subtitle text-muted">${+localSignatureMeal.mealPrice}</p>
+                                                    }     
+                                                    </div>  
                                             }
                                             </div>
                                         <div>
