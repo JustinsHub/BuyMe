@@ -1,4 +1,5 @@
 import React, {useState} from 'react'
+import {Link} from 'react-router-dom'
 import { Button, Modal } from 'react-bootstrap';
 
 const RemoveCartModal = ({user, removeLocalWine}) => {
@@ -22,7 +23,7 @@ const RemoveCartModal = ({user, removeLocalWine}) => {
         <Modal.Header>
         </Modal.Header>
         <Modal.Body>Hey {user.data.username}! Just a heads up, once you remove your wine from your cart you won't be able to add another 
-        wine for another 24 hours based on our terms. Please read our policy in order to understand how it works. 
+        wine for another 24 hours based on our terms. Please read our <Link to="/policy">policy</Link> in order to understand how it works. 
         </Modal.Body>
         <Modal.Footer>
         <Button variant="secondary" onClick={handleClose}>

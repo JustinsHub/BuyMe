@@ -1,5 +1,4 @@
 import React from 'react'
-import WineAddOn from './WineAddOn'
 
 const Policy = () => {
     return (

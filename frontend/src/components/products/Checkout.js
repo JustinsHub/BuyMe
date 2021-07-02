@@ -1,6 +1,7 @@
 import React, {useState, useEffect, useRef} from 'react'
 import {Link} from 'react-router-dom'
 import RemoveCartModal from './RemoveCartModal'
+import CheckoutModal from './paymentComponents/CheckoutModal'
 
 const Checkout = ({user, address}) => {
     const signatureMeal = JSON.parse(localStorage.getItem('signature-meal'))
@@ -27,7 +28,6 @@ const Checkout = ({user, address}) => {
     return (
         //use effect the address here so when a user restarts it auto requests it
         //problem with the changing the address and going back to checkout (put random meal in localStorage when going back to checkout?)
-        //conditional on picking a meal when it's already picked revert back to checkout for finalization. (24 hour timer)
         <div className="global-mt global-mb">
             <div class="container">
                 <h1 className="global-font global-link text-center">Review Your Order</h1>
@@ -161,7 +161,7 @@ const Checkout = ({user, address}) => {
                                             </div>
                                         <div>
                                             {/* if someone tries to make an order either disable or modal your cart is empty */}
-                                            <button className="w-100 btn btn-default mt-3" style={{color: "white"}}>Place your order</button>
+                                            <button className="w-100 btn btn-default mt-3" style={{color: "white"}}><CheckoutModal/></button>
                                         </div>
                                     </div>
                                 </div>

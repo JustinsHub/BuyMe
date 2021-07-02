@@ -6,10 +6,10 @@ import CheckoutForm from './CheckoutForm';
 
 const stripePromise = loadStripe(PUBLIC_KEY);
 
-const StripeContainer = () => {
+const StripeContainer = ({close}) => {
     return (
         <Elements stripe={stripePromise}>
-            <CheckoutForm/>
+            <CheckoutForm close={close}/>
         </Elements>
     )
 }

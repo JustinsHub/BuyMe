@@ -3,7 +3,7 @@ import {useStripe, useElements, CardElement} from '@stripe/react-stripe-js';
 import axios from 'axios'
 import '../../styles/StripePayments.css'
 
-//CSS prop add on
+//CSS prop add on for CardElement
 const CARD_OPTIONS = {
   style: {
     base: {
@@ -22,12 +22,13 @@ const CARD_OPTIONS = {
   },
 };
 
-const CheckoutForm = () => {
+const CheckoutForm = ({close}) => {
   const [success, setSuccess] = useState(false)
   const stripe = useStripe();
   const elements = useElements();
 
-  const handleSubmit = async (e) => {
+
+  const handleSubmit = async (e) => { //try to pass this in modal to see
       e.preventDefault();
       const {error, paymentMethod} = await stripe.paymentMethod({
         type: "card",
@@ -55,15 +56,17 @@ const CheckoutForm = () => {
   }
 
   return (
-    <div>
+    <div className="d-flex justify-content-center">
       {!success ?
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit}> 
         <fieldset className="FormGroup">
           <div className="FormRow">
             <CardElement options={CARD_OPTIONS}/>
           </div>
           </fieldset> 
-          <button>Place your order</button>
+          <div className="text-center mt-3">
+            <button className="btn btn-default" style={{color: "white"}}>Place your order</button>
+          </div>
       </form>
       : 
       <div>
