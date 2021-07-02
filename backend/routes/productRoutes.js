@@ -9,7 +9,7 @@ const Product = require('../models/productModels')
 router.get('/signature-meal', async(req, res, next)=> {
     try{
         const results = await Product.getSignatureMeal()
-        return res.json({signature_meal: results})
+        return res.json(results)
     }catch(e){
         return next(e)
     }
@@ -19,7 +19,7 @@ router.get('/signature-meal', async(req, res, next)=> {
 router.get('/pair-meal', async(req, res, next)=> {
     try{
         const results = await Product.getPairMeal()
-        return res.json({pair_meal: results})
+        return res.json(results)
     }catch(e){
         return next(e)
     }

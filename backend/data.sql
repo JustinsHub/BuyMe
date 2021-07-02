@@ -41,12 +41,13 @@ CREATE TABLE user_address (
 
 CREATE TABLE signature_meal (
     id serial PRIMARY KEY,
-    price INTEGER NOT NULL
+    price DECIMAL NOT NULL
 );
 
+-- Add on wine
 CREATE TABLE pair_meal (
     id serial PRIMARY KEY,
-    price INTEGER NOT NULL
+    price DECIMAL NOT NULL
 );
 
 CREATE TABLE purchases (
@@ -60,12 +61,12 @@ CREATE TABLE purchases (
     purchased_on TIMESTAMP 
 );
 
-INSERT INTO users (username, password, first_name, last_name, email) 
-VALUES ('Someone', 'yolobolo', 'dexter', 'wexter', 'dexter@wexter.com');
+-- INSERT INTO users (username, password, first_name, last_name, email) 
+-- VALUES ('Someone', 'yolobolo', 'dexter', 'wexter', 'dexter@wexter.com');
 
-INSERT INTO user_address (user_id, street_address, address_number)
-VALUES (1, '1111 Ave.', 4105);
+-- INSERT INTO user_address (user_id, street_address, address_number)
+-- VALUES (1, '1111 Ave.', 4105);
 
-INSERT INTO signature_meal (price) VALUES (49.99);
+INSERT INTO signature_meal (price) VALUES (8.99);
 
-INSERT INTO pair_meal (price) VALUES (79.99);
+INSERT INTO pair_meal (price) VALUES (7.99);

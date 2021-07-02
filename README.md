@@ -55,8 +55,8 @@ Database Models
 
 # API
 
-- Spoontacular API
-- Crypto payment API...
+- Spoontacular API (for products)
+- React Stripe API (for payment)
 
 # Potential Issues with API
 
@@ -64,7 +64,7 @@ Database Models
 
 - Exceeding the limits of the API token quota
 - Security on payments
-- There may be other issues I haven't foreseen
+- Authorization
 
 # Sensitive Information
 
@@ -73,15 +73,15 @@ Database Models
 
 # App functionality
 
-- Users can register, login, and logout.
+- Users can register, login, edit account, and logout.
 - Users have to login to purchase anything.
-- Users are able to see the Deal Of The Day.
+- Users are able to add/remove wine optionally (extra charge for wine).
 
 # User workflow
 
-1. Place the product for the user to see right away to create interest and have a call to action (ex: 20% discount off right now (set a timer for discount?).
+1. Place the product for the user to see right away to create interest and have a call to action (future feature ex: 20% discount off right now (set a timer for discount?).
 2. Once signed up, can purchase the product/service.
-3. Add to cart. (Set up to have a min/max add on to cart)
+3. Add to cart. Proceed to checkout (users must shipping address in order to continue purchase)
 4. `optional` Have a Modal to show other products in the future before finalizing a sale to create potential add on to cart?
 5. Sale -> send email
 
@@ -95,4 +95,6 @@ Database Models
 # Stretch Goals
 
 - Once the email has been captured. Optimize email marketing.
-- Sell other products for crypto currency
+- Add on features with Meals.
+- Other payment method
+- Discount codes

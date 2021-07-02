@@ -12,7 +12,7 @@ const CARD_OPTIONS = {
       fontSmoothing: "antialiased",
       fontSize: "16px",
       "::placeholder": {
-        color: "#aab7c4",
+        color: "#aaaaaa",
       },
     },
     invalid: {
@@ -28,7 +28,7 @@ const CheckoutForm = ({close}) => {
   const elements = useElements();
 
 
-  const handleSubmit = async (e) => { //try to pass this in modal to see
+  const handleSubmit = async (e) => {
       e.preventDefault();
       const {error, paymentMethod} = await stripe.paymentMethod({
         type: "card",
@@ -56,16 +56,16 @@ const CheckoutForm = ({close}) => {
   }
 
   return (
-    <div className="d-flex justify-content-center">
+    <div>
       {!success ?
       <form onSubmit={handleSubmit}> 
-        <fieldset className="FormGroup">
+        <fieldset className="FormGroup col-12 spectrum-background">
           <div className="FormRow">
             <CardElement options={CARD_OPTIONS}/>
           </div>
           </fieldset> 
           <div className="text-center mt-3">
-            <button className="btn btn-default" style={{color: "white"}}>Place your order</button>
+            <button className="Stripe-Payment-Button btn btn-default" style={{color: "white"}}>Place your order</button>
           </div>
       </form>
       : 
