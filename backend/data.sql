@@ -4,7 +4,7 @@ CREATE DATABASE Pickout;
 
 \c Pickout;
 
-DROP TABLE IF EXISTS users, user_address, matching_address, signature_meal, pair_meal, purchases;
+DROP TABLE IF EXISTS users, user_address, signature_meal, pair_meal, purchases;
 
 CREATE TABLE users (
     id serial PRIMARY KEY,
@@ -29,15 +29,6 @@ CREATE TABLE user_address (
         FOREIGN KEY (user_id) 
             REFERENCES users (id) ON DELETE CASCADE
 );
-
--- A way to search users address
--- CREATE TABLE matching_address (
---     PRIMARY KEY (user_id, address_id),
---     user_id INTEGER
---         REFERENCES users(id) ON DELETE CASCADE,
---     address_id INTEGER 
---         REFERENCES user_address(address_id) ON DELETE CASCADE
--- );
 
 CREATE TABLE signature_meal (
     id serial PRIMARY KEY,

@@ -18,6 +18,8 @@ class Product {
         const results = await db.query(`SELECT id, price FROM pair_meal`)
         return results.rows
     }
+
+    //signature Meal purchase
     static async signatureMealPurchase(userId, mealId) {
         await db.query(
             //must match the exact DB names when inserting
@@ -26,11 +28,11 @@ class Product {
         )
     }
 
-    //pair Meal query
-    static async pairMealPurchase(userId, pairId){
+    //pair Meal query (wine add on)
+    static async pairMealPurchase(userId, mealId, pairId){
         await db.query(
-            `INSERT INTO purchases (user_id, pair_meal, purchased_on)
-            VALUES ($1, $2, $3)`, [userId, pairId, timePurchased]
+            `INSERT INTO purchases (user_id, signature_meal, pair_meal, purchased_on)
+            VALUES ($1, $2, $3, $4)`, [userId, mealId, pairId, timePurchased]
         )
     }
 }

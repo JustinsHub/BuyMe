@@ -37,10 +37,10 @@ router.post('/signature/:mealId/purchase/:userId/', async(req, res, next) => {
 })
 
 //API to when purchasing pair meal(random meal paired with wine)
-router.post('/pair-meal/:pairId/purchase/:userId', async(req, res, next) => {
+router.post('/pair-meal/:mealId/:pairId/purchase/:userId', async(req, res, next) => {
     try{
-        const {userId, pairId} = req.params
-        await Product.pairMealPurchase(userId, pairId)
+        const {userId, mealId, pairId} = req.params
+        await Product.pairMealPurchase(userId, mealId, pairId)
         return res.status(201).json({purchased: "Pair Meal"})
     }catch(e){
         return next(e)

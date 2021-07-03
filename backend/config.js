@@ -8,12 +8,12 @@ const SECRET_KEY = process.env.SECRET_KEY || "our_secret_key"
 
 const BCRYPT_WORK_FACTOR = 12;
 
-const SQUARE_ACCESS_TOKEN = "EAAAEKtsRZ3co5jeY_9BlckvYbF5Y2iwG4uKu5vVQ5rFXvxrkPjAW7nuVULbcFk7"
+const STRIPE_SECRET_KEY = "sk_test_51HscgAHbmlANNp9nAXqMZGzMbxSYJeCMqYUytQZX4rhSVr0NzNDIUQJtDesZFMtd2qEcji78KzgVzCfZH68FV9H200bBeMqptT"
 
 module.exports = {
     DB_URI,
     PORT,
     SECRET_KEY,
     BCRYPT_WORK_FACTOR,
-    SQUARE_ACCESS_TOKEN
+    STRIPE_SECRET_KEY
 }

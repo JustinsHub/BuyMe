@@ -1,6 +1,7 @@
 const express = require('express');
 const router = new express.Router()
-const stripe = require('stripe')("sk_test_51HscgAHbmlANNp9nAXqMZGzMbxSYJeCMqYUytQZX4rhSVr0NzNDIUQJtDesZFMtd2qEcji78KzgVzCfZH68FV9H200bBeMqptT")
+const {STRIPE_SECRET_KEY} = require('../config')
+const stripe = require('stripe')(STRIPE_SECRET_KEY)
 
 router.post('/payment', async(req, res, next) => {
     let {amount, id} = req.body
