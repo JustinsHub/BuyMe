@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {useStripe, useElements, CardElement} from '@stripe/react-stripe-js';
+import {CardElement, useElements, useStripe} from '@stripe/react-stripe-js';
 import axios from 'axios'
 import '../../styles/StripePayments.css'
 
@@ -22,7 +22,7 @@ const CARD_OPTIONS = {
   },
 };
 
-const CheckoutForm = ({close}) => {
+const CheckoutForm = () => {
   const [success, setSuccess] = useState(false)
   const stripe = useStripe();
   const elements = useElements();
@@ -30,15 +30,15 @@ const CheckoutForm = ({close}) => {
 
   const handleSubmit = async (e) => {
       e.preventDefault();
-      const {error, paymentMethod} = await stripe.paymentMethod({
+      const {error, paymentMethod} = await stripe.createPaymentMethod({
         type: "card",
-        elements: elements.getElement(CardElement)
+        card: elements.getElement(CardElement)
       })
 
       if(!error){
         try{
           const {id} = paymentMethod
-          const res = await axios.post(`http://localhost:5001/checkout`, {
+          const res = await axios.post(`http://localhost:5001/stripe/payment`, {
                 amount: 8990,
                 id
                 }
