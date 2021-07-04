@@ -59,6 +59,7 @@ const AppContextWrapper = ({children}) => {
     //redirects after setting the currentUser to null and clearing localStorage when executed
     const logout = () => {
         setCurrentUser(null)
+        //future implementation: Users are able to login with items still saved on cart
         localStorage.clear()
         history.push('/login') 
     }

@@ -9,7 +9,10 @@ const CheckoutModal = () => {
     const handleShow = () => setShow(true);
 
     //TODO:
-    //Stripe backend find out how it works and find out how to add on other products (wine)
+    //Stripe backend find out how it works and find out how to add on other products (wine) DONE
+    // - //add a payment API along and pairMeal API route on backend for CheckoutForm
+    //when finished purchase remove from items from localStorage
+
     //take out cancel order when successfully paid useState.
     //Redirect the successful purchase instead.
     //Purchase API. Registers the purchases on handleSubmit/StripePayment based on product thats added to cart. 

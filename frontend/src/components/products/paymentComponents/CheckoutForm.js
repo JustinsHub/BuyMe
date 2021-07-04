@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import {CardElement, useElements, useStripe} from '@stripe/react-stripe-js';
-import axios from 'axios'
+import Payment from './paymentApi'
 import '../../styles/StripePayments.css'
 
 //CSS prop add on for CardElement
@@ -34,22 +34,12 @@ const CheckoutForm = () => {
         type: "card",
         card: elements.getElement(CardElement)
       })
-
+      
       if(!error){
-        try{
-          const {id} = paymentMethod
-          const res = await axios.post(`http://localhost:5001/stripe/payment`, {
-                amount: 8990,
-                id
-                }
-              )
-              if(res.data.success){
-                console.log("Successful payment")
-                setSuccess(true)
-              }
-        }catch(e){
-            console.log("Error", e)
-        }
+        const {id} = paymentMethod
+        const res = await Payment.signatureStripePayment(id)
+        setSuccess(true)
+        return res
       } else {
         console.log(error.message)
       }
@@ -58,12 +48,12 @@ const CheckoutForm = () => {
   return (
     <div>
       {!success ?
-      <form onSubmit={handleSubmit}> 
+      <form onSubmit={handleSubmit}>
         <fieldset className="FormGroup col-12 spectrum-background">
           <div className="FormRow">
             <CardElement options={CARD_OPTIONS}/>
           </div>
-          </fieldset> 
+          </fieldset>
           <div className="text-center mt-3">
             <button className="Stripe-Payment-Button btn btn-default" style={{color: "white"}}>Place your order</button>
           </div>
