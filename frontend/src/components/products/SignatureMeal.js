@@ -17,6 +17,7 @@ const SignatureMeal = ({user}) => {
     const [mealImage, setMealImage] = useState(null)
     const [mealPrice, setMealPrice] = useState(null)
     const [mealSummary, setMealSummary] = useState("")
+    const [mealId, setMealId] = useState(null)
     const [isRequesting, setIsRequesting] = useState(false)
     const [signatureMeal, setSignatureMeal] = useLocalStorage(signatureMealStorage) 
 
@@ -34,13 +35,14 @@ const SignatureMeal = ({user}) => {
     const getRandomMeal = async() => {
         const res = await Products.getRandomMeal()
         const mealResults = await Products.getSignatureMeal()
-        const mealPrice = mealResults.data[0].price
+        const {id, price} = mealResults.data[0]
         const {image, title, summary} = res.data.recipes[0]
         setTimeout(() => {
             setMealTitle(title)
             setMealImage(image)
             setMealSummary(summary)
-            setMealPrice(mealPrice)
+            setMealId(id)
+            setMealPrice(price)
         }, 4000)
         setIsRequesting(true)
     }
@@ -59,7 +61,7 @@ const SignatureMeal = ({user}) => {
     }
     //adds requested API info to localStorage to be able to pass info to Checkout component
     const addToCart = async () =>{ 
-        await setSignatureMeal(JSON.stringify({mealTitle, mealImage, mealPrice}))
+        await setSignatureMeal(JSON.stringify({mealId, mealTitle, mealImage, mealPrice}))
         setTimeout(()=> {
             history.push('/checkout')
         }, 500)

@@ -1,5 +1,5 @@
 import React, {useState} from 'react'
-import { Button, Modal } from 'react-bootstrap';
+import {Modal} from 'react-bootstrap';
 import StripeContainer from './StripeContainer';
 
 const CheckoutModal = () => {

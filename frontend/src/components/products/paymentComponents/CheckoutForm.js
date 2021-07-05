@@ -22,22 +22,22 @@ const CARD_OPTIONS = {
   },
 };
 
-const CheckoutForm = () => {
+const CheckoutForm = ({meal}) => {
   const [success, setSuccess] = useState(false)
   const stripe = useStripe();
   const elements = useElements();
-
-
+  
   const handleSubmit = async (e) => {
       e.preventDefault();
       const {error, paymentMethod} = await stripe.createPaymentMethod({
         type: "card",
         card: elements.getElement(CardElement)
       })
-      
+
       if(!error){
         const {id} = paymentMethod
         const res = await Payment.signatureStripePayment(id)
+        meal()//our POST method for purchases when purchasing signature-meal passed down by a prop
         setSuccess(true)
         return res
       } else {

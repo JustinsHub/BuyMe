@@ -4,12 +4,12 @@ const BASE_URL_LOCAL = "http://localhost:5001"
 
 class Payment {
     static async signatureMealPurchase(userId, mealId) {
-        const res = await axios.post(`${BASE_URL_LOCAL}/signature/${mealId}/purchase/${userId}`)
+        const res = await axios.post(`${BASE_URL_LOCAL}/meals/signature/${mealId}/purchase/${userId}`)
         return res
     }
     
     static async pairMealPurchase(userId, mealId ,pairId) {
-        const res = await axios.post(`${BASE_URL_LOCAL}/pair-meal/${mealId}/${pairId}/purchase/${userId}`)
+        const res = await axios.post(`${BASE_URL_LOCAL}/meals/pair-meal/${mealId}/${pairId}/purchase/${userId}`)
         return res
     }
 

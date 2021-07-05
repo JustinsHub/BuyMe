@@ -10,6 +10,7 @@ const WineAddOn = ({wineRequest, clickNo, mealTitle, wineImage, addToCart}) => {
     const [requestWine, setRequestWine] = useState(false)
     const [wineTitle, setWineTitle] = useState(null)
     const [winePrice, setWinePrice] = useState(null)
+    const [wineId, setWineId] = useState(null)
     const [localWineAddOn, setLocalWineAddOn] = useLocalStorage(wineAddOnStorage)
 
     const defaultOptions = {
@@ -25,12 +26,13 @@ const WineAddOn = ({wineRequest, clickNo, mealTitle, wineImage, addToCart}) => {
     const wineAddOn = async() => {
         const res = await wineRequest()
         const wineResults = await Products.getPairMeal()
-        const winePrice = wineResults.data[0].price
+        const {id, price} = wineResults.data[0]
         const {description, title} = res
         setTimeout(()=> {
         setWineDescription(description)
         setWineTitle(title)
-        setWinePrice(winePrice)
+        setWineId(id)
+        setWinePrice(price)
         }, 4000)
         setRequestWine(true)
     }
@@ -39,7 +41,7 @@ const WineAddOn = ({wineRequest, clickNo, mealTitle, wineImage, addToCart}) => {
     //addToCart is a prop passed down from SignatureMeal (which only adds meal)
     //This function adds both meal and wine for pairing to localStorage to be in cart/checkout
     const wineAddOnCheckout = async() =>{
-        await setLocalWineAddOn(JSON.stringify({wineTitle, wineImage, winePrice}))
+        await setLocalWineAddOn(JSON.stringify({wineId ,wineTitle, wineImage, winePrice}))
         addToCart()
     }
 
