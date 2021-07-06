@@ -14,18 +14,25 @@ const ourWinePair = localStorage.getItem('pair-meal')
 
 const StripeContainer = () => {
     const {currentUser} = useContext(AppContext)
-    const pairId = JSON.parse(ourWinePair)
+    const {id} = currentUser.data
 
     const makeSignatureMealPurchase = async () => {
         const mealId = JSON.parse(ourLocalMeal)
         //plug in our parameters already so we just execute when we pass it down the prop for checkout
-        const res = await Payment.signatureMealPurchase(currentUser.data.id, mealId.mealId)
+        const res = await Payment.signatureMealPurchase(id, mealId.mealId)
+        return res
+    }
+
+    const makePairMealPurchase = async () => {
+        const mealId = JSON.parse(ourLocalMeal)
+        const pairId = JSON.parse(ourWinePair)
+        const res = await Payment.pairMealPurchase(id, mealId.mealId, pairId.wineId)
         return res
     }
 
     return (
         <Elements stripe={stripePromise}>
-            <CheckoutForm meal={makeSignatureMealPurchase}/>
+            <CheckoutForm meal={makeSignatureMealPurchase} pair={makePairMealPurchase}/>
         </Elements>
     )
 }

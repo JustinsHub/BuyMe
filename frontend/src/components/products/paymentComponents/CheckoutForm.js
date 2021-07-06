@@ -22,7 +22,8 @@ const CARD_OPTIONS = {
   },
 };
 
-const CheckoutForm = ({meal}) => {
+const CheckoutForm = ({meal, pair}) => {
+  const [ifPairMeal] = useState(localStorage.getItem('pair-meal'))
   const [success, setSuccess] = useState(false)
   const stripe = useStripe();
   const elements = useElements();
@@ -34,12 +35,20 @@ const CheckoutForm = ({meal}) => {
         card: elements.getElement(CardElement)
       })
 
+      //if wine add wine method (how to get wine)
       if(!error){
         const {id} = paymentMethod
-        const res = await Payment.signatureStripePayment(id)
-        meal()//our POST method for purchases when purchasing signature-meal passed down by a prop
-        setSuccess(true)
-        return res
+        if(!ifPairMeal) { //document this
+          const signatureMealPayment = await Payment.signatureStripePayment(id)
+          meal()//our POST method for purchases when purchasing signature-meal passed down by a prop
+          setSuccess(true)
+          return signatureMealPayment
+        } else {
+          const pairMealPayment = await Payment.pairStripePayment(id)
+          pair()
+          setSuccess(true)
+          return pairMealPayment
+        }
       } else {
         console.log(error.message)
       }

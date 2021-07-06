@@ -21,11 +21,26 @@ class Payment {
                 id
             })
             if(res.data.success){
-            console.log("Successful payment")
+            console.log("Signature Meal payment successful")
             }
         } catch (error) {
             console.log("Error", error)
         }
+    }
+
+    static async pairStripePayment(id) {
+        try {
+            const pairMealPrice = 1698
+            const res = await axios.post(`${BASE_URL_LOCAL}/stripe/pair-meal-payment`, {
+                amount: pairMealPrice,
+                id
+            })
+            if(res.data.success){
+            console.log("Pair Meal payment successful")
+            }
+        } catch (error) {
+            console.log("Error", error)
+        } 
     }
 }
 
