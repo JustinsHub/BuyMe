@@ -55,7 +55,7 @@ const Routes = () => {
                 </Route>
                 
                 <Route exact path="/successful-payment">
-                    <SuccessPage/>
+                    <SuccessPage user={currentUser}/>
                 </Route>
 
                 <Route exact path="/">
