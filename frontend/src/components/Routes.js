@@ -14,6 +14,7 @@ import Checkout from './products/Checkout'
 import Policy from './products/Policy'
 import ErrorRedirect from './users/ErrorRedirect'
 import AccessError from './users/AccessError'
+import SuccessPage from './products/paymentComponents/SuccessPage'
 
 
 const Routes = () => {
@@ -51,6 +52,10 @@ const Routes = () => {
 
                 <Route exact path="/policy">
                     <Policy/>
+                </Route>
+                
+                <Route exact path="/successful-payment">
+                    <SuccessPage/>
                 </Route>
 
                 <Route exact path="/">

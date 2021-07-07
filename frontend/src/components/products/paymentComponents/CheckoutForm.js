@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import { useHistory } from 'react-router';
 import {CardElement, useElements, useStripe} from '@stripe/react-stripe-js';
 import Payment from './paymentApi'
 import '../../styles/StripePayments.css'
@@ -23,11 +24,18 @@ const CARD_OPTIONS = {
 };
 
 const CheckoutForm = ({meal, pair}) => {
+  const history = useHistory()
+
   const [ifPairMeal] = useState(localStorage.getItem('pair-meal'))
   const [success, setSuccess] = useState(false)
+
   const stripe = useStripe();
   const elements = useElements();
   
+  const redirectSuccess = () => {
+    return history.push('/successful-payment')
+  }
+
   const handleSubmit = async (e) => {
       e.preventDefault();
       const {error, paymentMethod} = await stripe.createPaymentMethod({
@@ -35,10 +43,12 @@ const CheckoutForm = ({meal, pair}) => {
         card: elements.getElement(CardElement)
       })
 
-      //if wine add wine method (how to get wine)
+
       if(!error){
         const {id} = paymentMethod
-        if(!ifPairMeal) { //document this
+
+        //checks if there is wine added to cart (localStorage)
+        if(!ifPairMeal) { 
           const signatureMealPayment = await Payment.signatureStripePayment(id)
           meal()//our POST method for purchases when purchasing signature-meal passed down by a prop
           setSuccess(true)
@@ -69,7 +79,7 @@ const CheckoutForm = ({meal, pair}) => {
       </form>
       : 
       <div>
-        <h3>Successfully purchased your meal!</h3>
+        {redirectSuccess()}
       </div>
       }
     </div>
