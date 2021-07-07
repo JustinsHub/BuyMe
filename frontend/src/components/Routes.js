@@ -14,7 +14,6 @@ import Checkout from './products/Checkout'
 import Policy from './products/Policy'
 import ErrorRedirect from './users/ErrorRedirect'
 import AccessError from './users/AccessError'
-import SuccessPage from './products/paymentComponents/SuccessPage'
 
 
 const Routes = () => {
@@ -53,10 +52,13 @@ const Routes = () => {
                 <Route exact path="/policy">
                     <Policy/>
                 </Route>
+<<<<<<< HEAD
                 
                 <Route exact path="/successful-payment">
                     <SuccessPage user={currentUser}/>
                 </Route>
+=======
+>>>>>>> parent of 17bc41cf... added successful component to redirect on payment
 
                 <Route exact path="/">
                     <Home/>
