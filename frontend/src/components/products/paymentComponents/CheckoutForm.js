@@ -22,7 +22,7 @@ const CARD_OPTIONS = {
   },
 };
 
-const CheckoutForm = ({meal, pair}) => {
+const CheckoutForm = ({meal, pair, successfulPayment}) => {
   const [ifPairMeal] = useState(localStorage.getItem('pair-meal'))
   const [success, setSuccess] = useState(false)
   const stripe = useStripe();
@@ -68,9 +68,7 @@ const CheckoutForm = ({meal, pair}) => {
           </div>
       </form>
       : 
-      <div>
-        <h3>Successfully purchased your meal!</h3>
-      </div>
+      successfulPayment(true)
       }
     </div>
   )

@@ -4,14 +4,11 @@ import StripeContainer from './StripeContainer';
 
 const CheckoutModal = () => {
     const [show, setShow] = useState(false);
+    const [success, setSuccess] = useState(false)
 
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
 
-    //TODO:
-    //Stripe backend find out how it works and find out how to add on other products (wine) DONE
-    // - //add a payment API along and pairMeal API route on backend for CheckoutForm
-    //when finished purchase remove from items from localStorage
 
     //take out cancel order when successfully paid useState.
     //Redirect the successful purchase instead.
@@ -29,13 +26,31 @@ const CheckoutModal = () => {
     </span>
 
     <Modal show={show} onHide={handleClose} backdrop="static">
+        {/* set up conditional when successful payment this modal changed to go home. */}
+        {!success ?
+        <>
         <Modal.Header className="d-flex justify-content-center global-font" style={{fontSize: "23px"}}>
             Enter your debit or credit card
         </Modal.Header>
         <Modal.Body>
-            <StripeContainer />
+            <StripeContainer success={setSuccess}/>
             <p className="global-remove-cart text-center mt-2" onClick={handleClose}>Cancel order</p>
         </Modal.Body>
+        </>
+        :
+        <>
+        <Modal.Body className="text-center">
+        <div class="alert alert-success" role="alert">
+            Successful Payment!
+        </div>
+        <div>
+            <p>Thank you for using Pickout! Your package should arrive shortly.</p>
+            <button>Go Home</button>
+
+        </div>
+        </Modal.Body>
+        </>
+        }
     </Modal>
     </>
     )

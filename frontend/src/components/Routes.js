@@ -14,12 +14,15 @@ import Checkout from './products/Checkout'
 import Policy from './products/Policy'
 import ErrorRedirect from './users/ErrorRedirect'
 import AccessError from './users/AccessError'
+import Navbar from './Navbar'
+import Footer from './Footer'
 
 
 const Routes = () => {
     const {login, register, currentUser, currentAddress} = useContext(AppContext)
     return (
         <div>
+            <Navbar/>
             <Switch>
                 <Route exact path="/login">
                     <Login login={login} user={currentUser}/>
@@ -52,13 +55,6 @@ const Routes = () => {
                 <Route exact path="/policy">
                     <Policy/>
                 </Route>
-<<<<<<< HEAD
-                
-                <Route exact path="/successful-payment">
-                    <SuccessPage user={currentUser}/>
-                </Route>
-=======
->>>>>>> parent of 17bc41cf... added successful component to redirect on payment
 
                 <Route exact path="/">
                     <Home/>

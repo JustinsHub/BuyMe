@@ -8,9 +8,9 @@ function App() {
   return (
     <div className="App">
       <AppContextWrapper>
-        <Navbar/>
+        {/* <Navbar/> */}
         <Routes/>
-        <Footer/>
+        {/* <Footer/> */}
       </AppContextWrapper>
     </div>
   );

@@ -8,7 +8,7 @@ const EnsureLoginRoute = ({exact, path, children}) => {
     //must have a token registered id to currentUser in order to have authorization
     //must return in order to execute redirect
 
-    if(!currentUser) { 
+    if(!currentUser) {
     return <Redirect to ="/"/>
     }
 

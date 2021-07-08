@@ -12,7 +12,7 @@ const stripePromise = loadStripe(PUBLIC_KEY);
 const ourLocalMeal = localStorage.getItem('signature-meal')
 const ourWinePair = localStorage.getItem('pair-meal')
 
-const StripeContainer = () => {
+const StripeContainer = ({success}) => {
     const {currentUser} = useContext(AppContext)
     const {id} = currentUser.data
 
@@ -32,7 +32,7 @@ const StripeContainer = () => {
 
     return (
         <Elements stripe={stripePromise}>
-            <CheckoutForm meal={makeSignatureMealPurchase} pair={makePairMealPurchase}/>
+            <CheckoutForm meal={makeSignatureMealPurchase} pair={makePairMealPurchase} successfulPayment={success}/>
         </Elements>
     )
 }
