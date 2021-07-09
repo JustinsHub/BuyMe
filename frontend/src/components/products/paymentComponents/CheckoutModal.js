@@ -1,21 +1,27 @@
 import React, {useState} from 'react'
+import {useHistory} from 'react-router-dom'
 import {Modal} from 'react-bootstrap';
 import StripeContainer from './StripeContainer';
 
 const CheckoutModal = () => {
+    const history = useHistory()
     const [show, setShow] = useState(false);
     const [success, setSuccess] = useState(false)
 
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
 
+    const goHome = () => {
+        localStorage.removeItem('signature-meal')
+        if(localStorage.getItem('pair-meal')){
+            localStorage.removeItem('signature-meal')
+        }
+        history.push('/')
+    }
 
-    //take out cancel order when successfully paid useState.
-    //Redirect the successful purchase instead.
-    //Purchase API. Registers the purchases on handleSubmit/StripePayment based on product thats added to cart. 
-    //Redirect to successful payment? or alert and redirect somewhere else
-    //Fix authorization on checkout
+    //Fix authorization (needs address) on checkout
     //Questions sections
+    //TESTS
     //Policy and Terms and conditions?
     //launch Netlify
 
@@ -44,9 +50,8 @@ const CheckoutModal = () => {
             Successful Payment!
         </div>
         <div>
-            <p>Thank you for using Pickout! Your package should arrive shortly.</p>
-            <button>Go Home</button>
-
+            <p>Thank you for using Pickout!</p>
+            <button className="btn btn-default" style={{color: "white"}} onClick={goHome}>Go Home</button>
         </div>
         </Modal.Body>
         </>

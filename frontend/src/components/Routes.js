@@ -22,7 +22,7 @@ const Routes = () => {
     const {login, register, currentUser, currentAddress} = useContext(AppContext)
     return (
         <div>
-            <Navbar/>
+            
             <Switch>
                 <Route exact path="/login">
                     <Login login={login} user={currentUser}/>
