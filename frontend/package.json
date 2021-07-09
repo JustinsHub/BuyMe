@@ -1,6 +1,5 @@
 {
   "name": "capstone-two-project",
-  "homepage": "https://justinshub.github.io/Pickout/",
   "version": "0.1.0",
   "private": true,
   "proxy": "http://localhost:5001",

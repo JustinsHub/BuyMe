@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React from 'react'
 import {Link} from 'react-router-dom'
 import HowItWorks from './products/HowItWorks'
 import Reviews from './products/Reviews'

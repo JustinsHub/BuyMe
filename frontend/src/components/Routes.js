@@ -1,5 +1,5 @@
 import React, {useContext} from 'react'
-import {Switch, Route, Link} from 'react-router-dom'
+import {Switch, Route} from 'react-router-dom'
 import Home from './Home'
 import Login from './users/Login'
 import SignUp from './users/SignUp'
@@ -14,8 +14,6 @@ import Checkout from './products/Checkout'
 import Policy from './products/Policy'
 import ErrorRedirect from './users/ErrorRedirect'
 import AccessError from './users/AccessError'
-import Navbar from './Navbar'
-import Footer from './Footer'
 
 
 const Routes = () => {

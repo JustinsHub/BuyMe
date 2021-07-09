@@ -12,6 +12,7 @@ import '../styles/SignatureMeal.css'
 const SignatureMeal = ({user}) => {
     const signatureMealStorage = "signature-meal"
     const history = useHistory()
+
     //Signature Meal states
     const [mealTitle, setMealTitle] = useState(null)
     const [mealImage, setMealImage] = useState(null)
@@ -26,7 +27,6 @@ const SignatureMeal = ({user}) => {
     const [wineImage, setWineImage] = useState(null)
     const [isClickedNo, setIsClickedNo] = useState(false)
 
-    //move on to requesting our api when purchased
     //make user only be able to pick one random meal a day
     //have a countdown timer when clicked 24hour
     //css
@@ -38,6 +38,7 @@ const SignatureMeal = ({user}) => {
         const {id, price} = mealResults.data[0]
         const {image, title, summary} = res.data.recipes[0]
         setTimeout(() => {
+            console.log(signatureMeal)
             setMealTitle(title)
             setMealImage(image)
             setMealSummary(summary)
@@ -66,18 +67,15 @@ const SignatureMeal = ({user}) => {
             history.push('/checkout')
         }, 500)
     }
-
-    //setLogin error when redirected if not logged in...
-    //useState change if theres added to cart
-    //We can request the API HERE and users can either continue with purchase or wait till next time. (Have a second random pick?)
     
-    // if(!user) {
-    //     history.push("/error/must-login-or-signup")
-    // }
+    if(!user) {
+        history.push("/error/must-login-or-signup")
+    }
 
     return (
         <div className="Signature-Meal-m global-t-a">
-            {/* if the request has been filled then render the API(food) */}
+
+            {/* if the request has been filled based on image, then render the API(food) */}
             {mealImage ? 
                 <div className="Signature-Meal-c card">
                     <div className="card-body">
@@ -96,6 +94,8 @@ const SignatureMeal = ({user}) => {
                             <div className="col-md-3">
                             </div>
                             </div>
+
+                            //render meal with wine if there's add on wine
                             :
                             <div className="col-md-12 d-flex justify-content-center">
                                 <div className="col-md-6">
@@ -152,10 +152,8 @@ const SignatureMeal = ({user}) => {
                     <p className="Signature-Meal-p-f m-4">Please wait while we retrieve your food!</p>
                 </div>
                 }
-                {/* Not satisfied? make a quick policy and make it a modal about 24 hour rule */}
             </div>
         }
-
         </div>
     )
 }

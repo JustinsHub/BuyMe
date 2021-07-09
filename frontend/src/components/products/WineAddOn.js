@@ -28,6 +28,7 @@ const WineAddOn = ({wineRequest, clickNo, mealTitle, wineImage, addToCart}) => {
         const wineResults = await Products.getPairMeal()
         const {id, price} = wineResults.data[0]
         const {description, title} = res
+        console.log(localWineAddOn)
         setTimeout(()=> {
         setWineDescription(description)
         setWineTitle(title)

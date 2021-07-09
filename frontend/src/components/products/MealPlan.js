@@ -8,13 +8,15 @@ const MealPlan = ({user}) => {
     const history = useHistory()
     const [loginError, setLoginError] = useError(null)
 
-    const signatureMealPath = () => user ? history.push('/signature-meal') : setLoginError('Must login in order to continue') //make alert popup/modal?
-
-    //add mock common questions? 
+    const signatureMealPath = () => user ? history.push('/signature-meal') : setLoginError('Please login in order to continue.') //make alert popup/modal?
 
     return (
         <section className="PriceAndPlans global-t-a">
-            <h1>{loginError}</h1>
+            {loginError && 
+            <div className="alert alert-danger" role="alert">
+                {loginError}
+            </div>
+            }
             <div className="container">
                 <div className="PriceAndPlans-content">
                 <div>
