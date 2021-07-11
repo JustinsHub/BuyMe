@@ -45,15 +45,15 @@ describe('POST /register',()=>{
 })
 
 //fix this
-// describe('POST /login', ()=>{
-//     test('Login a user', async()=>{
-//         const res = await request(app)
-//             .post('/auth/login')
-//                 .send({username: 'Billy Bong', password: '12345'})
-//         expect(res.statusCode).toBe(201)
-//         expect(res.body).toEqual({LoggedIn: "Billy Bong", token: expect.any(String)})
-//     })
-// })
+describe('POST /login', ()=>{
+    test('Login a user', async()=>{
+        const res = await request(app)
+            .post('/auth/login')
+                .send({username: 'Billy Bong', password: '12345'})
+        expect(res.statusCode).toBe(201)
+        expect(res.body).toEqual({LoggedIn: "Billy Bong", token: expect.any(String)})
+    })
+})
 
 describe('PATCH /update/:id', ()=> {
     test('Editing a user', async()=>{
