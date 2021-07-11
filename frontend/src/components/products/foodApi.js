@@ -5,18 +5,18 @@ import {ourRandomTags, ourRandomWines, randNum} from '../commons/shuffleArray'
 const BASE_URL_SPOONTACULAR = "https://api.spoonacular.com" 
 
 //base url api from my backend
-const BASE_URL_LOCAL= 'http://localhost:5001'
+const BASE_URL = process.env.REACT_APP_BASE_URL || "http://localhost:5001";
 
 class Products {
     //our API for signature-meal
     static async getSignatureMeal() {
-        const res = await axios.get(`${BASE_URL_LOCAL}/meals/signature-meal`)
+        const res = await axios.get(`${BASE_URL}/meals/signature-meal`)
         return res
     }
 
     //get API for wine information
     static async getPairMeal(){
-        const res = await axios.get(`${BASE_URL_LOCAL}/meals/pair-meal`)
+        const res = await axios.get(`${BASE_URL}/meals/pair-meal`)
         return res
     }
     //generates a random cuisine tag based on array in imported function

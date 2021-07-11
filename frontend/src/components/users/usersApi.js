@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const BASE_URL = 'http://localhost:5001'
+const BASE_URL = process.env.REACT_APP_BASE_URL || "http://localhost:5001";
 
 
 class User {
@@ -74,14 +74,14 @@ static async updateAddress(id, addressInfo){
 }
 
 //check for extra authentication (not in use right now)
-static async checkPassword(id, userPass){
-    try{
-    const res = await axios.post(`${BASE_URL}/users/authorization/${id}`, {password: userPass})
-    return res
-    }catch(e){
-        return e
-    }
-}
+// static async checkPassword(id, userPass){
+//     try{
+//     const res = await axios.post(`${BASE_URL}/users/authorization/${id}`, {password: userPass})
+//     return res
+//     }catch(e){
+//         return e
+//     }
+// }
 }
 
 export default User

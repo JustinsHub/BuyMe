@@ -51,7 +51,7 @@ const Routes = () => {
                 </Route>
 
                 <Route exact path="/policy">
-                    <Policy/>
+                    <Policy user={currentUser}/>
                 </Route>
 
                 <Route exact path="/">

@@ -68,9 +68,9 @@ const SignatureMeal = ({user}) => {
         }, 500)
     }
     
-    if(!user) {
-        history.push("/error/must-login-or-signup")
-    }
+    // if(!user) {
+    //     history.push("/error/must-login-or-signup")
+    // }
 
     return (
         <div className="Signature-Meal-m global-t-a">

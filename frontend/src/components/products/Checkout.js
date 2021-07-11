@@ -11,9 +11,11 @@ const Checkout = ({user, address}) => {
     const [localSignatureMeal] = useState(signatureMeal)
     const [localPairMeal, setLocalPairMeal] = useState(pairMeal)
     const [removeLocalWine, setRemoveLocalWine] = useState(false)
+
     const {first_name, last_name, email} = user.data
     const {street_address, address_number, city, state, zip_code, country} = address.data
-    console.log(user.data)
+    
+
 
     //Prevents rendering on first render. Must setLocalPairMeal in order to render the checkout page. (The way it gets removed is based on)
     //renders based on boolean prop passed down to RemoveCartModal
@@ -24,7 +26,7 @@ const Checkout = ({user, address}) => {
             } else {
                 loaded.current = true;
             }
-}, [removeLocalWine]);
+    }, [removeLocalWine]);
     
     return (
         //use effect the address here so when a user restarts it auto requests it
@@ -38,13 +40,16 @@ const Checkout = ({user, address}) => {
                             <div className="card-body">
                                 <h6 className="card-subtitle mb-2 text-muted">Shipping address</h6>
                                 <div>
+                                    
                                     <p className="global-ct card-text">{first_name} {last_name}</p>
+                                    
                                     {street_address === null ?
                                     <div>
                                     <div className="card-body">
                                         <p style={{fontSize: "14px"}}>You current don't have a shipping address on your profile. Please <Link className="global-link" to="/profile/edit">update</Link> your address in order to continue checkout.</p>
                                     </div>
-                                </div> :
+                                </div> 
+                                :
                                 <div>
                                     <p className="global-ct card-text">{street_address} {address_number}</p>
                                     <p className="global-ct card-text">{city}, {state} {zip_code}</p>
