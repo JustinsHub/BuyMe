@@ -1,11 +1,17 @@
 {
   "name": "backend",
   "version": "1.0.0",
-  "description": "",
+  "description": "Pickout Service API",
   "main": "app.js",
+  "engines": {
+    "node": "14.x"
+  },
   "scripts": {
     "test": "jest",
-    "start": "nodemon server.js"
+    "start": "nodemon server.js",
+    "heroku-prebuild": "echo This runs before Heroku installs dependencies.",
+    "heroku-postbuild": "echo This runs after Heroku installs dependencies, but before Heroku prunes and caches dependencies.",
+    "heroku-cleanup": "echo This runs after Heroku prunes and caches dependencies."
   },
   "keywords": [],
   "author": "",
