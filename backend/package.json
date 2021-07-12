@@ -2,7 +2,7 @@
   "name": "backend",
   "version": "1.0.0",
   "description": "Pickout Service API",
-  "main": "server.js",
+  "main": "app.js",
   "engines": {
     "node": "14.x",
     "npm": "6.x"
