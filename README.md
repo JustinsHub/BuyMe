@@ -1,12 +1,14 @@
 # Pickout
 DEMO: https://pickout-service.surge.sh/
 
-#(Food/Cuisine Website)
 Pickout is a full stack web app built using React, NodeJS, Express, and PostgreSQL. The web apps goal is to have users who are indecisive of what foods to eat when users have assumed of every single possiblity. The web API is hosted on Heroku and Front End Repository on GitHub.
 
 # Preview 
 <img src="pickout-images/Screen Shot 2021-07-21 at 11.29.47 AM.png">
 
+# Food chosen for you (variety cuisines) when you use Pickout
+
+<img src="pickout-images/Screen Shot 2021-07-21 at 1.09.02 PM.png">
 
 # Project creation plan
 
