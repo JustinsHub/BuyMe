@@ -3,7 +3,7 @@ https://pickout-service.surge.sh/
 
 # Capstone 2 (Food/Cuisine Website)
 
-Goal: First website to purchase random food/cuisine with crypto currency.
+Goal: First website to purchase random food/cuisine.
 
 # Website Goal
 
