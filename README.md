@@ -1,4 +1,5 @@
 # Pickout
+https://pickout-service.surge.sh/
 
 # Capstone 2 (Food/Cuisine Website)
 
@@ -41,10 +42,13 @@ Database Models
 > `Signature Meal`
 
 - Id (primary_key)
+- price 
 
 > `Pair Meal`
 
 - Id (primary_key)
+- price 
+
 
 > `Purchases`
 
