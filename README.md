@@ -1,19 +1,12 @@
 # Pickout
-https://pickout-service.surge.sh/
+DEMO: https://pickout-service.surge.sh/
 
-# Capstone 2 (Food/Cuisine Website)
+#(Food/Cuisine Website)
+Pickout is a full stack web app built using React, NodeJS, Express, and PostgreSQL. The web apps goal is to have users who are indecisive of what foods to eat when users have assumed of every single possiblity. The web API is hosted on Heroku and Front End Repository on GitHub.
 
-Goal: First website to purchase random food/cuisine.
+# Preview 
+![alt text] (https://pickout-service.surge.sh/)
 
-# Website Goal
-
-Choose food for clients who are indecisive on picking food. Purchases are only made with crypto currency.
-
-# User Demographics
-
-_User Demographics_
-
-- Users who are hungry and have no clue on what to eat.
 
 # Project creation plan
 
