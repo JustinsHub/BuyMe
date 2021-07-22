@@ -54,27 +54,9 @@ Database Models
 
 # API
 
+- Pickout API (for authorization/authentication)
 - Spoontacular API (for products)
 - React Stripe API (for payment)
-
-# Potential Issues with API
-
-> Possible issues include:
-
-- Exceeding the limits of the API token quota
-- Security on payments
-- Authorization
-
-# Sensitive Information
-
-- Users will need to log in. Therefore, passwords/information will need to be secured.
-- Confirming purchases.
-
-# App functionality
-
-- Users can register, login, edit account, and logout.
-- Users have to login to purchase anything.
-- Users are able to add/remove wine optionally (extra charge for wine).
 
 # User workflow
 
@@ -83,6 +65,23 @@ Database Models
 3. Add to cart. Proceed to checkout (users must shipping address in order to continue purchase)
 4. `optional` Have a Modal to show other products in the future before finalizing a sale to create potential add on to cart?
 5. Sale -> send email
+
+# Usage
+> <b>Endpoints for users:</b>
+
+- GET `/users/{id}` - get user by ID
+- POST `/auth/register` - register a new user
+- POST `/auth/login` - login existing user
+- PATCH `/users/{id}` - update a user
+- DELETE `/users/{id}` - delete a user
+
+> <b>Endpoints for users address:</b>
+- GET `/address/{id}` - get users address by user ID
+- PATCH `/address/{id}` - update a users address by users ID
+
+> <b>Endpoints for purchases:</b>
+- POST `/meals/signature/{:mealId}/purchase/{:userId}/` - posts a signature-meal purchase based on mealID *(pre-existing)* and user id
+- POST `/meals/pair-meal/:mealId/:pairId/purchase/:userId'/` -  posts a paired meal purchase based on mealID and pairID *(both pre-existing)* and user id
 
 # CRUD features
 
@@ -93,7 +92,7 @@ Database Models
 
 # Stretch Goals
 
-- Email promotions
-- Add on features with Meals
-- Other payment method
-- Discount codes
+- [ ] Email promotions
+- [ ] Add on features with Meals
+- [ ] Other payment method
+- [ ] Discount codes
