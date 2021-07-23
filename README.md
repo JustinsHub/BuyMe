@@ -14,47 +14,11 @@ Pickout is a full stack web app built using React, NodeJS, Express, and PostgreS
 
 Database Models
 
-> `User`
-
-- Id (primary key)
-- username (required, unique)
-- password (required)
-- first_name (optional)
-- last_name (optional)
-- email (required) `very important to email market for future products`
-- timestamp (when the user was created)
-
-> `Address`
-
-- user_id (PK/FK)
-- street_address
-- address_number
-- city
-- state
-- zip_code
-- country
-
-> `Signature Meal`
-
-- Id (primary_key)
-- price 
-
-> `Pair Meal`
-
-- Id (primary_key)
-- price 
-
-
-> `Purchases`
-
-- Id (primary key)
-- product_id (required, API)
-- user_id (ForeignKey required)
-- purchased_on date/time
+<img src="pickout-images/Screen Shot 2021-07-22 at 10.42.01 PM.png">
 
 # API
 
-- Pickout API (for authorization/authentication)
+- Pickout API (for authorization/authentication/meal purchases)
 - Spoontacular API (for products)
 - React Stripe API (for payment)
 
