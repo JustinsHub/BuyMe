@@ -21,6 +21,7 @@ Database Models
 - Pickout API (for authorization/authentication/meal purchases)
 - Spoontacular API (for products)
 - React Stripe API (for payment)
+> If you want to make a mock payment use: `4242-4242-4242-4242 444 90001` in credit card checkout section.
 
 # User workflow
 
